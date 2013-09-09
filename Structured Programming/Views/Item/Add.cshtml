@@ -1,4 +1,4 @@
-﻿@model Structured_Programming.Models.ItemAddModel
+﻿@model Structured_Programming.Models.ItemFormModel
 
 @{
     ViewBag.Title = "Add";
@@ -9,29 +9,32 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    @Html.ValidationSummary()
     <fieldset>
         <legend>Add a new item</legend>
         <ul>
             <li>
-                @Html.LabelFor(m => m.ItemName)
-                @Html.TextBoxFor(m => m.ItemName)
+                @Html.LabelFor(m => m.Item.Name)
+                @Html.TextBoxFor(m => m.Item.Name)
+                @Html.ValidationMessageFor(m => m.Item.Name)
             </li>
             <li>
-                @Html.LabelFor(m => m.ItemDescription)
-                @Html.TextBoxFor(m => m.ItemDescription)
+                @Html.LabelFor(m => m.Item.Description)
+                @Html.TextBoxFor(m => m.Item.Description)
+                @Html.ValidationMessageFor(m => m.Item.Description)
             </li>
             <li>
-                @Html.LabelFor(m => m.ItemPrice)
-                @Html.TextBoxFor(m => m.ItemPrice)
+                @Html.LabelFor(m => m.Item.Price)
+                @Html.TextBoxFor(m => m.Item.Price)
+                @Html.ValidationMessageFor(m => m.Item.Price)
             </li>
             <li>
-                @Html.LabelFor(m => m.ItemTradeWith)
-                @Html.TextBoxFor(m => m.ItemTradeWith)
+                @Html.LabelFor(m => m.Item.Trade)
+                @Html.TextBoxFor(m => m.Item.Trade)
+                @Html.ValidationMessageFor(m => m.Item.Trade)
             </li>
             <li>
                 <label>Type</label>
-                @Html.DropDownListFor(m => m.ItemTypeId, Model.TypeList)
+                @Html.DropDownListFor(m => m.Item.TypeId, Model.TypeList)
             </li>
         </ul>
         <input type="submit" value="Add" />

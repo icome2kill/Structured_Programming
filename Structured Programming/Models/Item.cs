@@ -19,10 +19,20 @@ namespace Structured_Programming.Models
         public int ItemId { get; set; }
         public int TypeId { get; set; }
         [Required]
+        [Display(Name = "Name")]
         public string Name { get; set; }
+
+        [Display(Name = "Description")]
         public string Description { get; set; }
+
+        [Display(Name = "Price")]
         public Nullable<decimal> Price { get; set; }
+
+        [Display(Name = "Want to trade with")]
         public string Trade { get; set; }
+
+        [Required]
+        [Display(Name = "Type")]
         public int UserId { get; set; }
     
         public virtual Type Type { get; set; }

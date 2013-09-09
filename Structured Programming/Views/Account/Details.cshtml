@@ -37,7 +37,7 @@
         @foreach (var item in Model.Items)
         {
             <tr>
-                <td>@Html.ActionLink(item.Name, "Detail", "Item")</td>
+                <td>@Html.ActionLink(item.Name, "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: null)</td>
                 <td>@item.Description</td>
                 <td>@string.Format("{0:c}", @item.Price)</td>
                 <td>@item.Trade</td>

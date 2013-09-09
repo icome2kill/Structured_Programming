@@ -1,4 +1,4 @@
-﻿@model Structured_Programming.Models.ItemEditModel
+﻿@model Structured_Programming.Models.ItemFormModel
 
 @{
     ViewBag.Title = "Edit";
@@ -16,7 +16,7 @@
             @Html.HiddenFor(model => model.Item.ItemId)
             @Html.HiddenFor(model => model.Item.UserId)
             <div class="editor-label">
-                @Html.LabelFor(model => model.Item.TypeId)
+                <label for="Item_TypeId">Type</label>
             </div>
             <div class="editor-field">
                 @Html.DropDownListFor(model => model.Item.TypeId, Model.TypeList)

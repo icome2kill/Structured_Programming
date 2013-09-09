@@ -31,34 +31,26 @@ namespace Structured_Programming.Controllers
         [Authorize]
         public ActionResult Add()
         {
-            var vm = new ItemAddModel
+            var vm = new ItemFormModel
             {
-                TypeList = new SelectList(db.Types, "TypeId", "Name")
+                TypeList = new SelectList(db.Types, "TypeId", "Name"),
+                Item = new Item()
             };
             return View(vm);
         }
         [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Add(ItemAddModel model)
+        public ActionResult Add(ItemFormModel model)
         {
             if (ModelState.IsValid)
             {
-                db.Items.Add(new Item
-                {
-                    Name = model.ItemName,
-                    Description = model.ItemDescription,
-                    Price = model.ItemPrice,
-                    TypeId = model.ItemTypeId,
-                    UserId = WebSecurity.CurrentUserId
-                });
+                model.Item.UserId = WebSecurity.CurrentUserId;
+                db.Items.Add(model.Item);
                 db.SaveChanges();
                 return RedirectToAction("Index", "Item");
             }
-            else
-            {
-
-            }
+            model.TypeList = new SelectList(db.Types, "TypeId", "Name");
             return View(model);
         }
         public ActionResult Details(int id)
@@ -78,7 +70,7 @@ namespace Structured_Programming.Controllers
             {
                 return RedirectToAction("Index", "Item");
             }
-            return this.View(new ItemEditModel
+            return this.View(new ItemFormModel
             {
                 Item = item,
                 TypeList = new SelectList(db.Types, "TypeId", "Name")
@@ -86,7 +78,7 @@ namespace Structured_Programming.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(ItemEditModel model)
+        public ActionResult Edit(ItemFormModel model)
         {
             //Cannot edit other user's items
             var isValid = (from c in db.Items

@@ -1,0 +1,39 @@
+﻿@model Structured_Programming.Models.ItemIndexModel 
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Description
+        </th>
+        <th>
+            Price
+        </th>
+        <th>
+            Want to trade with
+        </th>
+        <th>
+            Owner
+        </th>
+    </tr>
+
+@foreach (var item in Model.Items) {
+    <tr>
+        <td>
+            @Html.ActionLink(@item.Name, "Details", new { id = item.ItemId } )
+        </td>
+        <td>
+            @item.Description
+        </td>
+        <td>
+            @string.Format("{0:c}", @item.Price)
+        </td>
+        <td>
+            @item.Trade
+        </td>
+        <td>
+             @Html.ActionLink(item.UserProfile.UserName, "Details", "Account", routeValues: new { id = item.UserId }, htmlAttributes: new { id = item.UserId })
+        </td>
+    </tr>
+}

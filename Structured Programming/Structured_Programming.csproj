@@ -349,6 +349,7 @@
     <Content Include="Views\Item\Delete.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\Details.cshtml" />
+    <Content Include="Views\Shared\_ListUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
