@@ -1,0 +1,63 @@
+﻿@model Structured_Programming.Models.Item
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Item</legend>
+
+    <div class="display-label">
+        Type
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Type.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Description)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Description)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Price)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Price)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Trade)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Trade)
+    </div>
+
+    <div class="display-label">
+        Owner
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserProfile.UserName)
+    </div>
+</fieldset>
+<p>
+    @if (WebSecurity.CurrentUserId == Model.UserId)
+    {
+        <text>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }) |
+        </text>
+    }
+    @Html.ActionLink("Back to List", "Index")
+</p>

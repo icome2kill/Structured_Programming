@@ -1,0 +1,39 @@
+﻿@model Structured_Programming.Models.ItemAddModel
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Add a new item</h2>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    <fieldset>
+        <legend>Add a new item</legend>
+        <ul>
+            <li>
+                @Html.LabelFor(m => m.ItemName)
+                @Html.TextBoxFor(m => m.ItemName)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ItemDescription)
+                @Html.TextBoxFor(m => m.ItemDescription)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ItemPrice)
+                @Html.TextBoxFor(m => m.ItemPrice)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.ItemTradeWith)
+                @Html.TextBoxFor(m => m.ItemTradeWith)
+            </li>
+            <li>
+                <label>Type</label>
+                @Html.DropDownListFor(m => m.ItemTypeId, Model.TypeList)
+            </li>
+        </ul>
+        <input type="submit" value="Add" />
+    </fieldset>
+}

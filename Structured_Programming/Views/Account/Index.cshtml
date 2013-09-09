@@ -1,0 +1,29 @@
+﻿@model Structured_Programming.Models.AccountIndexModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>All Users</h2>
+<table>
+    <tr>
+        <th>
+            Username
+        </th>
+        <th>
+            Email
+        </th>
+    </tr>
+    @foreach (var user in Model.Users)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(user.UserName, "Details", new { id = user.UserId })
+            </td>
+            <td>
+                @user.Email
+            </td>
+        </tr>
+    }
+</table>

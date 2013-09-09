@@ -1,0 +1,50 @@
+﻿@model Structured_Programming.Models.UserProfile
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detail</h2>
+
+<fieldset>
+    <legend>UserProfile</legend>
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Email)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Email)
+    </div>
+    <h3>Items posted</h3>
+    <table>
+        <tr>
+            <th class="display-label">Name
+            </th>
+            <th class="display-label">Description
+            </th>
+            <th class="display-label">Price
+            </th>
+            <th class="display-label">Want to trade with
+            </th>
+        </tr>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@Html.ActionLink(item.Name, "Detail", "Item")</td>
+                <td>@item.Description</td>
+                <td>@string.Format("{0:c}", @item.Price)</td>
+                <td>@item.Trade</td>
+            </tr>
+        }
+    </table>
+</fieldset>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

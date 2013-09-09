@@ -1,0 +1,71 @@
+﻿@model Structured_Programming.Models.ItemEditModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+@if (ViewBag.Error != 1) {
+    using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+
+        <fieldset>
+            <legend>Item</legend>
+
+            @Html.HiddenFor(model => model.Item.ItemId)
+            @Html.HiddenFor(model => model.Item.UserId)
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Item.TypeId)
+            </div>
+            <div class="editor-field">
+                @Html.DropDownListFor(model => model.Item.TypeId, Model.TypeList)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Item.Name)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Item.Name)
+                @Html.ValidationMessageFor(model => model.Item.Name)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Item.Description)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Item.Description)
+                @Html.ValidationMessageFor(model => model.Item.Description)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Item.Price)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Item.Price)
+                @Html.ValidationMessageFor(model => model.Item.Price)
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.Item.Trade)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.Item.Trade)
+                @Html.ValidationMessageFor(model => model.Item.Trade)
+            </div>
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+}
+else {
+    <p>No such item found or you don't have the right to edit this item.</p>   
+}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
