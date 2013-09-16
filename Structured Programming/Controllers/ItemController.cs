@@ -30,6 +30,10 @@ namespace Structured_Programming.Controllers
                 {
                     items = db.Items.Where(i => i.TypeId == id).OrderByDescending(i => i.ItemId);
                 }
+                else
+                {
+                    return View("Error");
+                }
             }
             else
             {
@@ -64,6 +68,8 @@ namespace Structured_Programming.Controllers
                 model.Item.UserId = WebSecurity.CurrentUserId;
                 db.Items.Add(model.Item);
                 db.SaveChanges();
+                ViewBag.Message = "Your item has been successfully added";
+                ViewBag.ReturnUrl = Url.Action("Index");
                 return RedirectToAction("Index", "Item");
             }
             model.TypeList = new SelectList(db.Types, "TypeId", "Name");
@@ -74,7 +80,7 @@ namespace Structured_Programming.Controllers
             var vm = this.db.Items.Find(id);
             if (vm == null)
             {
-                return this.HttpNotFound();
+                return View("Error");
             }
             return View(vm);
         }
@@ -110,7 +116,9 @@ namespace Structured_Programming.Controllers
                 var entry = db.Entry(model.Item);
                 entry.State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index", "Item");
+                ViewBag.Message = "Edit successfully";
+                ViewBag.ReturnUrl = Url.Action("Index");
+                return View("Success");
             }
             return View(model);
         }
@@ -133,11 +141,13 @@ namespace Structured_Programming.Controllers
                                select c).Any(c => c.ItemId == id);
                 if (!isValid)
                 {
-                    return RedirectToAction("Index", "Home");
+                    return View("Error");
                 }
                 db.Items.Remove(item);
                 db.SaveChanges();
-                return RedirectToAction("Index", "Item");
+                ViewBag.Message = "The item has successfully been removed";
+                ViewBag.ReturnUrl = Url.Action("Index");
+                return View("Success");
             }
             return View(item);
         }
