@@ -10,6 +10,7 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using Structured_Programming.Filters;
 using Structured_Programming.Models;
+using System.Data;
 
 namespace Structured_Programming.Controllers
 {
@@ -28,8 +29,35 @@ namespace Structured_Programming.Controllers
             };
             return View(vm);
         }
-        public ActionResult Details(int id)
+        // GET: /Account/EditProfile
+        public ActionResult EditProfile()
         {
+            DataEntities db = new DataEntities();
+            var user = db.UserProfiles.Find(WebSecurity.CurrentUserId);
+            return View(user);
+        }
+        // POST: /Account/EditProfile
+        [HttpPost]
+        public ActionResult EditProfile(UserProfile user)
+        {
+            if (ModelState.IsValid)
+            {
+                DataEntities db = new DataEntities();
+                var currentUser = db.UserProfiles.Find(WebSecurity.CurrentUserId);
+                currentUser.Address = user.Address;
+                currentUser.LastName = user.LastName;
+                currentUser.FirstName = user.FirstName;
+                db.SaveChanges();
+                return RedirectToAction("Details", "Account");
+            }
+            return this.View();
+        }
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                id = WebSecurity.CurrentUserId;
+            }
             DataEntities db = new DataEntities();
             var user = db.UserProfiles.Find(id);
             if (user == null)
@@ -140,7 +168,7 @@ namespace Structured_Programming.Controllers
             if (ownerAccount == User.Identity.Name)
             {
                 // Use a transaction to prevent the user from deleting their last login credential
-                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
+                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = System.Transactions.IsolationLevel.Serializable }))
                 {
                     bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
                     if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)

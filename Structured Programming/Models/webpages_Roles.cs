@@ -19,6 +19,7 @@ namespace Structured_Programming.Models
         {
             this.UserProfiles = new HashSet<UserProfile>();
         }
+        
         [Key]
         public int RoleId { get; set; }
         public string RoleName { get; set; }

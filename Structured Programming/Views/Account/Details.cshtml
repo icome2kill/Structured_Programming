@@ -22,6 +22,34 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Email)
     </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address)
+    </div>
+
+    @if (Model.UserId == WebSecurity.CurrentUserId)
+    {
+        @Html.ActionLink("Change your password", "Manage", "Account")
+        @Html.ActionLink("Edit your profile", "EditProfile", "Account")
+    }
+
     <h3>Items posted</h3>
     <table>
         <tr>

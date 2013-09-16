@@ -20,10 +20,18 @@ namespace Structured_Programming.Models
             this.Items = new HashSet<Item>();
             this.webpages_Roles = new HashSet<webpages_Roles>();
         }
+        
         [Key]
         public int UserId { get; set; }
+
         public string UserName { get; set; }
+
         public string Email { get; set; }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+
+        public string Address { get; set; }
     
         public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }

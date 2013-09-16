@@ -11,7 +11,6 @@ namespace Structured_Programming.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class Type
     {
@@ -19,7 +18,7 @@ namespace Structured_Programming.Models
         {
             this.Items = new HashSet<Item>();
         }
-        [Key]
+    
         public int TypeId { get; set; }
         public string Name { get; set; }
     

@@ -7,6 +7,7 @@
 <p>
     @Html.ActionLink("Create New", "Add")
 </p>
+    @Html.DropDownListFor(m => m.TypeId, Model.TypeList, "All", htmlAttributes: new { id = "filter_option" })
 <table>
     <tr>
         <th>
@@ -47,3 +48,6 @@
 }
 
 </table>
+@section Scripts {
+    @Scripts.Render("~/Scripts/script.js")
+}

@@ -20,11 +20,27 @@ namespace Structured_Programming.Controllers
         //
         // GET: /Item/
 
-        public ActionResult Index()
+        public ActionResult Index(int? id)
         {
+            var items = db.Items.OrderByDescending(i => i.ItemId);
+            if (id != null)
+            {
+                var selectedType = db.Types.Find(id);
+                if (selectedType != null)
+                {
+                    items = db.Items.Where(i => i.TypeId == id).OrderByDescending(i => i.ItemId);
+                }
+            }
+            else
+            {
+                id = 0;
+            }
+            var typeList = new SelectList(this.db.Types, "TypeId", "Name");
             var itemModel = new ItemIndexModel
             {
-                Items = this.db.Items.OrderByDescending(m => m.ItemId)
+                TypeId = (int) id,
+                TypeList = typeList,
+                Items = items
             };
             return View(itemModel);
         }
