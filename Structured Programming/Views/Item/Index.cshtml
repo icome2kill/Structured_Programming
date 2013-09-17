@@ -66,7 +66,7 @@
     </tr>
 }
 </table>
-@Html.PagedListPager( (IPagedList)Model.Items, page => Url.Action("Index", new { page }) )
+@Html.PagedListPager( (IPagedList)Model.Items, page => Url.Action("Index", new { typeId = Model.TypeId, page }) )
 @section Scripts {
     @Scripts.Render("~/Scripts/script.js")
 }

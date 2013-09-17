@@ -11,11 +11,14 @@ namespace Structured_Programming.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Item
     {
         public int ItemId { get; set; }
         public int TypeId { get; set; }
+
+        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<decimal> Price { get; set; }

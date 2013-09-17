@@ -21,12 +21,12 @@ namespace Structured_Programming.Controllers
         //
         // GET: /Item/
 
-        public ActionResult Index(int? typeId, int? page)
+        public ActionResult Index(int? page, int typeId = 0)
         {
             var pageNumber = page ?? 1;
             var itemsPerPage = 2;
             var items = db.Items.OrderByDescending(i=>i.ItemId);
-            if (typeId != null)
+            if (typeId != 0)
             {
                 var selectedType = db.Types.Find(typeId);
                 if (selectedType != null)
@@ -38,15 +38,11 @@ namespace Structured_Programming.Controllers
                     return View("Error");
                 }
             }
-            else
-            {
-                typeId = 0;
-            }
             var itemsToDisplay = items.ToPagedList(pageNumber, itemsPerPage);
             var typeList = new SelectList(this.db.Types, "TypeId", "Name");
             var itemModel = new ItemIndexModel
             {
-                TypeId = (int) typeId,
+                TypeId = typeId,
                 TypeList = typeList,
                 Items = itemsToDisplay
             };
@@ -75,8 +71,13 @@ namespace Structured_Programming.Controllers
                 // Save the file as {ItemId}.{extension of the file uploaded}
                 if (model.Image != null)
                 {
+                    // Delete old images
+                    string[] oldImages = System.IO.Directory.GetFiles(Server.MapPath("/Images/"), model.Item.ItemId + ".*");
+                    foreach (var oldimage in oldImages) {
+                        System.IO.File.Delete(oldimage);
+                    }
                     string extension = System.IO.Path.GetExtension(model.Image.FileName);
-                    model.Image.SaveAs(Server.MapPath("/Images/") + model.Item.ItemId.ToString());
+                    model.Image.SaveAs(Server.MapPath("/Images/") + model.Item.ItemId.ToString() + extension);
                 }
                 ViewBag.Message = "Your item has been successfully added";
                 ViewBag.ReturnUrl = Url.Action("Index");
@@ -129,6 +130,12 @@ namespace Structured_Programming.Controllers
                 // Save the file as {ItemId}.{extension of the file uploaded}
                 if (model.Image != null)
                 {
+                    // Delete old images
+                    string[] oldImages = System.IO.Directory.GetFiles(Server.MapPath("/Images/"), model.Item.ItemId + ".*");
+                    foreach (var oldimage in oldImages)
+                    {
+                        System.IO.File.Delete(oldimage);
+                    }
                     string extension = System.IO.Path.GetExtension(model.Image.FileName);
                     model.Image.SaveAs(Server.MapPath("/Images/") + model.Item.ItemId.ToString() + extension);
                 }
