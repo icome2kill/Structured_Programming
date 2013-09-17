@@ -6,7 +6,7 @@
 }
 
 <h2>Add a new item</h2>
-@using (Html.BeginForm())
+@using (Html.BeginForm("Add","Item", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     <fieldset>
@@ -31,6 +31,10 @@
                 @Html.LabelFor(m => m.Item.Trade)
                 @Html.TextBoxFor(m => m.Item.Trade)
                 @Html.ValidationMessageFor(m => m.Item.Trade)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Image)
+                <input name="image" id="image" type="file" />
             </li>
             <li>
                 <label>Type</label>

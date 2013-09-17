@@ -9,6 +9,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using PagedList;
 using WebMatrix.WebData;
 
 namespace Structured_Programming.Controllers
@@ -20,15 +21,17 @@ namespace Structured_Programming.Controllers
         //
         // GET: /Item/
 
-        public ActionResult Index(int? id)
+        public ActionResult Index(int? typeId, int? page)
         {
-            var items = db.Items.OrderByDescending(i => i.ItemId);
-            if (id != null)
+            var pageNumber = page ?? 1;
+            var itemsPerPage = 2;
+            var items = db.Items.OrderByDescending(i=>i.ItemId);
+            if (typeId != null)
             {
-                var selectedType = db.Types.Find(id);
+                var selectedType = db.Types.Find(typeId);
                 if (selectedType != null)
                 {
-                    items = db.Items.Where(i => i.TypeId == id).OrderByDescending(i => i.ItemId);
+                    items = db.Items.Where(i => i.TypeId == typeId).OrderByDescending(i => i.ItemId);
                 }
                 else
                 {
@@ -37,14 +40,15 @@ namespace Structured_Programming.Controllers
             }
             else
             {
-                id = 0;
+                typeId = 0;
             }
+            var itemsToDisplay = items.ToPagedList(pageNumber, itemsPerPage);
             var typeList = new SelectList(this.db.Types, "TypeId", "Name");
             var itemModel = new ItemIndexModel
             {
-                TypeId = (int) id,
+                TypeId = (int) typeId,
                 TypeList = typeList,
-                Items = items
+                Items = itemsToDisplay
             };
             return View(itemModel);
         }
@@ -68,9 +72,15 @@ namespace Structured_Programming.Controllers
                 model.Item.UserId = WebSecurity.CurrentUserId;
                 db.Items.Add(model.Item);
                 db.SaveChanges();
+                // Save the file as {ItemId}.{extension of the file uploaded}
+                if (model.Image != null)
+                {
+                    string extension = System.IO.Path.GetExtension(model.Image.FileName);
+                    model.Image.SaveAs(Server.MapPath("/Images/") + model.Item.ItemId.ToString());
+                }
                 ViewBag.Message = "Your item has been successfully added";
                 ViewBag.ReturnUrl = Url.Action("Index");
-                return RedirectToAction("Index", "Item");
+                return View("Success");
             }
             model.TypeList = new SelectList(db.Types, "TypeId", "Name");
             return View(model);
@@ -116,10 +126,16 @@ namespace Structured_Programming.Controllers
                 var entry = db.Entry(model.Item);
                 entry.State = EntityState.Modified;
                 db.SaveChanges();
-                ViewBag.Message = "Edit successfully";
+                // Save the file as {ItemId}.{extension of the file uploaded}
+                if (model.Image != null)
+                {
+                    string extension = System.IO.Path.GetExtension(model.Image.FileName);
+                    model.Image.SaveAs(Server.MapPath("/Images/") + model.Item.ItemId.ToString() + extension);
+                }
                 ViewBag.ReturnUrl = Url.Action("Index");
                 return View("Success");
             }
+            model.TypeList = new SelectList(db.Types, "TypeId", "Name");
             return View(model);
         }
         [Authorize]

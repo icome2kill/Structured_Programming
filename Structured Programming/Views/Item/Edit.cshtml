@@ -6,10 +6,8 @@
 }
 
 <h2>Edit</h2>
-@if (ViewBag.Error != 1) {
-    using (Html.BeginForm()) {
+    @using (Html.BeginForm("Edit","Item", FormMethod.Post, new { enctype = "multipart/form-data" })) {
         @Html.ValidationSummary(true)
-
         <fieldset>
             <legend>Item</legend>
 
@@ -47,6 +45,11 @@
             </div>
 
             <div class="editor-label">
+                @Html.LabelFor(m => m.Image)
+                @Html.ValidationMessageFor(m => m.Image)
+                <input name="image" id="image" type="file" />
+            </div>
+            <div class="editor-label">
                 @Html.LabelFor(model => model.Item.Trade)
             </div>
             <div class="editor-field">
@@ -58,10 +61,6 @@
             </p>
         </fieldset>
     }
-}
-else {
-    <p>No such item found or you don't have the right to edit this item.</p>   
-}
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>

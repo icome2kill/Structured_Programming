@@ -1,8 +1,13 @@
 ﻿@model Structured_Programming.Models.ItemIndexModel
 @{
+    var imagePath = "/Images/";
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using PagedList.Mvc;
+@using PagedList;
+
+<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 <p>
     @Html.ActionLink("Create New", "Add")
@@ -10,6 +15,9 @@
     @Html.DropDownListFor(m => m.TypeId, Model.TypeList, "All", htmlAttributes: new { id = "filter_option" })
 <table>
     <tr>
+        <th>
+            Image
+        </th>
         <th>
             Name
         </th>
@@ -30,6 +38,17 @@
 @foreach (var item in Model.Items) {
     <tr>
         <td>
+            @{
+                string image = imagePath + "no-available-image.png";
+                string[] images = Directory.GetFiles(Server.MapPath(imagePath), item.ItemId.ToString() + ".*", SearchOption.TopDirectoryOnly);
+                if (images.Length > 0)
+                {
+                    image = imagePath + System.IO.Path.GetFileName(images[0]);
+                }
+            }
+            <img src="@image" height="30px" width="30px"/>
+        </td>
+        <td>
             @Html.ActionLink(@item.Name, "Details", new { id = item.ItemId } )
         </td>
         <td>
@@ -46,8 +65,8 @@
         </td>
     </tr>
 }
-
 </table>
+@Html.PagedListPager( (IPagedList)Model.Items, page => Url.Action("Index", new { page }) )
 @section Scripts {
     @Scripts.Render("~/Scripts/script.js")
 }
