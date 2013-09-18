@@ -23,30 +23,8 @@ namespace Structured_Programming.Controllers
 
         public ActionResult Index(int? page, int typeId = 0)
         {
-            var pageNumber = page ?? 1;
-            var itemsPerPage = 2;
-            var items = db.Items.OrderByDescending(i=>i.ItemId);
-            if (typeId != 0)
-            {
-                var selectedType = db.Types.Find(typeId);
-                if (selectedType != null)
-                {
-                    items = db.Items.Where(i => i.TypeId == typeId).OrderByDescending(i => i.ItemId);
-                }
-                else
-                {
-                    return View("Error");
-                }
-            }
-            var itemsToDisplay = items.ToPagedList(pageNumber, itemsPerPage);
-            var typeList = new SelectList(this.db.Types, "TypeId", "Name");
-            var itemModel = new ItemIndexModel
-            {
-                TypeId = typeId,
-                TypeList = typeList,
-                Items = itemsToDisplay
-            };
-            return View(itemModel);
+            // Redirect to home now.
+            return RedirectToAction("Index", "Home", new { page = page, typeId = typeId });
         }
         [Authorize]
         public ActionResult Add()

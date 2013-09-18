@@ -7,7 +7,7 @@ namespace Structured_Programming.Models
 {
     public class HomeIndexModel
     {
-        public IEnumerable<Structured_Programming.Models.Item> NewestItems { get; set; }
-        public IEnumerable<Structured_Programming.Models.UserProfile> TopUsers { get; set; }
+        public int TypeId { get; set; }
+        public IEnumerable<Structured_Programming.Models.Item> Items { get; set; }
     }
 }

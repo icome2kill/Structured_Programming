@@ -220,66 +220,33 @@
       <DependentUpon>aspnet-Structured_Programming-20130901164401.mdf</DependentUpon>
     </Content>
     <Content Include="Content\PagedList.css" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\jquery-ui.css" />
-    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
-    <Content Include="Content\themes\base\jquery.ui.all.css" />
-    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
-    <Content Include="Content\themes\base\jquery.ui.base.css" />
-    <Content Include="Content\themes\base\jquery.ui.button.css" />
-    <Content Include="Content\themes\base\jquery.ui.core.css" />
-    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
-    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
-    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
-    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
-    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
-    <Content Include="Content\themes\base\jquery.ui.slider.css" />
-    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
-    <Content Include="Content\themes\base\jquery.ui.theme.css" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
-    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
-    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
-    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\DataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <Content Include="Images\accordion-icon-down.png" />
+    <Content Include="Images\accordion-icon.png" />
+    <Content Include="Images\blog1.jpg" />
+    <Content Include="Images\blog2.jpg" />
+    <Content Include="Images\blog3.jpg" />
+    <Content Include="Images\broken_noise.png" />
+    <Content Include="Images\logo.png" />
+    <Content Include="Images\logo2.png" />
+    <Content Include="Images\profile2.jpg" />
+    <Content Include="Images\profile3.jpg" />
+    <Content Include="Images\profile4.jpg" />
+    <Content Include="Images\recent-post.png" />
+    <Content Include="Images\search_bg.png" />
+    <Content Include="Images\seperator.png" />
+    <Content Include="Images\slogan.png" />
+    <Content Include="Images\star.PNG" />
+    <Content Include="Images\thumb1.jpg" />
+    <Content Include="Images\thumb2.jpg" />
+    <Content Include="Images\thumb3.jpg" />
+    <Content Include="Images\tiny_bar.png" />
+    <Content Include="Images\tiny_bar_2.png" />
     <Content Include="Models\DataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DataModel.edmx</DependentUpon>
@@ -293,6 +260,8 @@
       <DependentUpon>DataModel.edmx</DependentUpon>
       <LastGenOutput>DataModel.cs</LastGenOutput>
     </Content>
+    <Content Include="App_Code\Helpers.cshtml" />
+    <Content Include="Images\Descr.WD3" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -309,6 +278,105 @@
     <Content Include="Scripts\knockout-2.1.0.js" />
     <Content Include="Scripts\modernizr-2.5.3.js" />
     <Content Include="Scripts\script.js" />
+    <Content Include="Template\css\base.css" />
+    <Content Include="Template\css\bootstrap.min.css" />
+    <Content Include="Template\css\flexslider.css" />
+    <Content Include="Template\css\font-awesome.min.css" />
+    <Content Include="Template\css\font\fontawesome-webfont.svg" />
+    <Content Include="Template\css\layout.css" />
+    <Content Include="Template\css\normalize.css" />
+    <Content Include="Template\css\prettyPhoto.css" />
+    <Content Include="Template\css\shortcodes.css" />
+    <Content Include="Template\css\superfish.css" />
+    <Content Include="Template\images\accordion-icon-down.png" />
+    <Content Include="Template\images\accordion-icon.png" />
+    <Content Include="Template\images\blog1.jpg" />
+    <Content Include="Template\images\blog2.jpg" />
+    <Content Include="Template\images\blog3.jpg" />
+    <Content Include="Template\images\broken_noise.png" />
+    <Content Include="Template\images\clients\client_3d.png" />
+    <Content Include="Template\images\clients\client_ad.png" />
+    <Content Include="Template\images\clients\client_aj.png" />
+    <Content Include="Template\images\clients\client_cd.png" />
+    <Content Include="Template\images\clients\client_gr.png" />
+    <Content Include="Template\images\clients\client_tf.png" />
+    <Content Include="Template\images\clients\thumb1.jpg" />
+    <Content Include="Template\images\clients\thumb2.jpg" />
+    <Content Include="Template\images\clients\thumb3.jpg" />
+    <Content Include="Template\images\logo.png" />
+    <Content Include="Template\images\logo2.png" />
+    <Content Include="Template\images\portfolio\image_1.jpg" />
+    <Content Include="Template\images\portfolio\image_2.jpg" />
+    <Content Include="Template\images\portfolio\image_3.jpg" />
+    <Content Include="Template\images\portfolio\image_4.jpg" />
+    <Content Include="Template\images\portfolio\image_5.jpg" />
+    <Content Include="Template\images\portfolio\image_6.jpg" />
+    <Content Include="Template\images\portfolio\image_7.jpg" />
+    <Content Include="Template\images\portfolio\image_8.jpg" />
+    <Content Include="Template\images\prettyPhoto\dark_rounded\btnNext.png" />
+    <Content Include="Template\images\prettyPhoto\dark_rounded\btnPrevious.png" />
+    <Content Include="Template\images\prettyPhoto\dark_rounded\contentPattern.png" />
+    <Content Include="Template\images\prettyPhoto\dark_rounded\loader.gif" />
+    <Content Include="Template\images\prettyPhoto\dark_rounded\sprite.png" />
+    <Content Include="Template\images\prettyPhoto\dark_square\btnNext.png" />
+    <Content Include="Template\images\prettyPhoto\dark_square\btnPrevious.png" />
+    <Content Include="Template\images\prettyPhoto\dark_square\loader.gif" />
+    <Content Include="Template\images\prettyPhoto\dark_square\sprite.png" />
+    <Content Include="Template\images\prettyPhoto\default\default_thumb.png" />
+    <Content Include="Template\images\prettyPhoto\default\loader.gif" />
+    <Content Include="Template\images\prettyPhoto\default\sprite.png" />
+    <Content Include="Template\images\prettyPhoto\default\sprite_next.png" />
+    <Content Include="Template\images\prettyPhoto\default\sprite_prev.png" />
+    <Content Include="Template\images\prettyPhoto\default\sprite_x.png" />
+    <Content Include="Template\images\prettyPhoto\default\sprite_y.png" />
+    <Content Include="Template\images\prettyPhoto\facebook\btnNext.png" />
+    <Content Include="Template\images\prettyPhoto\facebook\btnPrevious.png" />
+    <Content Include="Template\images\prettyPhoto\facebook\contentPatternBottom.png" />
+    <Content Include="Template\images\prettyPhoto\facebook\contentPatternLeft.png" />
+    <Content Include="Template\images\prettyPhoto\facebook\contentPatternRight.png" />
+    <Content Include="Template\images\prettyPhoto\facebook\contentPatternTop.png" />
+    <Content Include="Template\images\prettyPhoto\facebook\default_thumbnail.gif" />
+    <Content Include="Template\images\prettyPhoto\facebook\loader.gif" />
+    <Content Include="Template\images\prettyPhoto\facebook\sprite.png" />
+    <Content Include="Template\images\prettyPhoto\light_rounded\btnNext.png" />
+    <Content Include="Template\images\prettyPhoto\light_rounded\btnPrevious.png" />
+    <Content Include="Template\images\prettyPhoto\light_rounded\loader.gif" />
+    <Content Include="Template\images\prettyPhoto\light_rounded\sprite.png" />
+    <Content Include="Template\images\prettyPhoto\light_square\btnNext.png" />
+    <Content Include="Template\images\prettyPhoto\light_square\btnPrevious.png" />
+    <Content Include="Template\images\prettyPhoto\light_square\sprite.png" />
+    <Content Include="Template\images\profile2.jpg" />
+    <Content Include="Template\images\profile3.jpg" />
+    <Content Include="Template\images\profile4.jpg" />
+    <Content Include="Template\images\recent-post.png" />
+    <Content Include="Template\images\search_bg.png" />
+    <Content Include="Template\images\seperator.png" />
+    <Content Include="Template\images\slider\bg.png" />
+    <Content Include="Template\images\slogan.png" />
+    <Content Include="Template\images\star.PNG" />
+    <Content Include="Template\images\thumb1.jpg" />
+    <Content Include="Template\images\thumb2.jpg" />
+    <Content Include="Template\images\thumb3.jpg" />
+    <Content Include="Template\images\tiny_bar.png" />
+    <Content Include="Template\images\tiny_bar_2.png" />
+    <Content Include="Template\img\glyphicons-halflings.html" />
+    <Content Include="Template\js\main.js" />
+    <Content Include="Template\js\plugins.js" />
+    <Content Include="Template\js\vendor\bootstrap.min.js" />
+    <Content Include="Template\js\vendor\isotope.js" />
+    <Content Include="Template\js\vendor\jcarousel.js" />
+    <Content Include="Template\js\vendor\jflickrfeed.min.js" />
+    <Content Include="Template\js\vendor\jquery-1.8.3.min.js" />
+    <Content Include="Template\js\vendor\jquery.carouFrcedSel.html" />
+    <Content Include="Template\js\vendor\jquery.easing.1.3.js" />
+    <Content Include="Template\js\vendor\jquery.flexslider-min.js" />
+    <Content Include="Template\js\vendor\jquery.plugins.min.js" />
+    <Content Include="Template\js\vendor\jquery.prettyPhoto.js" />
+    <Content Include="Template\js\vendor\jquery.validate.js" />
+    <Content Include="Template\js\vendor\modernizr.custom.80910.js" />
+    <Content Include="Template\js\vendor\superfish.js" />
+    <Content Include="Template\js\vendor\tinynav.min.js" />
+    <Content Include="Template\twitter\jquery.tweet.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -360,12 +428,30 @@
     <Content Include="Views\Shared\_ListItems.cshtml" />
     <Content Include="Views\Account\EditProfile.cshtml" />
     <Content Include="Views\Shared\Success.cshtml" />
+    <Content Include="Template\css\font\Descr.WD3" />
+    <Content Include="Template\css\font\fontawesome-webfont.eot" />
+    <Content Include="Template\css\font\fontawesome-webfont.eot%40" />
+    <Content Include="Template\css\font\fontawesome-webfont.ttf" />
+    <Content Include="Template\css\font\fontawesome-webfont.woff" />
+    <Content Include="Template\images\clients\Descr.WD3" />
+    <Content Include="Template\images\Descr.WD3" />
+    <Content Include="Template\images\portfolio\Descr.WD3" />
+    <Content Include="Template\images\prettyPhoto\dark_rounded\Descr.WD3" />
+    <Content Include="Template\images\prettyPhoto\dark_square\Descr.WD3" />
+    <Content Include="Template\images\prettyPhoto\default\Descr.WD3" />
+    <Content Include="Template\images\prettyPhoto\facebook\Descr.WD3" />
+    <Content Include="Template\images\prettyPhoto\light_rounded\Descr.WD3" />
+    <Content Include="Template\images\prettyPhoto\light_square\Descr.WD3" />
+    <Content Include="Template\images\slider\Descr.WD3" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Filters\App_LocalResources\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

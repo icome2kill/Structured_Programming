@@ -1,30 +1,48 @@
-﻿using Structured_Programming.Models;
+﻿using Structured_Programming.Filters;
+using Structured_Programming.Models;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Objects;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using PagedList.Mvc;
+using PagedList;
+using WebMatrix.WebData;
 
 namespace Structured_Programming.Controllers
 {
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(int? page, int typeId = 0)
         {
             DataEntities db = new DataEntities();
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
-            var items = (from i in db.Items
-                     orderby i.ItemId descending
-                     select i).Take(10);
-            var users = (from i in db.UserProfiles
-                         orderby i.UserId descending
-                         select i).Take(10);
-            var vm = new HomeIndexModel
+            var pageNumber = page ?? 1;
+            var itemsPerPage = 9;
+            var items = db.Items.OrderByDescending(i => i.ItemId);
+            if (typeId != 0)
             {
-                NewestItems = items,
-                TopUsers = users
+                var selectedType = db.Types.Find(typeId);
+                if (selectedType != null)
+                {
+                    items = db.Items.Where(i => i.TypeId == typeId).OrderByDescending(i => i.ItemId);
+                }
+                else
+                {
+                    return View("Error");
+                }
+            }
+            var itemsToDisplay = items.ToPagedList(pageNumber, itemsPerPage);
+            var typeList = new SelectList(db.Types, "TypeId", "Name");
+            var itemModel = new HomeIndexModel
+            {
+                TypeId = typeId,
+                Items = itemsToDisplay
             };
-            return View(vm);
+            return View(itemModel);
         }
         public ActionResult About()
         {

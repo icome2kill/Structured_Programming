@@ -6,6 +6,9 @@
 }
 
 <h2>Edit</h2>
+    <div style="float: right">
+        @Helpers.ImageFor(Model.Item.ItemId, "300px", "300px");
+    </div>
     @using (Html.BeginForm("Edit","Item", FormMethod.Post, new { enctype = "multipart/form-data" })) {
         @Html.ValidationSummary(true)
         <fieldset>

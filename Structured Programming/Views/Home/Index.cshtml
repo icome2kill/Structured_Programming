@@ -2,62 +2,140 @@
 @{
     ViewBag.Title = "Home Page";
 }
-@section featured {
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Home</h1>
-                
-            </hgroup>
-            <table>
-                <tr>
-                    <th>Top users</th>
-                    <th>Newest items</th>
-                </tr>
-                @for (int i = 0; i < Model.NewestItems.Count() ; i++) 
-                {
-                    var user = Model.TopUsers.ElementAtOrDefault(i);
-                    var item = Model.NewestItems.ElementAtOrDefault(i);
-                    <tr>
-                        <td>
-                            @if (user != null)
-                            {
-                            @Html.ActionLink(user.UserName, "Details", "Account", routeValues: new { id = user.UserId }, htmlAttributes: new { id = user.UserId })
-                            }
-                        </td>
-                        <td>
-                        @if (item != null) {
-                            @Html.ActionLink(item.Name, "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: new { id = item.ItemId })
-                        }
-                        </td>
-                    </tr>
-                }
-            </table>
+@using PagedList.Mvc;
+@using PagedList;
+@{
+    <!-- Gray Bar Start -->
+    <div class="gray-bar">
+        <div class="container">
+            <div class="row">
+                <div class="span6">
+                    <div class="social-icons">
+                        <!--<ul>
+                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Google Plus"><i class="icon-google-plus"></i></a></li>                            
+                            <li><a href="#" data-toggle="tooltip" title="Dribble"><i class="icon-dribbble"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Flickr"><i class="icon-flickr"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Pinterest"><i class="icon-pinterest"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="icon-linkedin"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Youtube"><i class="icon-youtube"></i></a></li>
+                        </ul>-->
+                    </div>
+                    <a href="index-2.html">
+                        <img src="Template/images/slogan.png" alt=""></a>
+                </div>
+                <div class="span6 text-right">
+                    <form class="search" method="post" action="#">
+                        <label for="search-box">&nbsp;</label>
+                        <input id="search-box" type="text" placeholder="Search...">
+                    </form>
+                </div>
+            </div>
         </div>
-    </section>
+    </div>
+    <!-- Gray Bar End -->
+    
+    <!-- Body content start -->
+    <div class="body-content">
+        <div class="container">
+            <div class="row">
+                <!-- lastest item Start -->
+                <div class="span text-center">
+                    <h2 class="home-head">lastest items</h2>
+                </div>
+                <div class="span12">
+                    <div class="portfolio-skin-carousel">
+                        <div class="jcarousel-container jcarousel-container-horizontal">
+                            <div class="jcarousel-clip jcarousel-clip-horizontal">
+                                <ul class="portfolio-carousel jcarousel-list jcarousel-list-horizontal">
+                                    @for (int i = 0; i < Model.Items.Count() && i < 5; i++)
+                                    {
+                                        var item = Model.Items.ElementAtOrDefault(i);
+                                        <li>
+                                            <div class="span4">
+                                                <div class="services-wrap">
+                                                    <div class="icon-wrap">
+                                                        <i class="icon-food"></i>
+                                                    </div>
+                                                    <div class="service-txt">
+                                                        <h3>@item.Name</h3>
+                                                        <p>@item.Description</p>
+                                                        @Html.ActionLink("Read more", "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: new { @class = "my-btn btn-small btn-border" })
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    }
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Lastest item End -->
+                <div class="span12">
+                    <div class="divider1">
+                        divider
+                    </div>
+                </div>
+
+                <!-- All item start-->
+                <div class="span text-center">
+                    <h2 class="home-head">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAll  items&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
+                </div>
+                <div class="">
+                    <nav>
+                        <ul class="sf-menu" id="nav">
+                            <li><a href="">See all(@Model.Items.Count())</a></li>
+                            <li><a href="#">Name</a></li>
+                            <li><a href="">Date</a></li>
+                            <li><a href="">Rating</a></li>
+                        </ul>
+                    </nav>
+                </div>
+                @{
+                    var itemsPerRow = 3;
+                    for (int i = 0; i < Model.Items.Count(); i++)
+                    {
+                        var item = Model.Items.ElementAtOrDefault(i);
+                        if (i % itemsPerRow == 0) {
+                            @:<div id="blog-home" class="span12">
+                            @:<div class="show-grid row">
+                        }
+                        <div class="span4">
+                        <div class="date-wrap">
+                            <ul>
+                                <li><i class="icon-user"></i>@Html.ActionLink(item.UserProfile.UserName, "Details", "Account", new { id = item.UserId }, null)</li>
+                                <li><i class="icon-calendar"></i>JUN 27, 2013</li>
+                            </ul>
+                        </div>
+                        <div class="port-wrap">
+                            <div class="hover-mask"><a rel="prettyPhoto[portfolio1]" href="#"><i class="icon-plus"></i></a></div>
+                            <div class="port-img">
+                                @Helpers.ImageFor(item.ItemId)
+                            </div>
+                            <div class="port-txt skyblue-bg" style="width: 70%">
+                                <div class="extra-pad">
+                                    <h3>@item.Name</h3>
+                                    <p class="box">@item.Description</p>
+                                    @Html.ActionLink("Read more", "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: new { @class = "my-btn btn-small btn-border" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    }
+                    <div class="span4">
+                        <div class="divider1">
+                        </div>
+                    </div>
+                }
+                <div class="span12">
+                    <div class="pagination">
+                        @Html.PagedListPager((IPagedList)Model.Items, page => Url.Action("Index", new { typeId = Model.TypeId, page }))
+                    </div>
+                </div>
+                <!-- All item end-->
+            </div>
+        </div>
+    </div>
 }
-<h3>We suggest the following:</h3>
-<ol class="round">
-    <li class="one">
-        <h5>Getting Started</h5>
-        ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-        enables a clean separation of concerns and that gives you full control over markup
-        for enjoyable, agile development. ASP.NET MVC includes many features that enable
-        fast, TDD-friendly development for creating sophisticated applications that use
-        the latest web standards.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245151">Learn more…</a>
-    </li>
-
-    <li class="two">
-        <h5>Add NuGet packages and jump-start your coding</h5>
-        NuGet makes it easy to install and update free libraries and tools.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245153">Learn more…</a>
-    </li>
-
-    <li class="three">
-        <h5>Find Web Hosting</h5>
-        You can easily find a web hosting company that offers the right mix of features
-        and price for your applications.
-        <a href="http://go.microsoft.com/fwlink/?LinkId=245157">Learn more…</a>
-    </li>
-</ol>

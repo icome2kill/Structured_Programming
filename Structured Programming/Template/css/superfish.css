@@ -1,0 +1,116 @@
+nav {
+	position: relative;
+	z-index: 10000;
+	margin:0;
+	list-style-type:none;
+}
+.sf-menu {
+	clear: both;
+	list-style: none;
+	padding:0;
+	margin:0;
+	float:right;
+}
+.sf-menu > li {
+	float: left;
+	padding:0;
+	margin:0;
+}
+.sf-menu li {
+	position: relative;
+}
+.sf-menu > li:last-child {
+	padding-right:0;
+}
+.sf-menu > li:first-child {
+	background:none;
+}
+.sf-menu > li > a {
+	color: #9098a5;
+	text-transform:uppercase;
+	float: left;
+	font-weight:600;
+	font-size:16px;
+	padding:21px 15px;
+	text-shadow: 0 1px 0 rgba(255,255,255,.4);
+	text-decoration:none;
+	-webkit-transition: all 0.35s ease;
+	-moz-transition: all 0.35s ease;
+	-o-transition: all 0.35s ease;
+	transition: all 0.35s ease;
+}
+.sf-menu > li.current > a, .sf-menu > li > a:hover, .sf-menu > li.sfHover > a {
+	color: #FFF;
+	text-decoration:none;
+}
+.sf-menu > li.current > a {
+	color: #FFF;
+}
+.sf-menu li.sfHover a:active {
+}
+.sf-menu > li.sfHover > a:active, .sf-menu > li.current-menu-item.sfHover > a:active {
+}
+.sf-menu > li.current > a, .sf-menu > li > a:hover, .sf-menu > li.sfHover > a, .sf-menu > li.current > a {
+	background: #9098a5;
+	color:#FFF;
+	text-shadow: 0 1px 0 rgba(0,0,0,.4);
+}
+.sf-menu ul {
+	font-size: 13px;
+	list-style: none;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	left: 0;
+	display:none;
+	top: 62px;
+	z-index: 9999;
+	background:rgba(29,29,29, 0.7);
+}
+.sf-menu ul li {
+	background:none;
+}
+/*.sf-menu li:first-child ul {
+	left: 0;
+}*/
+.sf-menu ul ul {
+	left: 175px;
+	top: 0px;
+}
+.sf-menu ul li {
+	width: 170px;
+	border-bottom: 1px solid #312f2d;/*margin-bottom: 1px;*/
+}
+.sf-menu ul li:last-child {
+	border-bottom: 0 none;
+}
+.sf-menu ul a {
+	color: #FFF;
+	display: block;
+	margin:0;
+	padding: 8px 10px;
+	text-transform:none;
+	text-decoration:none;
+	font-size:14px;
+}
+.sf-menu ul li {
+	margin-bottom:0;
+}
+.sf-menu ul li a:hover, .sf-menu ul li.sfHover > a {
+	color: #F1442B;
+	font-size:14px;
+	text-shadow:0 1px 0 #333;
+	background:#0c0c0c;
+	text-shadow:0 1px 0 rgba(0, 0, 0, 0.3);
+}
+.sf-menu ul li.sfHover > a.arrow-bg:after {
+	position:absolute;
+	content:'\f105';
+	font-family:'FontAwesome';
+	right:8px;
+	-webkit-transition: all 0.35s ease;
+	-moz-transition: all 0.35s ease;
+	-o-transition: all 0.35s ease;
+	transition: all 0.35s ease;
+}

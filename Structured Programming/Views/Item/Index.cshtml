@@ -1,6 +1,5 @@
 ﻿@model Structured_Programming.Models.ItemIndexModel
 @{
-    var imagePath = "/Images/";
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -12,61 +11,30 @@
 <p>
     @Html.ActionLink("Create New", "Add")
 </p>
-    @Html.DropDownListFor(m => m.TypeId, Model.TypeList, "All", htmlAttributes: new { id = "filter_option" })
-<table>
-    <tr>
-        <th>
-            Image
-        </th>
-        <th>
-            Name
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Want to trade with
-        </th>
-        <th>
-            Owner
-        </th>
-    </tr>
-
-@foreach (var item in Model.Items) {
-    <tr>
-        <td>
-            @{
-                string image = imagePath + "no-available-image.png";
-                string[] images = Directory.GetFiles(Server.MapPath(imagePath), item.ItemId.ToString() + ".*", SearchOption.TopDirectoryOnly);
-                if (images.Length > 0)
-                {
-                    image = imagePath + System.IO.Path.GetFileName(images[0]);
-                }
-            }
-            <img src="@image" height="30px" width="30px"/>
-        </td>
-        <td>
-            @Html.ActionLink(@item.Name, "Details", new { id = item.ItemId } )
-        </td>
-        <td>
-            @item.Description
-        </td>
-        <td>
-            @string.Format("{0:c}", @item.Price)
-        </td>
-        <td>
-            @item.Trade
-        </td>
-        <td>
-             @Html.ActionLink(item.UserProfile.UserName, "Details", "Account", routeValues: new { id = item.UserId }, htmlAttributes: new { id = item.UserId })
-        </td>
-    </tr>
-}
-</table>
-@Html.PagedListPager( (IPagedList)Model.Items, page => Url.Action("Index", new { typeId = Model.TypeId, page }) )
+@Html.DropDownListFor(m => m.TypeId, Model.TypeList, "All", htmlAttributes: new { id = "filter_option" })
+<ul>
+    @foreach (var item in Model.Items)
+    {
+        <li style="display: inline-block;">
+            <p>
+                <a href='@Url.Action("Details", "Item", new { id = item.ItemId })'>
+                    @Helpers.ImageFor(item.ItemId, "200px", "200px");
+                </a>
+            </p>
+            <p>
+                @Html.ActionLink(@item.Name, "Details", new { id = item.ItemId })
+            </p>
+            <p>
+                Posted by @Html.ActionLink(item.UserProfile.UserName, "Details", "Account", routeValues: new { id = item.UserId }, htmlAttributes: new { id = item.UserId })
+            </p>
+            <p>
+                Price: @string.Format("{0:c}", @item.Price)
+            </p>
+        </li>    
+    }
+</ul>
+<div style="clear:both"></div>
+@Html.PagedListPager((IPagedList)Model.Items, page => Url.Action("Index", new { typeId = Model.TypeId, page }))
 @section Scripts {
     @Scripts.Render("~/Scripts/script.js")
 }

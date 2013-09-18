@@ -1,0 +1,21 @@
+﻿@helper ImageFor(int id, string width, string height)
+{
+    var imagePath = "/Images/";
+    string image = imagePath + "no-available-image.png";
+    string[] images = Directory.GetFiles(Server.MapPath(imagePath), id + ".*", SearchOption.TopDirectoryOnly);
+    if (images.Length > 0)
+    {
+        image = imagePath + System.IO.Path.GetFileName(images[0]);
+    }
+    <img src="@image" width="@width" height="@height" />
+}
+@helper ImageFor(int id){
+    var imagePath = "/Images/";
+    string image = imagePath + "no-available-image.png";
+    string[] images = Directory.GetFiles(Server.MapPath(imagePath), id + ".*", SearchOption.TopDirectoryOnly);
+    if (images.Length > 0)
+    {
+        image = imagePath + System.IO.Path.GetFileName(images[0]);
+    }
+    <img src="@image" />
+}
