@@ -1,6 +1,7 @@
 ﻿@model Structured_Programming.Models.HomeIndexModel
 @{
     ViewBag.Title = "Home Page";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using PagedList.Mvc;
 @using PagedList;
@@ -26,10 +27,7 @@
                         <img src="Template/images/slogan.png" alt=""></a>
                 </div>
                 <div class="span6 text-right">
-                    <form class="search" method="post" action="#">
-                        <label for="search-box">&nbsp;</label>
-                        <input id="search-box" type="text" placeholder="Search...">
-                    </form>
+                    @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
                 </div>
             </div>
         </div>
@@ -56,7 +54,7 @@
                                             <div class="span4">
                                                 <div class="services-wrap">
                                                     <div class="icon-wrap">
-                                                        <i class="icon-food"></i>
+                                                        <i class="icon-tablet"></i>
                                                     </div>
                                                     <div class="service-txt">
                                                         <h3>@item.Name</h3>
@@ -78,63 +76,15 @@
                         divider
                     </div>
                 </div>
-
-                <!-- All item start-->
                 <div class="span text-center">
                     <h2 class="home-head">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAll  items&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
                 </div>
-                <div class="">
-                    <nav>
-                        <ul class="sf-menu" id="nav">
-                            <li><a href="">See all(@Model.Items.Count())</a></li>
-                            <li><a href="#">Name</a></li>
-                            <li><a href="">Date</a></li>
-                            <li><a href="">Rating</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                @{
-                    var itemsPerRow = 3;
-                    for (int i = 0; i < Model.Items.Count(); i++)
-                    {
-                        var item = Model.Items.ElementAtOrDefault(i);
-                        if (i % itemsPerRow == 0) {
-                            @:<div id="blog-home" class="span12">
-                            @:<div class="show-grid row">
-                        }
-                        <div class="span4">
-                        <div class="date-wrap">
-                            <ul>
-                                <li><i class="icon-user"></i>@Html.ActionLink(item.UserProfile.UserName, "Details", "Account", new { id = item.UserId }, null)</li>
-                                <li><i class="icon-calendar"></i>JUN 27, 2013</li>
-                            </ul>
-                        </div>
-                        <div class="port-wrap">
-                            <div class="hover-mask"><a rel="prettyPhoto[portfolio1]" href="#"><i class="icon-plus"></i></a></div>
-                            <div class="port-img">
-                                @Helpers.ImageFor(item.ItemId)
-                            </div>
-                            <div class="port-txt skyblue-bg" style="width: 70%">
-                                <div class="extra-pad">
-                                    <h3>@item.Name</h3>
-                                    <p class="box">@item.Description</p>
-                                    @Html.ActionLink("Read more", "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: new { @class = "my-btn btn-small btn-border" })
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    }
-                    <div class="span4">
-                        <div class="divider1">
-                        </div>
-                    </div>
-                }
+                @Html.Partial("/Views/Shared/_ListItems.cshtml", Model.Items);
                 <div class="span12">
                     <div class="pagination">
                         @Html.PagedListPager((IPagedList)Model.Items, page => Url.Action("Index", new { typeId = Model.TypeId, page }))
                     </div>
                 </div>
-                <!-- All item end-->
             </div>
         </div>
     </div>

@@ -9,8 +9,7 @@ namespace Structured_Programming.Models
 {
     public class ItemIndexModel
     {
-        public int TypeId { get; set; }
-        public SelectList TypeList { get; set; }
+        public string TypeName { get; set; }
         public IEnumerable<Structured_Programming.Models.Item> Items { get; set; }
     }
     public class ItemFormModel

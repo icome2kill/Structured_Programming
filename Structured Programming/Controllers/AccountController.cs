@@ -142,7 +142,9 @@ namespace Structured_Programming.Controllers
                         Email = model.Email
                     });
                     WebSecurity.Login(model.UserName, model.Password);
-                    return RedirectToAction("Index", "Home");
+                    ViewBag.Message = "You have successfully registered";
+                    ViewBag.ReturnUrl = Url.Action("Index", "Home");
+                    return View("Success");
                 }
                 catch (MembershipCreateUserException e)
                 {

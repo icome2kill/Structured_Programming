@@ -1,39 +1,55 @@
-﻿@model Structured_Programming.Models.ItemIndexModel 
-<table>
-    <tr>
-        <th>
-            Name
-        </th>
-        <th>
-            Description
-        </th>
-        <th>
-            Price
-        </th>
-        <th>
-            Want to trade with
-        </th>
-        <th>
-            Owner
-        </th>
-    </tr>
-
-@foreach (var item in Model.Items) {
-    <tr>
-        <td>
-            @Html.ActionLink(@item.Name, "Details", new { id = item.ItemId } )
-        </td>
-        <td>
-            @item.Description
-        </td>
-        <td>
-            @string.Format("{0:c}", @item.Price)
-        </td>
-        <td>
-            @item.Trade
-        </td>
-        <td>
-             @Html.ActionLink(item.UserProfile.UserName, "Details", "Account", routeValues: new { id = item.UserId }, htmlAttributes: new { id = item.UserId })
-        </td>
-    </tr>
+﻿@model IEnumerable<Structured_Programming.Models.Item>
+<!-- All item start-->
+<div class="">
+    <nav>
+        <ul class="sf-menu" id="nav">
+            <li><a href="#">Name</a></li>
+            <li><a href="">Date</a></li>
+            <li><a href="">Rating</a></li>
+        </ul>
+    </nav>
+</div>
+@{
+    var itemsPerRow = 3;
+    for (int i = 0; i < Model.Count(); i++)
+    {
+        var item = Model.ElementAtOrDefault(i);
+        if (i % itemsPerRow == 0)
+        {
+    @:<div id="blog-home" class="span12">
+@:<div class="show-grid row">
+                        }
+                        <div class="span4">
+                        <div class="date-wrap">
+                            <ul>
+                                <li><i class="icon-user"></i>@Html.ActionLink(item.UserProfile.UserName, "Details", "Account", new { id = item.UserId }, null)</li>
+                                <li><i class="icon-calendar"></i>JUN 27, 2013</li>
+                            </ul>
+                        </div>
+                        <div class="port-wrap">
+                            <div class="hover-mask"><a rel="prettyPhoto[portfolio1]" href="#"><i class="icon-plus"></i></a></div>
+                            <div class="port-img" style="height: 200px">
+                                @Helpers.ImageFor(item.ItemId, "300px", "200px")
+                            </div>
+                            <div class="port-txt skyblue-bg" style="width: 70%">
+                                <div class="extra-pad">
+                                    <h3>@Helpers.Highlight(item.Name, Request["Query"], Request["InclName"].AsBool())</h3>
+                                    <p class="box">@Helpers.Highlight(item.Description, Request["Query"], Request["InclDescription"].AsBool())</p>
+                                    @Html.ActionLink("Read more", "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: new { @class = "my-btn btn-small btn-border" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                         
+        if (i % itemsPerRow == 2 || i == Model.Count() - 1)
+        {
+            @:</div>
+            @:</div>
+    <div class="span4">
+        <div class="divider1">
+        </div>
+    </div>
+        }
+    }
 }
+<!-- All item end-->

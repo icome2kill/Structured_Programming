@@ -5,60 +5,86 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-    @Helpers.ImageFor(Model.ItemId, "200px", "200px");
-<fieldset>
-    <legend>Item</legend>
+<!-- Gray Bar Start -->
+    <div class="gray-bar">
+    	<div class="container">
+        	<div class="row">
+            	<div class="span6">
+                	<div class="social-icons">
+                        <!--<ul>
+                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Google Plus"><i class="icon-google-plus"></i></a></li>                            
+                            <li><a href="#" data-toggle="tooltip" title="Dribble"><i class="icon-dribbble"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Flickr"><i class="icon-flickr"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Pinterest"><i class="icon-pinterest"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="icon-linkedin"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Youtube"><i class="icon-youtube"></i></a></li>
+                        </ul>-->
+                    </div>
+                    <div class="breadcrumb-links">
+                        <div>
+                            @Html.ActionLink("All items", "Index","Home") <i class="icon-angle-right"></i>
+                            @Html.ActionLink(Model.Type.Name, "Index", "Item", new { TypeId = Model.TypeId }, null)<i class="icon-angle-right"></i> 
+                            @Model.Name
+                        </div>
+                    </div>                
+                </div>
+                <div class="span6 text-right">         	
+                    <form class="search" method="post" action="#">
+                        <label for="search-box">&nbsp;</label>
+                        <input id="search-box" type="text" placeholder="Search...">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Gray Bar End -->
+<!-- Body Content Start -->
+    <div class="body-content">
+        <div class="container">
+            <div class="row">
+                <h2>@Model.Name</h2>
+                <div class="clearfix">&nbsp;</div>
+    
+                <div class="span6 pad-bot">
+                    @Helpers.ImageFor(Model.ItemId)
+                </div>
+                
+                <div class="span6">
+                    <div class="head-style1">
+                        <h3>Product Description</h3>
+                    </div>
+                    <p>@Model.Description</p><br>
+                    <div class="head-style1">
+                        <h3>Rate: 3/5</h3>
+                        <p>
+                            <img src="images/star.png"><img src="images/star.png"><img src="images/star.png">
+                            <a href="#" class="my-btn btn-small btn-border pull-right">Rate this !</a>
+                        </p>
+                    </div>
+                    <ul class="port-details">
+                        <li><strong>Owner:</strong> <a href="#">@Model.UserProfile.UserName</a></li>
+                        <li><strong>Category:</strong> @Model.Type.Name</li>
+                        <li><strong>Want to trade with:</strong> @Model.Trade</li>
 
-    <div class="display-label">
-        Type
+                    </ul>
+                    <div class="clearfix">&nbsp;</div>
+                    <a href="#" class="my-btn btn-small btn-border">Buy</a>
+                    @if (WebSecurity.CurrentUserId == Model.UserId)
+                    {
+                        <text>
+                            @Html.ActionLink("Delete", "Delete", new { id = Model.ItemId }, new { @class = "my-btn btn-small btn-border" })
+                            @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }, new { @class = "my-btn btn-small btn-border" })
+                        </text>
+                    }
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+                
+                <div class="span12">
+                    <div class="divider1">&nbsp;</div>
+                </div>      
+            </div>
+        </div>
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Type.Name)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Name)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Name)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Description)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Description)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Price)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Price)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Trade)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Trade)
-    </div>
-
-    <div class="display-label">
-        Owner
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserProfile.UserName)
-    </div>
-</fieldset>
-<p>
-    @if (WebSecurity.CurrentUserId == Model.UserId)
-    {
-        <text>
-        @Html.ActionLink("Delete","Delete", new { id = Model.ItemId }) |
-        @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }) |
-        </text>
-    }
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <!-- Body Content End -->

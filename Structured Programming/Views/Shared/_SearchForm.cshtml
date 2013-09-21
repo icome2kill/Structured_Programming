@@ -1,0 +1,7 @@
+﻿@model Structured_Programming.Models.SearchOptionsModel
+@using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "search" }))
+{
+    @Html.TextBoxFor(m => m.Query)
+}
+<div style="clear:both"></div>
+@Html.ActionLink("Advanced Search", "Index", "Search")

@@ -24,7 +24,33 @@ namespace Structured_Programming.Controllers
         public ActionResult Index(int? page, int typeId = 0)
         {
             // Redirect to home now.
-            return RedirectToAction("Index", "Home", new { page = page, typeId = typeId });
+            DataEntities db = new DataEntities();
+            var pageNumber = page ?? 1;
+            var itemsPerPage = 9;
+            var items = db.Items.OrderByDescending(i => i.ItemId);
+            if (typeId != 0)
+            {
+                var selectedType = db.Types.Find(typeId);
+                if (selectedType != null)
+                {
+                    items = db.Items.Where(i => i.TypeId == typeId).OrderByDescending(i => i.ItemId);
+                }
+                else
+                {
+                    return View("Error");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            var itemsToDisplay = items.ToPagedList(pageNumber, itemsPerPage);
+            var itemModel = new ItemIndexModel
+            {
+                TypeName = db.Types.Find(typeId).Name,
+                Items = itemsToDisplay
+            };
+            return View(itemModel);
         }
         [Authorize]
         public ActionResult Add()

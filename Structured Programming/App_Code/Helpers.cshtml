@@ -7,7 +7,7 @@
     {
         image = imagePath + System.IO.Path.GetFileName(images[0]);
     }
-    <img src="@image" width="@width" height="@height" />
+    <img src="@image" style="width:@width; height:@height" />
 }
 @helper ImageFor(int id){
     var imagePath = "/Images/";
@@ -18,4 +18,14 @@
         image = imagePath + System.IO.Path.GetFileName(images[0]);
     }
     <img src="@image" />
+}
+<!-- Highlight all occurrent string in a given text appeared. -->
+@helper Highlight(string source, string strToHighlight, bool option) {
+    var newText = source;
+    if (option) {
+        newText = source.Replace(strToHighlight, "<span style=\"background-color: red\">" + strToHighlight + "</span>");
+    }
+    if (newText != null) {
+        @(new HtmlString(newText));
+    }
 }

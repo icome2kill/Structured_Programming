@@ -1,0 +1,16 @@
+﻿@model Structured_Programming.Models.SearchOptionsModel
+
+@using (Html.BeginForm("Index", "Search", FormMethod.Get))
+{
+    @Html.TextBoxFor(m => m.Query)
+    <div>
+        <input type="checkbox" name="InclName" value="true" checked="@Request["InclName"] ?? true"/>
+        <span>Name</span>
+        <input type="checkbox" name="InclDescription" value="true" checked="@Request["InclDescription"]"/>
+        <span>Description</span>
+        <input type="checkbox" name="InclUser" value="true" checked="@Request["InclUser"]"//>
+        <span>User</span>
+        <input type="checkbox" name="InclTrade" value="true" checked="@Request["InclTrade"]"/>
+        <span>Trade</span>
+    </div>
+}
