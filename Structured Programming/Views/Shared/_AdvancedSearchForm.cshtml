@@ -12,5 +12,6 @@
         <span>User</span>
         <input type="checkbox" name="InclTrade" value="true" checked="@Request["InclTrade"]"/>
         <span>Trade</span>
+        @Html.DropDownListFor(m => m.TypeId, Model.TypeList, "All")
     </div>
 }

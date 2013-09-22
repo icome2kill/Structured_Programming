@@ -39,14 +39,14 @@
             <h3>
                 Advanced search
             </h3>
-            @Html.Partial("/Views/Shared/_AdvancedSearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
+            @Html.Partial("/Views/Shared/_AdvancedSearchForm.cshtml", Model.CurrentOptions)
             <div class="span text-center">
                 <h2 class="home-head">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSearch Results&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
             </div>
-            @Html.Partial("/Views/Shared/_ListItems.cshtml", Model.Items);
+            @Html.Partial("/Views/Shared/_ListItems.cshtml", Model.Items)
             <div class="span12">
                     <div class="pagination">
-                        @Html.PagedListPager((IPagedList)Model.Items, page => Url.Action("Index", new { page, Query = Request["Query"], InclUser = Request["InclUser"], InclDescription = Request["InclDescription"], InclTrade = Request["InclTrade"], InclName = Request["InclName"] }))
+                        @Html.PagedListPager((IPagedList)Model.Items, page => Url.Action("Index", new { page, Query = Request["Query"], InclUser = Request["InclUser"], InclDescription = Request["InclDescription"], InclTrade = Request["InclTrade"], InclName = Request["InclName"], TypeId = Request["TypeId"] }))
                     </div>
                 </div>
         </div>
