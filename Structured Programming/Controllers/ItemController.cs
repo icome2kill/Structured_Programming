@@ -23,7 +23,6 @@ namespace Structured_Programming.Controllers
 
         public ActionResult Index(int? page, int typeId = 0)
         {
-            // Redirect to home now.
             DataEntities db = new DataEntities();
             var pageNumber = page ?? 1;
             var itemsPerPage = 9;

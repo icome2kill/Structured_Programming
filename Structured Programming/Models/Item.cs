@@ -12,6 +12,7 @@ namespace Structured_Programming.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Web.Script.Serialization;
     
     public partial class Item
     {
@@ -24,7 +25,7 @@ namespace Structured_Programming.Models
         public Nullable<decimal> Price { get; set; }
         public string Trade { get; set; }
         public int UserId { get; set; }
-    
+
         public virtual Type Type { get; set; }
         public virtual UserProfile UserProfile { get; set; }
     }
