@@ -4,144 +4,69 @@
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<!-- Gray Bar Start -->
-    <div class="gray-bar">
-    	<div class="container">
-        	<div class="row">
-            	<div class="span6">
-                	<div class="social-icons">
-                        <!--<ul>
-                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Google Plus"><i class="icon-google-plus"></i></a></li>                            
-                            <li><a href="#" data-toggle="tooltip" title="Dribble"><i class="icon-dribbble"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Flickr"><i class="icon-flickr"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Pinterest"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="icon-linkedin"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Youtube"><i class="icon-youtube"></i></a></li>
-                        </ul>-->
-                    </div>
-                    <div class="breadcrumb-links">
-                        <div>
-                            Home <i class="icon-angle-right"></i>
-                            All items <i class="icon-angle-right"></i>
-                            Electronic <i class="icon-angle-right"></i> 
-                            <a href="#">Sony Bravia</a>
-                        </div>
-                    </div>                
-                </div>
-                <div class="span6 text-right">         	
-                    <form class="search" method="post" action="#">
-                        <label for="search-box">&nbsp;</label>
-                        <input id="search-box" type="text" placeholder="Search...">
-                    </form>
-                </div>
-            </div>
+<div class="body">
+    <div class="container">
+        <div class="head-style1">
+            <h2>Edit your item</h2>
         </div>
-    </div>
-    <!-- Gray Bar End -->
-<!-- Body Content Start -->
-    <div class="body-content">
-        <div class="container">
-            <div class="row">
-                <h2>@Model.Item.Name</h2>
-                <div class="clearfix">&nbsp;</div>
-    
-                <div class="span6 pad-bot">
-                    @Helpers.ImageFor(Model.Item.ItemId)
-                </div>
-                
-                <div class="span6">
-                    <div class="head-style1">
-                        <h3>Product Description</h3>
-                    </div>
-                    <p>@Model.Item.Description</p><br>
-                    <div class="head-style1">
-                        <h3>Rate: 3/5</h3>
-                        <p>
-                            <img src="images/star.png"><img src="images/star.png"><img src="images/star.png">
-                            <a href="#" class="my-btn btn-small btn-border pull-right">Rate this !</a>
-                        </p>
-                    </div>
-                    <ul class="port-details">
-                        <li><strong>Owner:</strong> <a href="#">@Model.Item.UserProfile.UserName</a></li>
-                        <li><strong>Category:</strong> @Model.Item.Type.Name</li>
-                        <li><strong>Want to trade with:</strong> @Model.Item.Trade</li>
-
-                    </ul>
-                    <div class="clearfix">&nbsp;</div>
-                    <a href="#" class="my-btn btn-small btn-border">Buy</a>
-                    @Html.ActionLink("Back to List", "Index")
-                </div>
+        <div class="show-grid-row">
+            @using (Html.BeginForm("Edit", "Item", FormMethod.Post, new { enctype = "multipart/form-data", @class = "contact_form" }))
+            {
+                @Html.HiddenFor(m => m.Item.ItemId)
+                @Html.HiddenFor(m => m.Item.UserId)
+                @Html.AntiForgeryToken()
                 
                 <div class="span12">
-                    <div class="divider1">&nbsp;</div>
-                </div>      
-            </div>
+                    @Html.LabelFor(m => m.Item.Name)
+                    @Html.TextBoxFor(m => m.Item.Name, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Item.Name)
+                </div>
+                <div class="span12">
+                    @Html.LabelFor(m => m.Item.Description)
+                    @Html.TextBoxFor(m => m.Item.Description, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Item.Description)
+                </div>
+                <div class="span12">
+                    @Html.LabelFor(m => m.Item.Price)
+                    @Html.TextBoxFor(m => m.Item.Price, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Item.Price)
+                </div>
+                <div class="span12">
+                    @Html.LabelFor(m => m.Item.Trade)
+                    @Html.TextBoxFor(m => m.Item.Trade, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Item.Trade)
+                </div>
+                <div class="span12">
+                    @Html.LabelFor(m => m.Image)
+                    <script type="text/javascript">
+                        function alertFilename() {
+                            var fullPath = document.getElementById('image').value;
+                            document.getElementById("file_info").value = fullPath.split(/(\\|\/)/g).pop();
+                        }
+                        function clearFileInput() {
+                            document.getElementById("image").value = "";
+                            alertFilename();
+                        }
+                    </script>
+                    <div class="custom_file_upload">
+                        <input type="text" class="file" name="file_info" readonly="readonly" id="file_info">
+                        <div class="file_upload">
+                            <input type="file" id="image" name="image" onchange="alertFilename();">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="span12">
+                    <label>Type</label>
+                    @Html.DropDownListFor(m => m.Item.TypeId, Model.TypeList, new { @class = "custom-dropdown" })
+                </div>
+                <div class="span12">
+                    <input class="btn send-btn" type="submit" value="Edit" />
+                    <input class="btn send-btn" type="button" value="Cancel Upload" onclick="clearFileInput();" />
+                </div>
+            }
         </div>
     </div>
-    <!-- Body Content End -->
-<h2>Edit</h2>
-    <div style="float: right">
-        @Helpers.ImageFor(Model.Item.ItemId, "200px", "300px");
-    </div>
-    @using (Html.BeginForm("Edit","Item", FormMethod.Post, new { enctype = "multipart/form-data" })) {
-        @Html.ValidationSummary(true)
-        <fieldset>
-            <legend>Item</legend>
-
-            @Html.HiddenFor(model => model.Item.ItemId)
-            @Html.HiddenFor(model => model.Item.UserId)
-            <div class="editor-label">
-                <label for="Item_TypeId">Type</label>
-            </div>
-            <div class="editor-field">
-                @Html.DropDownListFor(model => model.Item.TypeId, Model.TypeList)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Item.Name)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Item.Name)
-                @Html.ValidationMessageFor(model => model.Item.Name)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Item.Description)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Item.Description)
-                @Html.ValidationMessageFor(model => model.Item.Description)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Item.Price)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Item.Price)
-                @Html.ValidationMessageFor(model => model.Item.Price)
-            </div>
-
-            <div class="editor-label">
-                @Html.LabelFor(m => m.Image)
-                @Html.ValidationMessageFor(m => m.Image)
-                <input name="image" id="image" type="file" />
-            </div>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Item.Trade)
-            </div>
-            <div class="editor-field">
-                @Html.EditorFor(model => model.Item.Trade)
-                @Html.ValidationMessageFor(model => model.Item.Trade)
-            </div>
-            <p>
-                <input type="submit" value="Save" />
-            </p>
-        </fieldset>
-    }
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 @section Scripts {

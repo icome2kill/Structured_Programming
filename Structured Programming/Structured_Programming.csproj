@@ -20,6 +20,7 @@
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -55,6 +56,8 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ServiceModel.Web" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -269,6 +272,7 @@
     </Content>
     <Content Include="App_Code\Helpers.cshtml" />
     <Content Include="Images\Descr.WD3" />
+    <Content Include="Content\style.css" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -297,6 +301,7 @@
     <Content Include="Template\css\superfish.css" />
     <Content Include="Template\images\accordion-icon-down.png" />
     <Content Include="Template\images\accordion-icon.png" />
+    <Content Include="Template\images\arrow.png" />
     <Content Include="Template\images\blog1.jpg" />
     <Content Include="Template\images\blog2.jpg" />
     <Content Include="Template\images\blog3.jpg" />
@@ -310,6 +315,7 @@
     <Content Include="Template\images\clients\thumb1.jpg" />
     <Content Include="Template\images\clients\thumb2.jpg" />
     <Content Include="Template\images\clients\thumb3.jpg" />
+    <Content Include="Template\images\iphone5s.jpg" />
     <Content Include="Template\images\logo.png" />
     <Content Include="Template\images\logo2.png" />
     <Content Include="Template\images\portfolio\image_1.jpg" />

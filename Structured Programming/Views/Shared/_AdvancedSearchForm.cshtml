@@ -1,17 +1,31 @@
 ﻿@model Structured_Programming.Models.SearchOptionsModel
 
-@using (Html.BeginForm("Index", "Search", FormMethod.Get))
+@using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "search" }))
 {
-    @Html.TextBoxFor(m => m.Query)
-    <div>
-        <input type="checkbox" name="InclName" value="true" checked="@Request["InclName"] ?? true"/>
-        <span>Name</span>
-        <input type="checkbox" name="InclDescription" value="true" checked="@Request["InclDescription"]"/>
-        <span>Description</span>
-        <input type="checkbox" name="InclUser" value="true" checked="@Request["InclUser"]"//>
-        <span>User</span>
-        <input type="checkbox" name="InclTrade" value="true" checked="@Request["InclTrade"]"/>
-        <span>Trade</span>
-        @Html.DropDownListFor(m => m.TypeId, Model.TypeList, "All")
+    <h2>Advanced search</h2>
+    <div class="row">
+        <div class="span7 text-left">
+            @Html.TextBoxFor(m => m.Query, new { @style = "width: 515px" })
+        </div>
+        <div class="span5">
+            @Html.DropDownListFor(m => m.TypeId, Model.TypeList, "All", new { @class = "search-dropdown" })
+        </div>
+        <div class="divider1"></div>
+        <div class="span">
+            <input id="InclName" type="checkbox" class="css-checkbox" name="InclName" value="true" checked="@Model.InclName"/>
+            <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="InclName">Name</label>
+        </div>
+        <div class="span">
+            <input id="InclDescription" type="checkbox" class="css-checkbox" name="InclDescription" value="true" checked="@Request["InclDescription"]"/>
+            <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="InclDescription">Description</label>
+        </div>
+        <div class="span">
+            <input id="InclUser" type="checkbox" class="css-checkbox" name="InclUser" value="true" checked="@Request["InclUser"]"/>
+            <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="InclUser">Username</label>
+        </div>
+        <div class="span">
+            <input id="InclTrade" type="checkbox" class="css-checkbox" name="InclTrade" value="true" checked="@Request["InclTrade"]"/>
+            <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="InclTrade">Trade with</label>
+        </div>
     </div>
 }

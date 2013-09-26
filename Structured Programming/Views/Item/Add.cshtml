@@ -4,42 +4,68 @@
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<div class="body">
+    <div class="container">
+        <div class="head-style1">
+            <h2>Add new item</h2>
+        </div>
+        <div class="show-grid-row">
+            @using (Html.BeginForm("Add", "Item", FormMethod.Post, new { enctype = "multipart/form-data", @class = "contact_form" }))
+            {
+                @Html.AntiForgeryToken()
+                
+                <div class="span12">
+                    @Html.LabelFor(m => m.Item.Name)
+                    @Html.TextBoxFor(m => m.Item.Name, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Item.Name)
+                </div>
+                <div class="span12">
+                    @Html.LabelFor(m => m.Item.Description)
+                    @Html.TextBoxFor(m => m.Item.Description, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Item.Description)
+                </div>
+                <div class="span12">
+                    @Html.LabelFor(m => m.Item.Price)
+                    @Html.TextBoxFor(m => m.Item.Price, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Item.Price)
+                </div>
+                <div class="span12">
+                    @Html.LabelFor(m => m.Item.Trade)
+                    @Html.TextBoxFor(m => m.Item.Trade, new { @class = "span6" })
+                    @Html.ValidationMessageFor(m => m.Item.Trade)
+                </div>
+                <div class="span12">
+                    @Html.LabelFor(m => m.Image)
+                    <script type="text/javascript">
+                        function alertFilename() {
+                            var fullPath = document.getElementById('image').value;
+                            document.getElementById("file_info").value = fullPath.split(/(\\|\/)/g).pop();
+                        }
+                        function clearFileInput() {
+                            document.getElementById("image").value = "";
+                            alertFilename();
+                        }
+                    </script>
+                    <div class="custom_file_upload">
+                        <input type="text" class="file" name="file_info" readonly="readonly" id="file_info">
+                        <div class="file_upload">
+                            <input type="file" id="image" name="image" onchange="alertFilename();">
+                        </div>
+                    </div>
 
-<h2>Add a new item</h2>
-@using (Html.BeginForm("Add","Item", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
-    <fieldset>
-        <ul>
-            <li>
-                @Html.LabelFor(m => m.Item.Name)
-                @Html.TextBoxFor(m => m.Item.Name)
-                @Html.ValidationMessageFor(m => m.Item.Name)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Item.Description)
-                @Html.TextBoxFor(m => m.Item.Description)
-                @Html.ValidationMessageFor(m => m.Item.Description)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Item.Price)
-                @Html.TextBoxFor(m => m.Item.Price)
-                @Html.ValidationMessageFor(m => m.Item.Price)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Item.Trade)
-                @Html.TextBoxFor(m => m.Item.Trade)
-                @Html.ValidationMessageFor(m => m.Item.Trade)
-            </li>
-            <li>
-                @Html.LabelFor(m => m.Image)
-                <input name="image" id="image" type="file" />
-            </li>
-            <li>
-                <label>Type</label>
-                @Html.DropDownListFor(m => m.Item.TypeId, Model.TypeList)
-            </li>
-        </ul>
-        <input type="submit" value="Add" />
-    </fieldset>
+                </div>
+                <div class="span12">
+                    <label>Type</label>
+                    @Html.DropDownListFor(m => m.Item.TypeId, Model.TypeList, new { @class = "custom-dropdown" })
+                </div>
+                <div class="span12">
+                    <input class="btn send-btn" type="submit" value="Add" />
+                    <input class="btn send-btn" type="button" value="Cancel Upload" onclick="clearFileInput();" />
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }

@@ -11,7 +11,7 @@
                 <h3>Sign in</h3>
             </div>
             <div class="show-grid row">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, htmlAttributes: new { id = "contact_form" }))
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, htmlAttributes: new { @class = "contact_form" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="span8">
@@ -42,3 +42,6 @@
         </div>
     </div>
 </div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

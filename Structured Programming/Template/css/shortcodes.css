@@ -1210,3 +1210,123 @@ height: 50px;
 	padding:19px;
 }
 /* ========= End =========== */
+
+/* ====Custom stylesheed==== */
+
+input[type=checkbox].css-checkbox 
+{
+	position: absolute; 
+	overflow: hidden; 
+	clip: rect(0 0 0 0); 
+	height:1px; 
+	width:1px; 
+	margin:-1px; 
+	padding:0;
+	border:0;
+}
+
+input[type=checkbox].css-checkbox + label.css-label 
+{
+	padding-left:20px;
+	height:15px; 
+	display:inline-block;
+	line-height:15px;
+	background-repeat:no-repeat;
+	background-position: 0 0;
+	font-size:15px;
+	vertical-align:middle;
+	cursor:pointer;
+	
+}
+
+input[type=checkbox].css-checkbox:checked + label.css-label 
+{
+	background-position: 0 -15px;
+}
+						
+.css-label
+{
+	background-image:url(http://csscheckbox.com/checkboxes/dark-check-green.png);
+}
+select.search-dropdown
+{
+	width: 220px;
+border: 0px;
+background-color: #9098A5;
+text-shadow: 1px 1px 1px rgba(0,0,0,0.05);
+-webkit-border-radius: 6px;
+-webkit-box-shadow: 1px 1px 0 rgba(0,0,0,0.125);
+-webkit-transition: width 0.5s ease-in-out;
+-moz-border-radius: 6px;
+-moz-box-shadow: 1px 1px 0 rgba(0,0,0,0.125);
+-moz-transition: width 0.5s ease-in-out;
+margin: 0;
+color: #FFF;
+line-height: 20px;
+font-family: 'Source Sans Pro', sans-serif;
+font-weight: 500;
+font-size: 16px;
+
+}
+
+select.custom-dropdown
+{
+	height: 44px;
+	width: 462px;
+	padding:10px 6px;
+	font-size:18px;
+	color:#333;
+	border-radius: 0px;
+	border:none;
+	margin-bottom:5px;
+	background:#3b3b3b;
+	color:#666666;
+
+}
+
+div.custom_file_upload {
+	font-family: 'Lucida Grande', 'Helvetica Neue', sans-serif;
+	font-size: 13px;
+
+}
+
+input.file {
+	width: 366px;
+	height: 20px;
+	border: 1px solid #BBB;
+	border-right: 0;
+	padding: 5px;		
+	outline: none;
+}
+
+div.file_upload {
+	width: 80px;
+	height: 33px;
+	display: inline;
+	position: absolute;
+	overflow: hidden;
+	cursor: pointer;	
+	background-color: #f1442b;
+	font-weight: bold;
+	color: #FFF;
+	text-align: center;
+	padding-top: 11px; 
+}
+div.file_upload:before {
+	content: 'UPLOAD';
+	position: absolute;
+	left: 0; right: 0;
+	text-align: center;	
+	cursor: pointer;
+}
+
+div.file_upload input {
+	position: relative;
+	height: 30px;
+	width: 250px;
+	display: inline;
+	cursor: pointer;
+	opacity: 0;
+}
+/* ========= End =========== */						
+						

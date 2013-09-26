@@ -11,7 +11,7 @@
                 <h3>Sign up</h3>
             </div>
             <div class="show-grid row">
-                @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, htmlAttributes: new { id = "contact_form" }))
+                @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, htmlAttributes: new { @class = "contact_form" }))
                 {
                     @Html.AntiForgeryToken()
                     <div class="span8">

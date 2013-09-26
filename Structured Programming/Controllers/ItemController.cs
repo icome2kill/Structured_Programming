@@ -82,7 +82,7 @@ namespace Structured_Programming.Controllers
                     string extension = System.IO.Path.GetExtension(model.Image.FileName);
                     model.Image.SaveAs(Server.MapPath("/Images/") + model.Item.ItemId.ToString() + extension);
                 }
-                ViewBag.Message = "Your item has been successfully added";
+                ViewBag.Message = "Your item has successfully been added";
                 ViewBag.ReturnUrl = Url.Action("Index");
                 return View("Success");
             }

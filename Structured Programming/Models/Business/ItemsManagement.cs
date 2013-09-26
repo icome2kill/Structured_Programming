@@ -47,6 +47,7 @@ namespace Structured_Programming.Models.Business
             if (flag == false)
             {
                 flag = true;
+                model.InclName = true;
                 itemsToDisplay = itemsToDisplay.Union(allItems.Where(row => row.Name.Contains(s))).ToList();
             }
             return itemsToDisplay;

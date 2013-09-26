@@ -35,12 +35,12 @@ namespace Structured_Programming.Controllers
                     return View("Error");
                 }
             }
-            var itemsToDisplay = items.ToPagedList(pageNumber, itemsPerPage);
             var typeList = new SelectList(db.Types, "TypeId", "Name");
             var itemModel = new HomeIndexModel
             {
                 TypeId = typeId,
-                Items = itemsToDisplay
+                Items = items.ToPagedList(pageNumber, itemsPerPage),
+                LastestItems = items.Take(5)
             };
             return View(itemModel);
         }

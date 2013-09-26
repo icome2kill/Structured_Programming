@@ -1,0 +1,29 @@
+﻿.contact_form label {
+    font-weight: 600;
+    color: rgb(102, 102, 102);
+    margin: 8px 0px;
+}
+
+.contact_form .send-btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    text-transform: uppercase;
+    text-shadow: none;
+    color: rgb(255, 255, 255);
+    margin-top: 15px;
+    position: relative;
+    font-weight: 600;
+    background: none repeat scroll 0% 0% rgb(241, 68, 43);
+    font-family: 'Source Sans Pro',sans-serif;
+    border-radius: 3px 3px 3px 3px;
+}
+
+.contact_form input {
+    color: rgb(102, 102, 102);
+    padding: 12px 8px;
+    background: none repeat scroll 0% 0% rgb(59, 59, 59);
+    margin-bottom: 5px;
+    border: medium none;
+    border-radius: 0px 0px 0px 0px;
+    font-size: 12px;
+}

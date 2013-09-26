@@ -7,12 +7,12 @@
 @using PagedList.Mvc;
 
 <!-- Gray Bar Start -->
-    <div class="gray-bar">
-        <div class="container">
-            <div class="row">
-                <div class="span6">
-                    <div class="social-icons">
-                        <!--<ul>
+<div class="gray-bar">
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <div class="social-icons">
+                    <!--<ul>
                             <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>
                             <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="icon-facebook"></i></a></li>
                             <li><a href="#" data-toggle="tooltip" title="Google Plus"><i class="icon-google-plus"></i></a></li>                            
@@ -22,33 +22,31 @@
                             <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="icon-linkedin"></i></a></li>
                             <li><a href="#" data-toggle="tooltip" title="Youtube"><i class="icon-youtube"></i></a></li>
                         </ul>-->
-                    </div>
-                    <a href="index-2.html">
-                        <img src="Template/images/slogan.png" alt=""></a>
                 </div>
-                <div class="span6 text-right">
-                    @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
-                </div>
+                <a href="index-2.html">
+                    <img src="Template/images/slogan.png" alt=""></a>
+            </div>
+            <div class="span6 text-right">
+                @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
             </div>
         </div>
     </div>
-    <!-- Gray Bar End -->
+</div>
+<!-- Gray Bar End -->
 <div class="body-content">
     <div class="container">
+        @Html.Partial("/Views/Shared/_AdvancedSearchForm.cshtml", Model.CurrentOptions)
+        <div class="divider1"></div>
+        <h2>
+            @ViewBag.Result
+        </h2>
         <div class="row">
-            <h3>
-                Advanced search
-            </h3>
-            @Html.Partial("/Views/Shared/_AdvancedSearchForm.cshtml", Model.CurrentOptions)
-            <div class="span text-center">
-                <h2 class="home-head">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspSearch Results&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
-            </div>
             @Html.Partial("/Views/Shared/_ListItems.cshtml", Model.Items)
             <div class="span12">
-                    <div class="pagination">
-                        @Html.PagedListPager((IPagedList)Model.Items, page => Url.Action("Index", new { page, Query = Request["Query"], InclUser = Request["InclUser"], InclDescription = Request["InclDescription"], InclTrade = Request["InclTrade"], InclName = Request["InclName"], TypeId = Request["TypeId"] }))
-                    </div>
+                <div class="pagination">
+                    @Html.PagedListPager((IPagedList)Model.Items, page => Url.Action("Index", new { page, Query = Request["Query"], InclUser = Request["InclUser"], InclDescription = Request["InclDescription"], InclTrade = Request["InclTrade"], InclName = Request["InclName"], TypeId = Request["TypeId"] }))
                 </div>
+            </div>
         </div>
     </div>
 </div>

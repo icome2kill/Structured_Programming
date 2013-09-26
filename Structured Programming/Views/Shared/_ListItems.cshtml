@@ -1,14 +1,5 @@
 ﻿@model IEnumerable<Structured_Programming.Models.Item>
 <!-- All item start-->
-<div class="">
-    <nav>
-        <ul class="sf-menu" id="nav">
-            <li><a href="#">Name</a></li>
-            <li><a href="">Date</a></li>
-            <li><a href="">Rating</a></li>
-        </ul>
-    </nav>
-</div>
 @{
     var itemsPerRow = 3;
     for (int i = 0; i < Model.Count(); i++)

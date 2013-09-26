@@ -48,7 +48,8 @@ namespace Structured_Programming.Controllers
                 currentUser.LastName = user.LastName;
                 currentUser.FirstName = user.FirstName;
                 db.SaveChanges();
-                return RedirectToAction("Details", "Account");
+                ViewBag.Message = "Your profile has been changed successfully, you will be redirected to home page in 1 second";
+                return View("Success");
             }
             return this.View();
         }
