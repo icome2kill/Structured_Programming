@@ -21,6 +21,7 @@
                     <div class="span12">
                         @Html.LabelFor(m => m.UserName)
                         @Html.TextBoxFor(m => m.UserName, new { @class = "span6", id = "username" })
+                        @Html.ValidationMessageFor(m => m.UserName)
                     </div>
                     <div class="span12">
                         @Html.LabelFor(m => m.Password)

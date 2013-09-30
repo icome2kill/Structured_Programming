@@ -4,9 +4,12 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Item" EntityType="Model.Store.Item" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Method" EntityType="Model.Store.Method" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Status" EntityType="Model.Store.Status" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Transaction" EntityType="Model.Store.Transaction" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Type" EntityType="Model.Store.Type" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="UserProfile" EntityType="Model.Store.UserProfile" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="webpages_Membership" EntityType="Model.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
@@ -25,6 +28,22 @@
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
           </AssociationSet>
+          <AssociationSet Name="FK_Transaction_BuyerId_UserProfile" Association="Model.Store.FK_Transaction_BuyerId_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Item" Association="Model.Store.FK_Transaction_Item">
+            <End Role="Item" EntitySet="Item" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Method" Association="Model.Store.FK_Transaction_Method">
+            <End Role="Method" EntitySet="Method" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Status" Association="Model.Store.FK_Transaction_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Transaction" EntitySet="Transaction" />
+          </AssociationSet>
           <AssociationSet Name="fk_UserId" Association="Model.Store.fk_UserId">
             <End Role="UserProfile" EntitySet="UserProfile" />
             <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
@@ -41,6 +60,32 @@
           <Property Name="Price" Type="money" />
           <Property Name="Trade" Type="nvarchar" MaxLength="50" />
           <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Method">
+          <Key>
+            <PropertyRef Name="MethodId" />
+          </Key>
+          <Property Name="MethodId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BuyerId" Type="int" Nullable="false" />
+          <Property Name="ItemId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar(max)" />
+          <Property Name="Pay" Type="money" Nullable="false" />
+          <Property Name="MethodId" Type="int" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
@@ -136,6 +181,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Transaction_BuyerId_UserProfile">
+          <End Role="UserProfile" Type="Model.Store.UserProfile" Multiplicity="1" />
+          <End Role="Transaction" Type="Model.Store.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="BuyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Item">
+          <End Role="Item" Type="Model.Store.Item" Multiplicity="1" />
+          <End Role="Transaction" Type="Model.Store.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Method">
+          <End Role="Method" Type="Model.Store.Method" Multiplicity="1" />
+          <End Role="Transaction" Type="Model.Store.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Method">
+              <PropertyRef Name="MethodId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="MethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Status">
+          <End Role="Status" Type="Model.Store.Status" Multiplicity="1" />
+          <End Role="Transaction" Type="Model.Store.Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_UserId">
           <End Role="UserProfile" Type="Model.Store.UserProfile" Multiplicity="1" />
           <End Role="webpages_UsersInRoles" Type="Model.Store.webpages_UsersInRoles" Multiplicity="*" />
@@ -148,8 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -172,6 +264,25 @@
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="UserProfile" EntitySet="UserProfiles" />
           </AssociationSet>
+          <EntitySet Name="Transactions" EntityType="Model.Transaction" />
+          <AssociationSet Name="FK_Transaction_Item" Association="Model.FK_Transaction_Item">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_BuyerId_UserProfile" Association="Model.FK_Transaction_BuyerId_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <EntitySet Name="Methods" EntityType="Model.Method" />
+          <EntitySet Name="Status" EntityType="Model.Status" />
+          <AssociationSet Name="FK_Transaction_Method" Association="Model.FK_Transaction_Method">
+            <End Role="Method" EntitySet="Methods" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Transaction_Status" Association="Model.FK_Transaction_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Transaction" EntitySet="Transactions" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Item">
           <Key>
@@ -186,6 +297,7 @@
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Type" Relationship="Model.FK_Item_Type" FromRole="Item" ToRole="Type" />
           <NavigationProperty Name="UserProfile" Relationship="Model.FK_Item_User" FromRole="Item" ToRole="UserProfile" />
+          <NavigationProperty Name="Transactions" Relationship="Model.FK_Transaction_Item" FromRole="Item" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
@@ -207,6 +319,7 @@
           <Property Name="Address" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="Items" Relationship="Model.FK_Item_User" FromRole="UserProfile" ToRole="Item" />
           <NavigationProperty Name="webpages_Roles" Relationship="Model.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+          <NavigationProperty Name="Transactions" Relationship="Model.FK_Transaction_BuyerId_UserProfile" FromRole="UserProfile" ToRole="Transaction" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -268,6 +381,86 @@
         <Association Name="webpages_UsersInRoles">
           <End Role="webpages_Roles" Type="Model.webpages_Roles" Multiplicity="*" />
           <End Role="UserProfile" Type="Model.UserProfile" Multiplicity="*" />
+        </Association>
+        <EntityType Name="Transaction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" />
+          <Property Type="Int32" Name="BuyerId" Nullable="false" />
+          <Property Type="Int32" Name="ItemId" Nullable="false" />
+          <Property Type="String" Name="Message" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Decimal" Name="Pay" Nullable="false" Precision="19" Scale="4" />
+          <NavigationProperty Name="Item" Relationship="Model.FK_Transaction_Item" FromRole="Transaction" ToRole="Item" />
+          <NavigationProperty Name="UserProfile" Relationship="Model.FK_Transaction_BuyerId_UserProfile" FromRole="Transaction" ToRole="UserProfile" />
+          <Property Type="Int32" Name="MethodId" Nullable="false" />
+          <Property Type="Int32" Name="StatusId" Nullable="false" />
+          <NavigationProperty Name="Method" Relationship="Model.FK_Transaction_Method" FromRole="Transaction" ToRole="Method" />
+          <NavigationProperty Name="Status" Relationship="Model.FK_Transaction_Status" FromRole="Transaction" ToRole="Status" />
+        </EntityType>
+        <Association Name="FK_Transaction_Item">
+          <End Type="Model.Item" Role="Item" Multiplicity="1" />
+          <End Type="Model.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="ItemId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="ItemId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_BuyerId_UserProfile">
+          <End Type="Model.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="Model.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="BuyerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Method">
+          <Key>
+            <PropertyRef Name="MethodId" />
+          </Key>
+          <Property Type="Int32" Name="MethodId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Transactions" Relationship="Model.FK_Transaction_Method" FromRole="Method" ToRole="Transaction" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="StatusId" />
+          </Key>
+          <Property Type="Int32" Name="StatusId" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Transactions" Relationship="Model.FK_Transaction_Status" FromRole="Status" ToRole="Transaction" />
+        </EntityType>
+        <Association Name="FK_Transaction_Method">
+          <End Type="Model.Method" Role="Method" Multiplicity="1" />
+          <End Type="Model.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Method">
+              <PropertyRef Name="MethodId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="MethodId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Transaction_Status">
+          <End Type="Model.Status" Role="Status" Multiplicity="1" />
+          <End Type="Model.Transaction" Role="Transaction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="StatusId" />
+            </Principal>
+            <Dependent Role="Transaction">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -350,6 +543,35 @@
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
+          <EntitySetMapping Name="Transactions">
+            <EntityTypeMapping TypeName="Model.Transaction">
+              <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+                <ScalarProperty Name="Pay" ColumnName="Pay" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="BuyerId" ColumnName="BuyerId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Methods">
+            <EntityTypeMapping TypeName="Model.Method">
+              <MappingFragment StoreEntitySet="Method">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="MethodId" ColumnName="MethodId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="Model.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

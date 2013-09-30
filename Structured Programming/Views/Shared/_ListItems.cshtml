@@ -24,7 +24,13 @@
                             </div>
                             <div class="port-txt skyblue-bg" style="width: 70%">
                                 <div class="extra-pad">
-                                    <h3>@Helpers.Highlight(item.Name, Request["Query"], Request["InclName"].AsBool())</h3>
+                                    @if (Request.QueryString.Count == 1)
+                                    {
+                                        <h3>@Helpers.Highlight(item.Name, Request["Query"], true)</h3>
+                                    }
+                                    else {
+                                        <h3>@Helpers.Highlight(item.Name, Request["Query"], Request["InclName"].AsBool())</h3>
+                                    }
                                     <p class="box">@Helpers.Highlight(item.Description, Request["Query"], Request["InclDescription"].AsBool())</p>
                                     @Html.ActionLink("Read more", "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: new { @class = "my-btn btn-small btn-border" })
                                 </div>

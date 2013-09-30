@@ -11,31 +11,17 @@ namespace Structured_Programming.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class UserProfile
+    public partial class Method
     {
-        public UserProfile()
+        public Method()
         {
-            this.Items = new HashSet<Item>();
-            this.webpages_Roles = new HashSet<webpages_Roles>();
             this.Transactions = new HashSet<Transaction>();
         }
     
-        [Key]
-        public int UserId { get; set; }
-
-        [Required]
-        public string UserName { get; set; }
-
-        [Required]
-        public string Email { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
+        public int MethodId { get; set; }
+        public string Name { get; set; }
     
-        public virtual ICollection<Item> Items { get; set; }
-        public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

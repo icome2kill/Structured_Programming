@@ -11,19 +11,20 @@ namespace Structured_Programming.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
-    public partial class webpages_Roles
+    public partial class Transaction
     {
-        public webpages_Roles()
-        {
-            this.UserProfiles = new HashSet<UserProfile>();
-        }
+        public int Id { get; set; }
+        public int BuyerId { get; set; }
+        public int ItemId { get; set; }
+        public string Message { get; set; }
+        public decimal Pay { get; set; }
+        public int MethodId { get; set; }
+        public int StatusId { get; set; }
     
-        [Key]
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
-    
-        public virtual ICollection<UserProfile> UserProfiles { get; set; }
+        public virtual Item Item { get; set; }
+        public virtual UserProfile UserProfile { get; set; }
+        public virtual Method Method { get; set; }
+        public virtual Status Status { get; set; }
     }
 }

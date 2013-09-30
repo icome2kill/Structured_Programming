@@ -180,6 +180,7 @@
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\OldStuffDataController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -206,7 +207,17 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemViewModels.cs" />
+    <Compile Include="Models\Method.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SearchViewModels.cs" />
+    <Compile Include="Models\Status.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Transaction.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TransactionViewModels.cs" />
     <Compile Include="Models\Type.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
@@ -459,6 +470,8 @@
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\_SearchForm.cshtml" />
     <Content Include="Views\Shared\_AdvancedSearchForm.cshtml" />
+    <Content Include="Views\Transaction\Index.cshtml" />
+    <Content Include="Views\Transaction\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -1,7 +1,7 @@
-﻿@model Structured_Programming.Models.Item
+﻿@model Structured_Programming.Models.TransactionCreateModel
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -25,8 +25,8 @@
                 <div class="breadcrumb-links">
                     <div>
                         @Html.ActionLink("All items", "Index", "Home") <i class="icon-angle-right"></i>
-                        @Html.ActionLink(Model.Type.Name, "Index", "Item", new { TypeId = Model.TypeId }, null)<i class="icon-angle-right"></i>
-                        @Model.Name
+                        @Html.ActionLink(Model.Item.Type.Name, "Index", "Item", new { TypeId = Model.Item.TypeId }, null)<i class="icon-angle-right"></i>
+                        @Model.Item.Name
                     </div>
                 </div>
             </div>
@@ -41,48 +41,47 @@
 <div class="body-content">
     <div class="container">
         <div class="row">
-            <h2>@Model.Name</h2>
+            <h1 style="text-align:center;">Transaction</h1>
+        </div>
+        <div class="row">
+            <h2>@Model.Item.Name</h2>
             <div class="clearfix">&nbsp;</div>
 
             <div class="span6 pad-bot">
-                @Helpers.ImageFor(Model.ItemId, "400px", "300px")
+                @Helpers.ImageFor(Model.Item.ItemId)
             </div>
 
             <div class="span6">
                 <div class="head-style1">
                     <h3>Product Description</h3>
                 </div>
-                <p>@Model.Description</p>
+                <p>@Model.Item.Description</p>
                 <br>
-                <div class="head-style1">
-                    <h3>Rate: 3/5</h3>
-                    <p>
-                        <img src="images/star.png"><img src="images/star.png"><img src="images/star.png">
-                        <a href="#" class="my-btn btn-small btn-border pull-right">Rate this !</a>
-                    </p>
-                </div>
                 <ul class="port-details">
-                    <li><strong>Owner:</strong> <a href="#">@Model.UserProfile.UserName</a></li>
-                    <li><strong>Category:</strong> @Model.Type.Name</li>
-                    <li><strong>Want to trade with:</strong> @Model.Trade</li>
-
+                    <li><strong>Owner:</strong> <a href="#">@Model.Item.UserProfile.UserName</a></li>
+                    <li><strong>Want to trade with:</strong> @Model.Item.Trade</li>
                 </ul>
                 <div class="clearfix">&nbsp;</div>
-
-                @if (WebSecurity.CurrentUserId == Model.UserId)
-                {
-                    <text>
-                    @Html.ActionLink("Delete", "Delete", new { id = Model.ItemId }, new { @class = "my-btn btn-small btn-border" })
-                    @Html.ActionLink("Edit", "Edit", new { id = Model.ItemId }, new { @class = "my-btn btn-small btn-border" })
-                    </text>
-                }
-                else
-                {
-                    @Html.ActionLink("Buy", "Create", "Transaction", new { itemId = Model.ItemId }, new { @class = "my-btn btn-small btn-border" })
-                }
-                @Html.ActionLink("Back to List", "Index")
             </div>
-
+            @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class="contact_form"}))
+            {
+                @Html.ValidationSummary()
+                @Html.HiddenFor(m => m.Item.ItemId)
+                @Html.HiddenFor(m => m.Item.Name)
+                <div class="span12">
+                    @Html.LabelFor(m => m.Transaction.Message)
+                    @Html.TextAreaFor(m => m.Transaction.Message)
+                </div>
+                <div class="span12">
+                    <label>Transaction method</label>
+                    @Html.DropDownListFor(m => m.Transaction.MethodId, Model.MethodList)
+                </div>
+                <div class="span12">
+                    <label>You're willing to pay</label>
+                    @Html.TextBoxFor(m => m.Transaction.Pay)
+                </div>
+                <input type="submit" class="btn send-btn" value="Confirm"/>
+            }
             <div class="span12">
                 <div class="divider1">&nbsp;</div>
             </div>
@@ -90,3 +89,4 @@
     </div>
 </div>
 <!-- Body Content End -->
+

@@ -11,22 +11,24 @@ namespace Structured_Programming.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.Web.Script.Serialization;
     
     public partial class Item
     {
+        public Item()
+        {
+            this.Transactions = new HashSet<Transaction>();
+        }
+    
         public int ItemId { get; set; }
         public int TypeId { get; set; }
-
-        [Required]
         public string Name { get; set; }
         public string Description { get; set; }
         public Nullable<decimal> Price { get; set; }
         public string Trade { get; set; }
         public int UserId { get; set; }
-
+    
         public virtual Type Type { get; set; }
         public virtual UserProfile UserProfile { get; set; }
+        public virtual ICollection<Transaction> Transactions { get; set; }
     }
 }

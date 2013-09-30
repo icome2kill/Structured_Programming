@@ -31,5 +31,8 @@ namespace Structured_Programming.Models
         public DbSet<webpages_Membership> webpages_Membership { get; set; }
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }
+        public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<Method> Methods { get; set; }
+        public DbSet<Status> Status { get; set; }
     }
 }
