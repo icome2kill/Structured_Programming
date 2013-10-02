@@ -28,7 +28,8 @@
                                     {
                                         <h3>@Helpers.Highlight(item.Name, Request["Query"], true)</h3>
                                     }
-                                    else {
+                                    else
+                                    {
                                         <h3>@Helpers.Highlight(item.Name, Request["Query"], Request["InclName"].AsBool())</h3>
                                     }
                                     <p class="box">@Helpers.Highlight(item.Description, Request["Query"], Request["InclDescription"].AsBool())</p>
@@ -38,15 +39,15 @@
                         </div>
                     </div>
                          
-        if (i % itemsPerRow == 2 || i == Model.Count() - 1)
-        {
+                                    if (i % itemsPerRow == 2 || i == Model.Count() - 1)
+                                    {
             @:</div>
             @:</div>
     <div class="span4">
         <div class="divider1">
         </div>
     </div>
-        }
+                                    }
     }
 }
 <!-- All item end-->

@@ -11,7 +11,6 @@ namespace Structured_Programming.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class UserProfile
     {
@@ -22,13 +21,8 @@ namespace Structured_Programming.Models
             this.Transactions = new HashSet<Transaction>();
         }
     
-        [Key]
         public int UserId { get; set; }
-
-        [Required]
         public string UserName { get; set; }
-
-        [Required]
         public string Email { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }

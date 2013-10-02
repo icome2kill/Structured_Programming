@@ -26,7 +26,7 @@
     var newText = source;
     if (option)
     {
-        if (strToHighlight != "")
+        if (strToHighlight != null && newText != null)
         {
             newText = source.Replace(strToHighlight, "<span style=\"background-color: red\">" + strToHighlight + "</span>");
         }

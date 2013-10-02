@@ -207,6 +207,10 @@
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ItemViewModels.cs" />
+    <Compile Include="Models\MetadataTypeModels\ItemMetadata.cs" />
+    <Compile Include="Models\MetadataTypeModels\TransactionMetadata.cs" />
+    <Compile Include="Models\MetadataTypeModels\UserProfileMetadata.cs" />
+    <Compile Include="Models\MetadataTypeModels\webpages_RolesMetadata.cs" />
     <Compile Include="Models\Method.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
