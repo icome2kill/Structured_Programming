@@ -7,7 +7,7 @@
         var item = Model.ElementAtOrDefault(i);
         if (i % itemsPerRow == 0)
         {
-    @:<div id="blog-home" class="span12">
+    @:<div id="blog-home" class="span12-no-margin">
 @:<div class="show-grid row">
                         }
                         <div class="span4">
@@ -26,28 +26,27 @@
                                 <div class="extra-pad">
                                     @if (Request.QueryString.Count == 1)
                                     {
-                                        <h3>@Helpers.Highlight(item.Name, Request["Query"], true)</h3>
+                                        <h3>@Helpers.Highlight(Helpers.ShortenText(item.Name, 20).ToString(), Request["Query"], true)</h3>
                                     }
-                                    else
-                                    {
-                                        <h3>@Helpers.Highlight(item.Name, Request["Query"], Request["InclName"].AsBool())</h3>
+                                    else {
+                                        <h3>@Helpers.Highlight(Helpers.ShortenText(item.Name, 20).ToString(), Request["Query"], Request["InclName"].AsBool())</h3>
                                     }
-                                    <p class="box">@Helpers.Highlight(item.Description, Request["Query"], Request["InclDescription"].AsBool())</p>
+                                    <p class="box">@Helpers.Highlight(Helpers.ShortenText(item.Description, 20).ToString(), Request["Query"], Request["InclDescription"].AsBool())</p>
                                     @Html.ActionLink("Read more", "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: new { @class = "my-btn btn-small btn-border" })
                                 </div>
                             </div>
                         </div>
                     </div>
                          
-                                    if (i % itemsPerRow == 2 || i == Model.Count() - 1)
-                                    {
+        if (i % itemsPerRow == 2 || i == Model.Count() - 1)
+        {
             @:</div>
             @:</div>
     <div class="span4">
         <div class="divider1">
         </div>
     </div>
-                                    }
+        }
     }
 }
 <!-- All item end-->

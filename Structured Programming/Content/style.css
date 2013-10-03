@@ -5,19 +5,23 @@
 }
 
 .contact_form .send-btn {
-    padding: 10px 15px;
+    padding: 12px 24px;
     font-size: 14px;
     text-transform: uppercase;
     text-shadow: none;
-    color: rgb(255, 255, 255);
-    margin-top: 15px;
+    color: #FFF;
+    margin-top: 20px;
     position: relative;
     font-weight: 600;
-    background: none repeat scroll 0% 0% rgb(241, 68, 43);
-    font-family: 'Source Sans Pro',sans-serif;
-    border-radius: 3px 3px 3px 3px;
+    background: #f1442b;
+    font-family: 'Source Sans Pro', sans-serif;
+    border-radius: 0px;
+    width: 150px;
 }
-
+.contact_form .send-btn:hover {
+    background:#9098a5;
+    color:#FFF;
+}
 .contact_form input {
     color: rgb(102, 102, 102);
     padding: 12px 8px;

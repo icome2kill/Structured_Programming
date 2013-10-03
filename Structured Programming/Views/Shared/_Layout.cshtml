@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 <head>
     <meta charset="utf-8" />
     <title>OLDSTUFF - EXCHANGING CENTRE</title>
@@ -12,12 +12,12 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-57x57.html" />
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="apple-touch-icon-72x72.html" />
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="apple-touch-icon-114x114.html" />
-
+    <link rel="stylesheet" type="text/css" href="/template/css/font.css">
     <!--[if lt IE 9]>
 	    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	    <![endif]-->
 
-    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
+    
     <script src="/Template/js/vendor/modernizr.custom.80910.js"></script>
 
     <!--[if lt IE 7]>
@@ -27,23 +27,24 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/Template/css/base.css" type="text/css">
     <link rel="stylesheet" href="/Content/style.css" type="text/css" />
+    
 </head>
 <body>
     <!-- Header Start -->
-    <header>
+    <header class="custom-header">
         <div class="container">
             <div class="row">
-                <div class="span3">
+                <div class="span2">
                     <div class="logo">
                         <a href="@Url.Action("Index","Home")">
                             <img src="/Images/logo.png" alt=""></a>
                     </div>
                 </div>
-                <div class="span9">
-                    <nav>
+                <div class="span6">
+                    <nav class="pull-left">
                         <ul class="sf-menu" id="nav">
                             <li><a href="/">Home</a></li>
-                            <li>@Html.ActionLink("Upload item", "Add", "Item")</li>
+                            <li>@Html.ActionLink("Upload", "Add", "Item")</li>
                             <li>
                                 <li><a href="#">Category</a>
                                     <ul>
@@ -54,7 +55,7 @@
                                     </ul>
                                 </li>
                             </li>
-                            <li><a href="#">User</a></li>
+                            <li><a href="">User</a></li>
                             <li>
                                 @if (Request.IsAuthenticated)
                                 {
@@ -77,6 +78,11 @@
                             @Html.AntiForgeryToken()
                         }
                     </nav>
+                </div>
+                <div class="span3 text-right custom-search-header">
+                    
+                    @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
+                </form>
                 </div>
             </div>
         </div>

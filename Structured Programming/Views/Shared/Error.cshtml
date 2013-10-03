@@ -4,7 +4,17 @@
     ViewBag.Title = "Error";
 }
 
-<hgroup class="title">
-    <h1 class="error">Error.</h1>
-    <h2 class="error">An error occurred while processing your request.</h2>
-</hgroup>
+<div class="body-content">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="error">
+                   	<p class="font-large">404<i class="icon-question"></i></p>
+                    <p class="font-small">Page Not Found :-(</p>
+                    <p class="font-mini">You're looking for something that doesn't actually exist</p>
+                    @Html.ActionLink("Back to home", "index", null, new {@class="my-btn btn-large btn-border"} )
+                </div>
+            </div>
+        </div>	
+    </div>
+</div>
