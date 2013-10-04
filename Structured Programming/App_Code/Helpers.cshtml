@@ -26,13 +26,20 @@
     var newText = source;
     if (option)
     {
-        if (strToHighlight != null && newText != null)
+        if (strToHighlight != null)
         {
-            newText = source.Replace(strToHighlight, "<span style=\"background-color: red\">" + strToHighlight + "</span>");
+            newText = source.Replace(strToHighlight , "<span style=\"background-color: red\">" + strToHighlight + "</span>");
         }
     }
     if (newText != null)
     {
         @(new HtmlString(newText));
     }
+}
+@helper ShortenText(string source, int length) {
+    string result = source;
+    if (source.Length > length) {
+        result = source.Substring(0, length - 3) + "...";
+    }
+    @(new HtmlString(result));
 }

@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="span6 text-right">
-                @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
+                @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel());
             </div>
         </div>
     </div>
@@ -41,14 +41,14 @@
 <div class="body-content">
     <div class="container">
         <div class="row">
-            <h1 style="text-align: center;">Transaction</h1>
+            <h1 style="text-align:center;">Transaction</h1>
         </div>
         <div class="row">
             <h2>@Model.Item.Name</h2>
             <div class="clearfix">&nbsp;</div>
 
             <div class="span6 pad-bot">
-                @Helpers.ImageFor(Model.Item.ItemId, "400px", "300px")
+                @Helpers.ImageFor(Model.Item.ItemId)
             </div>
 
             <div class="span6">
@@ -63,8 +63,9 @@
                 </ul>
                 <div class="clearfix">&nbsp;</div>
             </div>
-            @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class = "contact_form" }))
+            @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class="contact_form"}))
             {
+                @Html.ValidationSummary()
                 @Html.HiddenFor(m => m.Item.ItemId)
                 @Html.HiddenFor(m => m.Item.Name)
                 <div class="span12">
@@ -78,11 +79,8 @@
                 <div class="span12">
                     <label>You're willing to pay</label>
                     @Html.TextBoxFor(m => m.Transaction.Pay)
-                    @Html.ValidationMessageFor(m => m.Transaction.Pay)
                 </div>
-                <div class="span12">
-                    <input type="submit" class="btn send-btn" value="Confirm" />
-                </div>
+                <input type="submit" class="btn send-btn" value="Confirm"/>
             }
             <div class="span12">
                 <div class="divider1">&nbsp;</div>
@@ -91,8 +89,4 @@
     </div>
 </div>
 <!-- Body Content End -->
-<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
-<script>
-    tinymce.init({ selector: 'textarea' });
-</script>
 

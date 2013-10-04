@@ -2,7 +2,9 @@
 
 @using (Html.BeginForm("Index", "Search", FormMethod.Get, new { @class = "search" }))
 {
-    <h2>Advanced search</h2>
+    <div class="head-style1">
+        <h2>Advanced search</h2>
+    </div>
     <div class="row">
         <div class="span7 text-left">
             @Html.TextBoxFor(m => m.Query, new { @style = "width: 515px" })
@@ -11,21 +13,28 @@
             @Html.DropDownListFor(m => m.TypeId, Model.TypeList, "All", new { @class = "search-dropdown" })
         </div>
         <div class="divider1"></div>
-        <div class="span">
+        <div class="span2">
             <input id="InclName" type="checkbox" class="css-checkbox" name="InclName" value="true" checked="@Model.InclName"/>
             <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="InclName">Name</label>
         </div>
-        <div class="span">
+        <div class="span2">
             <input id="InclDescription" type="checkbox" class="css-checkbox" name="InclDescription" value="true" checked="@Request["InclDescription"]"/>
             <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="InclDescription">Description</label>
         </div>
-        <div class="span">
+        <div class="span2">
             <input id="InclUser" type="checkbox" class="css-checkbox" name="InclUser" value="true" checked="@Request["InclUser"]"/>
             <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="InclUser">Username</label>
         </div>
-        <div class="span">
+        <div class="span2">
             <input id="InclTrade" type="checkbox" class="css-checkbox" name="InclTrade" value="true" checked="@Request["InclTrade"]"/>
             <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="InclTrade">Trade with</label>
         </div>
     </div>
+    <div class="divider1"></div>
+    <div class="head-style1">
+        <h2>
+            @ViewBag.Result
+        </h2>
+    </div>
+
 }
