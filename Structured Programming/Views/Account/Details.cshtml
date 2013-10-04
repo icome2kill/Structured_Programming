@@ -49,6 +49,16 @@
     <div class="display-field">
         @Html.DisplayFor(m => m.Rating)
     </div>
+    @if (Model.UserId != WebSecurity.CurrentUserId)
+    {
+        using (Html.BeginForm("Create", "Rate", FormMethod.Post, new { @class = "contact_form" }))
+        {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.UserId)
+        <input type="text" name="score" id="score" />
+        <input type="submit" class="btn send-btn" value="Rate"/>
+        }
+    }
 
     @if (Model.UserId == WebSecurity.CurrentUserId)
     {
