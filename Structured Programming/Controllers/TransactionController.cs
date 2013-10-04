@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using WebMatrix.WebData;
 using PagedList;
 using PagedList.Mvc;
+using System.Data;
 
 namespace Structured_Programming.Controllers
 {
@@ -52,6 +53,7 @@ namespace Structured_Programming.Controllers
         }
         // POST
         [HttpPost]
+        [ValidateInput(false)]
         public ActionResult Create(TransactionCreateModel model)
         {
             if (ModelState.IsValid)
@@ -68,9 +70,45 @@ namespace Structured_Programming.Controllers
                 ViewBag.ReturnUrl = Url.Action("Index", "Transaction");
                 return View("Success");
             }
-            var item = db.Items.Find(model.Item.ItemId);
+            model.Item = db.Items.Find(model.Item.ItemId);
             model.MethodList = new SelectList(db.Methods, "MethodId", "Name");
             return View(model);
+        }
+
+        // GEt /Transaction/Details/{id}
+        public ActionResult Details(int id)
+        {
+            var transaction = db.Transactions.Where(t => (t.BuyerId == WebSecurity.CurrentUserId || t.Item.UserId == WebSecurity.CurrentUserId) && t.Id == id).FirstOrDefault();
+            if (transaction == null)
+            {
+                return View("Error");
+            }
+            return View(transaction);
+        }
+
+        [HttpPost]
+        public ActionResult Details(int id, int decision)
+        {
+            Transaction transaction = db.Transactions.Where(t => t.Id == id && t.Item.UserId == WebSecurity.CurrentUserId).FirstOrDefault();
+            if (transaction == null || decision < 2 || decision > 3)
+            {
+                return View("Error");
+            }
+            try
+            {
+                transaction.StatusId = decision;
+                db.Transactions.Attach(transaction);
+                db.Entry(transaction).State = EntityState.Modified;
+                db.SaveChanges();
+
+                string answer = decision == 2 ? "accepted" : "declined";
+                ViewBag.Message = "You " + answer + " " + transaction.UserProfile.UserName + "'s request.";
+                return View("Success");
+            }
+            catch (Exception ex)
+            {
+                return View("Error");
+            }
         }
     }
 }
