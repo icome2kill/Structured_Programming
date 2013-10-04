@@ -4,36 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 @using PagedList.Mvc;
-@using PagedList;
-@{
-    <!-- Gray Bar Start -->
-    <div class="gray-bar">
-        <div class="container">
-            <div class="row">
-                <div class="span6">
-                    <div class="social-icons">
-                        <!--<ul>
-                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Google Plus"><i class="icon-google-plus"></i></a></li>                            
-                            <li><a href="#" data-toggle="tooltip" title="Dribble"><i class="icon-dribbble"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Flickr"><i class="icon-flickr"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Pinterest"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="icon-linkedin"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Youtube"><i class="icon-youtube"></i></a></li>
-                        </ul>-->
-                    </div>
-                    <a href="index-2.html">
-                        <img src="Template/images/slogan.png" alt=""></a>
-                </div>
-                <div class="span6 text-right">
-                    @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Gray Bar End -->
-    
+@using PagedList;    
     <!-- Body content start -->
     <div class="body-content">
         <div class="container">
@@ -41,9 +12,9 @@
                 
                 <!-- lastest item Start -->
                 <div class="span text-center">
-                    <h2 class="home-head">lastest items</h2>
+                    <h2 class="home-head">newest items</h2>
                 </div>
-                <div class="span12">
+                <div class="span12-no-margin">
                     <div class="portfolio-skin-carousel">
                         <div class="jcarousel-container jcarousel-container-horizontal">
                             <div class="jcarousel-clip jcarousel-clip-horizontal">
@@ -58,8 +29,8 @@
                                                         <i class="icon-tablet"></i>
                                                     </div>
                                                     <div class="service-txt">
-                                                        <h3>@item.Name</h3>
-                                                        <p>@item.Description</p>
+                                                        <h3>@Helpers.ShortenText(item.Name, 20)</h3>
+                                                        <div class="bo-lao-bo-toet">@Helpers.ShortenText(item.Description, 40)</div>
                                                         @Html.ActionLink("Read more", "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: new { @class = "my-btn btn-small btn-border" })
                                                     </div>
                                                 </div>
@@ -74,13 +45,13 @@
                 <!-- Lastest item End -->
                 <div class="span12">
                     <div class="divider1">
-                        divider
+                        
                     </div>
                 </div>
                 <div class="span text-center">
                     <h2 class="home-head">&nbsp&nbsp&nbsp&nbsp&nbsp&nbspAll  items&nbsp&nbsp&nbsp&nbsp&nbsp</h2>
                 </div>
-                @Html.Partial("/Views/Shared/_ListItems.cshtml", Model.Items);
+                @Html.Partial("/Views/Shared/_ListItems.cshtml", Model.Items)
                 <div class="span12">
                     <div class="pagination">
                         @Html.PagedListPager((IPagedList)Model.Items, page => Url.Action("Index", new { typeId = Model.TypeId, page }))
@@ -88,5 +59,4 @@
                 </div>
             </div>
         </div>
-    </div>
-}
+    </div> 

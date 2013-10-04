@@ -86,6 +86,8 @@
           <Property Name="Pay" Type="money" Nullable="false" />
           <Property Name="MethodId" Type="int" Nullable="false" />
           <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="DateModified" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Type">
           <Key>
@@ -397,6 +399,8 @@
           <Property Type="Int32" Name="StatusId" Nullable="false" />
           <NavigationProperty Name="Method" Relationship="Model.FK_Transaction_Method" FromRole="Transaction" ToRole="Method" />
           <NavigationProperty Name="Status" Relationship="Model.FK_Transaction_Status" FromRole="Transaction" ToRole="Status" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DateModified" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_Transaction_Item">
           <End Type="Model.Item" Role="Item" Multiplicity="1" />
@@ -546,6 +550,8 @@
           <EntitySetMapping Name="Transactions">
             <EntityTypeMapping TypeName="Model.Transaction">
               <MappingFragment StoreEntitySet="Transaction">
+                <ScalarProperty Name="DateModified" ColumnName="DateModified" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
                 <ScalarProperty Name="MethodId" ColumnName="MethodId" />
                 <ScalarProperty Name="Pay" ColumnName="Pay" />

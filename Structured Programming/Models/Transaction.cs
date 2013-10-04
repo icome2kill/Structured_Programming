@@ -21,6 +21,8 @@ namespace Structured_Programming.Models
         public decimal Pay { get; set; }
         public int MethodId { get; set; }
         public int StatusId { get; set; }
+        public System.DateTime DateCreated { get; set; }
+        public System.DateTime DateModified { get; set; }
     
         public virtual Item Item { get; set; }
         public virtual UserProfile UserProfile { get; set; }

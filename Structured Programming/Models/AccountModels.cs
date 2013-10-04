@@ -69,6 +69,7 @@ namespace Structured_Programming.Models
     {
         [Required]
         [Display(Name = "User name")]
+        [StringLength(20,MinimumLength = 6)]
         public string UserName { get; set; }
 
         [Required]
@@ -85,6 +86,7 @@ namespace Structured_Programming.Models
         [Required]
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Please enter a valid email address")]
+        [StringLength(50)]
         public string Email { get; set; }
     }
 

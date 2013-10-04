@@ -6,40 +6,60 @@
 <!-- Body Content Start -->
 <div class="body-content">
     <div class="container">
-        <div class="comments-wrap">
+        <div class="span8-no-margin">
             <div class="head-style1">
-                <h3>Sign in</h3>
+                <h2>Sign in</h2>
             </div>
             <div class="show-grid row">
                 @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, htmlAttributes: new { @class = "contact_form" }))
                 {
                     @Html.AntiForgeryToken()
-                    <div class="span8">
+                    <div class="span8 error-msg">
                         @Html.ValidationSummary(true)
                         @Html.ValidationMessage("Error")
                     </div>
                     <div class="span12">
                         @Html.LabelFor(m => m.UserName)
                         @Html.TextBoxFor(m => m.UserName, new { @class = "span6", id = "username" })
-                        @Html.ValidationMessageFor(m => m.UserName)
+                        <div class="span12-no-margin error-msg">
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </div>
                     </div>
                     <div class="span12">
                         @Html.LabelFor(m => m.Password)
                         @Html.PasswordFor(m => m.Password, new { @class = "span6", id = "password" })
-                        @Html.ValidationMessageFor(m => m.Password)
+                        <div class="span12-no-margin error-msg">
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
                     </div>
                     <div class="span12">
-                        @Html.CheckBoxFor(m => m.RememberMe) Remember me?.
+                        <input class="css-checkbox" id="checkbox" type="checkbox">
+                        <label class="css-label" style="text-indent: 0px; color:rgb(144, 152, 165)" for="checkbox" >Remember me ?</label>
+                    </div>                    
+                    <div class="span12">
+                        
                     </div>
                     <div class="span12">
                         <input type="submit" value="Sign in" class="btn send-btn">
                         &nbsp
-                                @Html.ActionLink("Sign up", "Register", null, new { @class = "btn send-btn" })
                     </div>
                 }
+                
                 <div class="clearfix"></div>
             </div>
         </div>
+        <div class="span4-no-margin">
+            <div class="head-style1">
+                <h2>Don't have account ?</h2>
+            </div>
+            <div id="contact_form">
+                <div class="span4" style="margin-top:15px;">
+
+                    @Html.ActionLink("SIGN UP NOW", "Register", null, new { @class = "btn send-btn" })
+                </div>   
+            </div> 
+                            
+        </div>        
     </div>
 </div>
 @section Scripts {
