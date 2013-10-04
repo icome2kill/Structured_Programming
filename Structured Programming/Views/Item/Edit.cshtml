@@ -18,22 +18,22 @@
                 
                 <div class="span12">
                     @Html.LabelFor(m => m.Item.Name)
-                    @Html.TextBoxFor(m => m.Item.Name, new { @class = "span6" })
+                    @Html.TextBoxFor(m => m.Item.Name, new { @class = "span7" })
                     @Html.ValidationMessageFor(m => m.Item.Name)
                 </div>
                 <div class="span12">
                     @Html.LabelFor(m => m.Item.Description)
-                    @Html.TextBoxFor(m => m.Item.Description, new { @class = "span6" })
+                    @Html.TextBoxFor(m => m.Item.Description, new { @class = "span7" })
                     @Html.ValidationMessageFor(m => m.Item.Description)
                 </div>
                 <div class="span12">
                     @Html.LabelFor(m => m.Item.Price)
-                    @Html.TextBoxFor(m => m.Item.Price, new { @class = "span6" })
+                    @Html.TextBoxFor(m => m.Item.Price, new { @class = "span7" })
                     @Html.ValidationMessageFor(m => m.Item.Price)
                 </div>
                 <div class="span12">
                     @Html.LabelFor(m => m.Item.Trade)
-                    @Html.TextBoxFor(m => m.Item.Trade, new { @class = "span6" })
+                    @Html.TextBoxFor(m => m.Item.Trade, new { @class = "span7" })
                     @Html.ValidationMessageFor(m => m.Item.Trade)
                 </div>
                 <div class="span12">
@@ -49,16 +49,18 @@
                         }
                     </script>
                     <div class="custom_file_upload">
-                        <input type="text" class="file" name="file_info" readonly="readonly" id="file_info">
+                        <input type="text" class="file span6" name="file_info" readonly="readonly" id="file_info">
                         <div class="file_upload">
                             <input type="file" id="image" name="image" onchange="alertFilename();">
                         </div>
                     </div>
 
                 </div>
-                <div class="span12">
+                <div class="span6 custom-dropdown">
                     <label>Type</label>
-                    @Html.DropDownListFor(m => m.Item.TypeId, Model.TypeList, new { @class = "custom-dropdown" })
+                    <div class="styled-select">
+                        @Html.DropDownListFor(m => m.Item.TypeId, Model.TypeList, new { @class = "custom-dropdown" })
+                    </div>
                 </div>
                 <div class="span12">
                     <input class="btn send-btn" type="submit" value="Edit" />

@@ -41,6 +41,7 @@
                 </div>
                 <ul class="port-details" style="margin-left:-5px;">
                     <li><strong>Owner:</strong> @Html.ActionLink(@Model.UserProfile.UserName, "Details", "Account", new {@id = @Model.UserProfile.UserId}, null)</li>
+                    <li><strong>Price:</strong> @Model.Price</li>
                     <li><strong>Category:</strong> @Model.Type.Name</li>
                     <li><strong>Want to trade with:</strong> @Model.Trade</li>
 

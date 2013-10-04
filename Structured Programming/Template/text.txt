@@ -1,0 +1,25 @@
+- edit template folder.
+	+ Add custom style: css-checkbox (shortcodes.css)
+	+ Little change in send-btn class
+- edit signin page: customize checkbox area.
+*Note*: the style worked only if both <input> and <label> tags are provided.
+- 
+
+layout list:
+layout_header
+layout_footer
+
+
+pagelist:
+index --> done
+advanced search --> done
+add item --> done
+sign in --> done
+sign up --> done
+user detail --> done
+change password --> done
+edit profile --> done
+edit item --> done
+all item -->
+
+
