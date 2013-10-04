@@ -1,0 +1,94 @@
+﻿@model Structured_Programming.Models.Transaction
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var buyerName = Model.BuyerId == WebSecurity.CurrentUserId ? "You" : Model.UserProfile.UserName;
+    var ownerName = Model.Item.UserId == WebSecurity.CurrentUserId ? "your" : Model.Item.UserProfile.UserName + "'s";
+}
+
+<div class="body-content">
+    <div class="container">
+        <div class="row">
+            <h2>
+                @buyerName requested to buy @ownerName @Model.Item.Name
+            </h2>
+            @buyerName are willing to pay @Model.Pay in cash and a note:
+            @(new HtmlString(Model.Message))
+            @if (Model.Item.UserId == WebSecurity.CurrentUserId)
+            {
+                using (Html.BeginForm())
+                {
+                @Html.HiddenFor(m => m.Id)
+                <div class="span12">
+                    <button name="decision" value="2">Accept</button>
+                    <button name="decision" value="3">Decline</button>
+                </div>
+                }
+            }
+        </div>
+    </div>
+</div>
+<fieldset>
+    <legend>Transaction</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.BuyerId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.BuyerId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.ItemId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ItemId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Message)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Message)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Pay)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Pay)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.MethodId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MethodId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.StatusId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StatusId)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.DateCreated)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateCreated)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.DateModified)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DateModified)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
