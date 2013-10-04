@@ -8,6 +8,7 @@
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="Item" EntityType="Model.Store.Item" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Method" EntityType="Model.Store.Method" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Rate" EntityType="Model.Store.Rate" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Status" EntityType="Model.Store.Status" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Transaction" EntityType="Model.Store.Transaction" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Type" EntityType="Model.Store.Type" store:Type="Tables" Schema="dbo" />
@@ -27,6 +28,14 @@
           <AssociationSet Name="fk_RoleId" Association="Model.Store.fk_RoleId">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_RatedUserProfile" Association="Model.Store.FK_Table_RatedUserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Rate" EntitySet="Rate" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_UserProfile" Association="Model.Store.FK_Table_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfile" />
+            <End Role="Rate" EntitySet="Rate" />
           </AssociationSet>
           <AssociationSet Name="FK_Transaction_BuyerId_UserProfile" Association="Model.Store.FK_Transaction_BuyerId_UserProfile">
             <End Role="UserProfile" EntitySet="UserProfile" />
@@ -56,7 +65,7 @@
           <Property Name="ItemId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="TypeId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="Description" Type="nvarchar" MaxLength="50" />
+          <Property Name="Description" Type="nvarchar(max)" />
           <Property Name="Price" Type="money" />
           <Property Name="Trade" Type="nvarchar" MaxLength="50" />
           <Property Name="UserId" Type="int" Nullable="false" />
@@ -67,6 +76,16 @@
           </Key>
           <Property Name="MethodId" Type="int" Nullable="false" />
           <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="RatedUserId" Type="int" Nullable="false" />
+          <Property Name="Score" Type="int" Nullable="false" />
+          <Property Name="Date" Type="datetime" Nullable="false" />
         </EntityType>
         <EntityType Name="Status">
           <Key>
@@ -101,7 +120,7 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="20" />
           <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="50" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" />
@@ -180,6 +199,30 @@
             </Principal>
             <Dependent Role="webpages_UsersInRoles">
               <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_RatedUserProfile">
+          <End Role="UserProfile" Type="Model.Store.UserProfile" Multiplicity="1" />
+          <End Role="Rate" Type="Model.Store.Rate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Rate">
+              <PropertyRef Name="RatedUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_UserProfile">
+          <End Role="UserProfile" Type="Model.Store.UserProfile" Multiplicity="1" />
+          <End Role="Rate" Type="Model.Store.Rate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Rate">
+              <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -285,6 +328,15 @@
             <End Role="Status" EntitySet="Status" />
             <End Role="Transaction" EntitySet="Transactions" />
           </AssociationSet>
+          <EntitySet Name="Rates" EntityType="Model.Rate" />
+          <AssociationSet Name="FK_Table_RatedUserProfile" Association="Model.FK_Table_RatedUserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Rate" EntitySet="Rates" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Table_UserProfile" Association="Model.FK_Table_UserProfile">
+            <End Role="UserProfile" EntitySet="UserProfiles" />
+            <End Role="Rate" EntitySet="Rates" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Item">
           <Key>
@@ -293,7 +345,7 @@
           <Property Name="ItemId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="TypeId" Type="Int32" Nullable="false" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
           <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Trade" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="UserId" Type="Int32" Nullable="false" />
@@ -314,7 +366,7 @@
             <PropertyRef Name="UserId" />
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="Email" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
           <Property Name="LastName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
@@ -322,6 +374,8 @@
           <NavigationProperty Name="Items" Relationship="Model.FK_Item_User" FromRole="UserProfile" ToRole="Item" />
           <NavigationProperty Name="webpages_Roles" Relationship="Model.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
           <NavigationProperty Name="Transactions" Relationship="Model.FK_Transaction_BuyerId_UserProfile" FromRole="UserProfile" ToRole="Transaction" />
+          <NavigationProperty Name="Rated" Relationship="Model.FK_Table_RatedUserProfile" FromRole="UserProfile" ToRole="Rate" />
+          <NavigationProperty Name="Rates" Relationship="Model.FK_Table_UserProfile" FromRole="UserProfile" ToRole="Rate" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -466,6 +520,42 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Rate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Type="Int32" Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <Property Type="Int32" Name="RatedUserId" Nullable="false" />
+          <Property Type="Int32" Name="Score" Nullable="false" />
+          <Property Type="DateTime" Name="Date" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserProfile" Relationship="Model.FK_Table_RatedUserProfile" FromRole="Rate" ToRole="UserProfile" />
+          <NavigationProperty Name="UserProfile1" Relationship="Model.FK_Table_UserProfile" FromRole="Rate" ToRole="UserProfile" />
+        </EntityType>
+        <Association Name="FK_Table_RatedUserProfile">
+          <End Type="Model.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="Model.Rate" Role="Rate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Rate">
+              <PropertyRef Name="RatedUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Table_UserProfile">
+          <End Type="Model.UserProfile" Role="UserProfile" Multiplicity="1" />
+          <End Type="Model.Rate" Role="Rate" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserProfile">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="Rate">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -575,6 +665,17 @@
               <MappingFragment StoreEntitySet="Status">
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rates">
+            <EntityTypeMapping TypeName="Model.Rate">
+              <MappingFragment StoreEntitySet="Rate">
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+                <ScalarProperty Name="RatedUserId" ColumnName="RatedUserId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
