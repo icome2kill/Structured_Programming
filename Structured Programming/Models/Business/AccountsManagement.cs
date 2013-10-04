@@ -14,7 +14,7 @@ namespace Structured_Programming.Models.Business
             foreach (var row in rows) {
                 total += row.Score;
             }
-            return total / rows.Count;
+            return rows.Count == 0? 0:total/rows.Count;
         }
     }
 }

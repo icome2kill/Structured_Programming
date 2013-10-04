@@ -43,6 +43,12 @@
     <div class="display-field">
         @Html.DisplayFor(model => model.Address)
     </div>
+    <div class="display-label">
+        Rating
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(m => m.Rating)
+    </div>
 
     @if (Model.UserId == WebSecurity.CurrentUserId)
     {
