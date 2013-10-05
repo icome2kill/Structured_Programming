@@ -5,90 +5,75 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Detail</h2>
-
-<fieldset>
-    <legend>UserProfile</legend>
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.UserName)
+<div class="body-content">
+    <div class="container">
+        <div class="span12-no-margin">
+            <div class="head-style1">
+                <h2>User detail</h2>
+            </div>
+            <div class="span12">
+                <table class="custom-fontsize">
+                    <tr>
+                        <td><h2>@Html.DisplayNameFor(model => model.UserName)</h2></td>
+                        <td class="space"></td>
+                        <td>@Html.DisplayFor(model => model.UserName)</td>
+                    </tr>
+                    <tr>
+                        <td><h2>@Html.DisplayNameFor(model => model.Email)</h2></td>
+                        <td class="space"></td>
+                        <td>@Html.DisplayFor(model => model.Email)</td>
+                    </tr>
+                    <tr>
+                        <td><h2>@Html.DisplayNameFor(model => model.FirstName)</h2></td>
+                        <td class="space"></td>
+                        <td>@Html.DisplayFor(model => model.FirstName)</td>
+                    </tr>
+                    <tr>
+                        <td><h2>@Html.DisplayNameFor(model => model.LastName)</h2></td>
+                        <td class="space"></td>
+                        <td>@Html.DisplayFor(model => model.LastName)</td>
+                    </tr>
+                    <tr>
+                        <td><h2>@Html.DisplayNameFor(model => model.Address)</h2></td>
+                        <td class="space"></td>
+                        <td>@Html.DisplayFor(model => model.Address)</td>
+                    </tr>
+                </table>
+                <div id="contact_form">
+                    @if (Model.UserId == WebSecurity.CurrentUserId)
+                        {
+                            @Html.ActionLink("Change password", "Manage", "Account", null,new { @class="btn send-btn"})
+                            @Html.ActionLink("Edit your profile", "EditProfile", "Account", new { @class="btn send-btn"})
+                        }
+                </div>
+            </div>
+        </div>
+        <div class="span12-no-margin">
+            <div class="head-style1">
+                <h2>Item posted</h2>
+            </div>
+            <div class="span12">
+                <table class="table table-hover">
+                    <thead>
+                        <td>Name</td>
+                        <td>Description</td>
+                        <td>Price</td>
+                        <td>Want to trade with</td>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.Items)
+                        {
+                            <tr>
+                                <td>@Html.ActionLink(item.Name, "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: null)</td>
+                                <td>@item.Description</td>
+                                <td>@string.Format("{0:c}", @item.Price)</td>
+                                <td>@item.Trade</td>
+                            </tr>
+                        }                       
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
     </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserName)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Email)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Email)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.FirstName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.FirstName)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.LastName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.LastName)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Address)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Address)
-    </div>
-    <div class="display-label">
-        Rating
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(m => m.Rating)
-    </div>
-    @if (Model.UserId != WebSecurity.CurrentUserId)
-    {
-        using (Html.BeginForm("Create", "Rate", FormMethod.Post, new { @class = "contact_form" }))
-        {
-        @Html.AntiForgeryToken()
-        @Html.HiddenFor(m => m.UserId)
-        <input type="text" name="score" id="score" />
-        <input type="submit" class="btn send-btn" value="Rate"/>
-        }
-    }
-
-    @if (Model.UserId == WebSecurity.CurrentUserId)
-    {
-        @Html.ActionLink("Change your password", "Manage", "Account")
-        @Html.ActionLink("Edit your profile", "EditProfile", "Account")
-    }
-
-    <h3>Items posted</h3>
-    <table>
-        <tr>
-            <th class="display-label">Name
-            </th>
-            <th class="display-label">Description
-            </th>
-            <th class="display-label">Price
-            </th>
-            <th class="display-label">Want to trade with
-            </th>
-        </tr>
-        @foreach (var item in Model.Items)
-        {
-            <tr>
-                <td>@Html.ActionLink(item.Name, "Details", "Item", routeValues: new { id = item.ItemId }, htmlAttributes: null)</td>
-                <td>@item.Description</td>
-                <td>@string.Format("{0:c}", @item.Price)</td>
-                <td>@item.Trade</td>
-            </tr>
-        }
-    </table>
-</fieldset>
-<p>
-    @Html.ActionLink("Back to List", "Index")
-</p>
+</div>

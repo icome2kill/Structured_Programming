@@ -16,7 +16,7 @@ namespace Structured_Programming.Controllers
         // POST: /Rate/Create
 
         [HttpPost]
-        public ActionResult Create(int userId, int score)
+        public ActionResult Create(int userId, int score = 0)
         {
             try
             {
