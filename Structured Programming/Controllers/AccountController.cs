@@ -8,6 +8,7 @@ using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
+using Structured_Programming.Models.Business;
 using Structured_Programming.Filters;
 using Structured_Programming.Models;
 using System.Data;
@@ -65,6 +66,7 @@ namespace Structured_Programming.Controllers
             {
                 return HttpNotFound();
             }
+            user.Rating = AccountsManagement.Rating(user);
             return View(user);
         }
         //

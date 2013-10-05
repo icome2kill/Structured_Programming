@@ -12,6 +12,7 @@ namespace Structured_Programming.Models
     public class TransactionMetadata
     {
         [Range(0, Double.MaxValue, ErrorMessage="Your offer must be greater than 0")]
+        [DataType(DataType.Currency)]
         public Object Pay { get; set; }
     }
 }

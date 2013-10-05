@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="d9866301598a45c0aa35b08329c590ce" Name="Diagram1" ZoomLevel="114">
+      <Diagram DiagramId="d9866301598a45c0aa35b08329c590ce" Name="Diagram1" ZoomLevel="99">
         <EntityTypeShape EntityType="Model.Item" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.Type" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
         <EntityTypeShape EntityType="Model.UserProfile" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
@@ -21,6 +21,9 @@
         <EntityTypeShape EntityType="Model.Status" Width="1.5" PointX="9.125" PointY="2.25" />
         <AssociationConnector Association="Model.FK_Transaction_Method" />
         <AssociationConnector Association="Model.FK_Transaction_Status" />
+        <EntityTypeShape EntityType="Model.Rate" Width="1.5" PointX="3" PointY="4.875" />
+        <AssociationConnector Association="Model.FK_Table_RatedUserProfile" />
+        <AssociationConnector Association="Model.FK_Table_UserProfile" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

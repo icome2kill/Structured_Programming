@@ -179,6 +179,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemController.cs" />
     <Compile Include="Controllers\OldStuffDataController.cs" />
+    <Compile Include="Controllers\RateController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\TransactionController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -186,6 +187,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\Business\AccountsManagement.cs" />
     <Compile Include="Models\Business\ItemsManagement.cs" />
     <Compile Include="Models\DataModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -212,6 +214,9 @@
     <Compile Include="Models\MetadataTypeModels\UserProfileMetadata.cs" />
     <Compile Include="Models\MetadataTypeModels\webpages_RolesMetadata.cs" />
     <Compile Include="Models\Method.cs">
+      <DependentUpon>DataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Rate.cs">
       <DependentUpon>DataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SearchViewModels.cs" />

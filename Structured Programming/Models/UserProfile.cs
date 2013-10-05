@@ -19,6 +19,8 @@ namespace Structured_Programming.Models
             this.Items = new HashSet<Item>();
             this.webpages_Roles = new HashSet<webpages_Roles>();
             this.Transactions = new HashSet<Transaction>();
+            this.Rated = new HashSet<Rate>();
+            this.Rates = new HashSet<Rate>();
         }
     
         public int UserId { get; set; }
@@ -31,5 +33,7 @@ namespace Structured_Programming.Models
         public virtual ICollection<Item> Items { get; set; }
         public virtual ICollection<webpages_Roles> webpages_Roles { get; set; }
         public virtual ICollection<Transaction> Transactions { get; set; }
+        public virtual ICollection<Rate> Rated { get; set; }
+        public virtual ICollection<Rate> Rates { get; set; }
     }
 }

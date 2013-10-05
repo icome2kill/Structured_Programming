@@ -34,5 +34,6 @@ namespace Structured_Programming.Models
         public DbSet<Transaction> Transactions { get; set; }
         public DbSet<Method> Methods { get; set; }
         public DbSet<Status> Status { get; set; }
+        public DbSet<Rate> Rates { get; set; }
     }
 }

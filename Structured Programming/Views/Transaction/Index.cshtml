@@ -1,6 +1,97 @@
-﻿@{
+﻿@model Structured_Programming.Models.TransactionIndexModel
+@{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@using PagedList;
+@using PagedList.Mvc;
 
-<h2>Index</h2>
+<!-- Gray Bar Start -->
+<div class="gray-bar">
+    <div class="container">
+        <div class="row">
+            <div class="span6">
+                <div class="social-icons">
+                    <!--<ul>
+                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="icon-facebook"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Google Plus"><i class="icon-google-plus"></i></a></li>                            
+                            <li><a href="#" data-toggle="tooltip" title="Dribble"><i class="icon-dribbble"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Flickr"><i class="icon-flickr"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Pinterest"><i class="icon-pinterest"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="icon-linkedin"></i></a></li>
+                            <li><a href="#" data-toggle="tooltip" title="Youtube"><i class="icon-youtube"></i></a></li>
+                        </ul>-->
+                </div>
+                <div class="breadcrumb-links">
+                </div>
+            </div>
+            <div class="span6 text-right">
+                @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Gray Bar End -->
+<div class="body-content">
+    <div class="container">
+        <h2>My transacion</h2>
+        <div class="row">
+            <table>
+                <tr>
+                    <th>From
+                    </th>
+                    <th>To
+                    </th>
+                    <th>Title
+                    </th>
+                    <th>Date
+                    </th>
+                    <th>Status
+                    </th>
+                </tr>
+                @foreach (var transaction in Model.Transactions)
+                {
+                    <tr>
+                        <td>
+                            @if (WebSecurity.CurrentUserId == transaction.BuyerId)
+                            {
+                                @:Me
+                            }
+                            else
+                            {
+                                @transaction.UserProfile.UserName    
+                            }
+                        </td>
+                        <td>
+                            @if (WebSecurity.CurrentUserId == transaction.Item.UserId)
+                            {
+                                @:Me
+                            }
+                            else
+                            {
+                                @transaction.Item.UserProfile.UserName    
+                            }
+                        </td>
+                        <td>I want to buy your @transaction.Item.Name
+                        </td>
+                        <td>
+                            @transaction.DateModified
+                        </td>
+                        <td>
+                            @transaction.Status.Name
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="row">
+            <div class="span12">
+                <div class="pagination">
+                    @Html.PagedListPager((IPagedList)Model.Transactions, page => Url.Action("Index", new { page }))
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
