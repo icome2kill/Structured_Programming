@@ -65,6 +65,7 @@
             </div>
             @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class="contact_form"}))
             {
+                @Html.AntiForgeryToken()
                 @Html.ValidationSummary()
                 @Html.HiddenFor(m => m.Item.ItemId)
                 @Html.HiddenFor(m => m.Item.Name)

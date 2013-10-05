@@ -56,23 +56,34 @@ namespace Structured_Programming.Controllers
         [ValidateInput(false)]
         public ActionResult Create(TransactionCreateModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                model.Transaction.BuyerId = WebSecurity.CurrentUserId;
-                model.Transaction.ItemId = model.Item.ItemId;
-                model.Transaction.StatusId = 1;
-                model.Transaction.DateCreated = DateTime.Now;
-                model.Transaction.DateModified = DateTime.Now;
+                UpdateModel<TransactionCreateModel>(model, String.Empty, null, excludeProperties: new String[] { "Item.Name" });
+                ModelState.Remove("Item.Name");
+                if (ModelState.IsValid)
+                {
+                    model.Transaction.BuyerId = WebSecurity.CurrentUserId;
+                    model.Transaction.ItemId = model.Item.ItemId;
+                    model.Transaction.StatusId = 1;
+                    model.Transaction.DateCreated = DateTime.Now;
+                    model.Transaction.DateModified = DateTime.Now;
 
-                db.Transactions.Add(model.Transaction);
-                db.SaveChanges();
+                    db.Transactions.Add(model.Transaction);
+                    db.SaveChanges();
 
-                ViewBag.ReturnUrl = Url.Action("Index", "Transaction");
-                return View("Success");
+                    ViewBag.ReturnUrl = Url.Action("Index", "Transaction");
+                    return View("Success");
+                }
+                model.Item = db.Items.Find(model.Item.ItemId);
+                model.MethodList = new SelectList(db.Methods, "MethodId", "Name");
+                return View("Error");
             }
-            model.Item = db.Items.Find(model.Item.ItemId);
-            model.MethodList = new SelectList(db.Methods, "MethodId", "Name");
-            return View(model);
+            catch
+            {
+                model.Item = db.Items.Find(model.Item.ItemId);
+                model.MethodList = new SelectList(db.Methods, "MethodId", "Name");
+                return View(model);
+            }
         }
 
         // GEt /Transaction/Details/{id}
