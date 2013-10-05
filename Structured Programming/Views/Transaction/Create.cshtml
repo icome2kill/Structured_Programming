@@ -5,88 +5,90 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<!-- Gray Bar Start -->
-<div class="gray-bar">
-    <div class="container">
-        <div class="row">
-            <div class="span6">
-                <div class="social-icons">
-                    <!--<ul>
-                            <li><a href="#" data-toggle="tooltip" title="Twitter"><i class="icon-twitter"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Facebook"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Google Plus"><i class="icon-google-plus"></i></a></li>                            
-                            <li><a href="#" data-toggle="tooltip" title="Dribble"><i class="icon-dribbble"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Flickr"><i class="icon-flickr"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Pinterest"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Linkedin"><i class="icon-linkedin"></i></a></li>
-                            <li><a href="#" data-toggle="tooltip" title="Youtube"><i class="icon-youtube"></i></a></li>
-                        </ul>-->
-                </div>
-                <div class="breadcrumb-links">
-                    <div>
-                        @Html.ActionLink("All items", "Index", "Home") <i class="icon-angle-right"></i>
-                        @Html.ActionLink(Model.Item.Type.Name, "Index", "Item", new { TypeId = Model.Item.TypeId }, null)<i class="icon-angle-right"></i>
-                        @Model.Item.Name
-                    </div>
-                </div>
-            </div>
-            <div class="span6 text-right">
-                @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel());
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Gray Bar End -->
+
 <!-- Body Content Start -->
 <div class="body-content">
     <div class="container">
         <div class="row">
-            <h1 style="text-align:center;">Transaction</h1>
-        </div>
-        <div class="row">
-            <h2>@Model.Item.Name</h2>
-            <div class="clearfix">&nbsp;</div>
+            <div class="divider1"></div>
 
-            <div class="span6 pad-bot">
-                @Helpers.ImageFor(Model.Item.ItemId)
+            <h1 style="margin-left:20px;">Item transaction</h1>
+
+            <div class="span7">
+                <div class="head-style1" style="margin-left:-20px;">
+                    <h2>@Model.Item.Name</h2>
+                </div>
+                @Helpers.ImageFor(Model.Item.ItemId, "400px", "300px")
             </div>
 
-            <div class="span6">
-                <div class="head-style1">
-                    <h3>Product Description</h3>
+            <div class="span5-no-margin">
+                <div class="head-style1 " style="margin-left:-20px;">
+                    <h2>Product Description</h2>
                 </div>
-                <p>@Model.Item.Description</p>
+                <h3>@Model.Item.Description</h3>
                 <br>
-                <ul class="port-details">
-                    <li><strong>Owner:</strong> <a href="#">@Model.Item.UserProfile.UserName</a></li>
+                <div class="head-style1 " style="margin-left:-20px;">
+                    <h3>Rate: 3/5</h3>
+                    <p>
+                        <img src="../../images/star.png"><img src="../../images/star.png"><img src="../../images/star.png">
+                        <a href="#" class="my-btn btn-small btn-border pull-right">Rate this !</a>
+                    </p>
+                </div>
+                <ul class="port-details" style="margin-left:-5px;">
+                    <li><strong>Owner:</strong> @Html.ActionLink(@Model.Item.UserProfile.UserName, "Details", "Account", new {@id = @Model.Item.UserProfile.UserId}, null)</li>
+                    <li><strong>Price:</strong> @Model.Item.Price</li>
+                    <li><strong>Category:</strong> @Model.Item.Type.Name</li>
                     <li><strong>Want to trade with:</strong> @Model.Item.Trade</li>
+
                 </ul>
                 <div class="clearfix">&nbsp;</div>
             </div>
-            @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class="contact_form"}))
-            {
-                @Html.ValidationSummary()
-                @Html.HiddenFor(m => m.Item.ItemId)
-                @Html.HiddenFor(m => m.Item.Name)
-                <div class="span12">
-                    @Html.LabelFor(m => m.Transaction.Message)
-                    @Html.TextAreaFor(m => m.Transaction.Message)
-                </div>
-                <div class="span12">
-                    <label>Transaction method</label>
-                    @Html.DropDownListFor(m => m.Transaction.MethodId, Model.MethodList)
-                </div>
-                <div class="span12">
-                    <label>You're willing to pay</label>
-                    @Html.TextBoxFor(m => m.Transaction.Pay)
-                </div>
-                <input type="submit" class="btn send-btn" value="Confirm"/>
-            }
+
             <div class="span12">
-                <div class="divider1">&nbsp;</div>
+                <div class="divider1"></div>
+            </div>
+            <div class="span7-no-margin">
+                <div class="head-style1">
+                    <h2>Transaction request</h2>
+                    <h3>You will make a transaction request to item's owner</h3>
+                </div>
+                <div class="span12-no-margin">
+                    @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class="contact_form"}))
+                    {
+                        <div class="span12">
+                        <div class="error-msg" style="margin-left:20px;">
+                            @Html.ValidationMessageFor(m => m.Transaction.Message)<br />
+                            @Html.ValidationMessageFor(m => m.Transaction.Pay)
+                        </div>
+                        </div>
+                        @Html.HiddenFor(m => m.Item.ItemId)
+                        @Html.HiddenFor(m => m.Item.Name)
+                        <div class="span12">
+                            @Html.LabelFor(m => m.Transaction.Message)
+                            @Html.TextAreaFor(m => m.Transaction.Message)
+
+                        </div>
+                        <div class="span6 custom-dropdown">
+                            <label>Transaction method</label>
+                            <div class="styled-select" style="width:500px;">
+                                @Html.DropDownListFor(m => m.Transaction.MethodId, Model.MethodList, new {@class="custom-dropdown" })
+                            </div>
+                        </div>
+                        <div class="span12">
+                            <label>You're willing to pay</label>
+                            @Html.TextBoxFor(m => m.Transaction.Pay, new {@style="width:485px;" })
+                        </div>
+                        <div class="span12"><input type="submit" class="btn send-btn" value="Confirm"/></div>                        
+                    }
+                </div>
+            </div>
+            <div class="span5-no-margin">
+                <div class="head-style1">
+                    <h2>Item transfer request</h2>
+                    <h3>You may want to introduce some of your items ?</h3>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Body Content End -->
-

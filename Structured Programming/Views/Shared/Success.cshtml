@@ -4,9 +4,16 @@
 }
 
 <META HTTP-EQUIV="Refresh" CONTENT="2;URL=@ViewBag.ReturnUrl">
-<div class="body">
+<div class="body-content">
     <div class="container">
-        <h2>Success</h2>
-        <p>@ViewBag.Message</p>
+        <div class="row">
+            <div class="divider1"></div>
+            <div class="span12">
+                <div class="error">
+                    <p class="font-small">Thank you !</p>
+                    <p class="font-mini">@ViewBag.Message</p>
+                </div>
+            </div>
+        </div>	
     </div>
 </div>

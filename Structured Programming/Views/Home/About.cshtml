@@ -2,33 +2,18 @@
     ViewBag.Title = "About";
 }
 
-<hgroup class="title">
-    <h1>@ViewBag.Title.</h1>
-    <h2>@ViewBag.Message</h2>
-</hgroup>
-
-<article>
-    <p>
-        Use this area to provide additional information.
-    </p>
-
-    <p>
-        Use this area to provide additional information.
-    </p>
-
-    <p>
-        Use this area to provide additional information.
-    </p>
-</article>
-
-<aside>
-    <h3>Aside Title</h3>
-    <p>
-        Use this area to provide additional information.
-    </p>
-    <ul>
-        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-        <li>@Html.ActionLink("About", "About", "Home")</li>
-        <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-    </ul>
-</aside>
+<div class="body-content">
+    <div class="container">
+        <div class="row">
+            <div class="divider1"></div>
+            <div class="span12">
+                <div class="error">
+                   	<p class="font-large">OLD STUFF </p>
+                    <br /><br />
+                    <p class="font-small">Exchanging centre</p>
+                    @Html.ActionLink("Back to home", "index", null, new {@class="my-btn btn-large btn-border"} )
+                </div>
+            </div>
+        </div>	
+    </div>
+</div

@@ -22,12 +22,19 @@
     background:#9098a5;
     color:#FFF;
 }
-.contact_form input {
+.contact_form input, .contact_form textarea{
     color: rgb(102, 102, 102);
     padding: 12px 8px;
     background: none repeat scroll 0% 0% rgb(59, 59, 59);
     margin-bottom: 5px;
     border: medium none;
     border-radius: 0px 0px 0px 0px;
-    font-size: 12px;
+    font-size: 14px;
+    color: #fff;
+}
+
+.contact_form textarea {
+    width: 480px;
+    height: 150px;
+    resize:vertical;
 }

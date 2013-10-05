@@ -3,9 +3,11 @@
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    var format = String.Format("{0:0}", Model.Item.Price);
 }
-<div class="body">
+<div class="body-content">
     <div class="container">
+        <div class="divider1"></div>
         <div class="head-style1">
             <h2>Edit your item</h2>
         </div>
@@ -28,7 +30,7 @@
                 </div>
                 <div class="span12">
                     @Html.LabelFor(m => m.Item.Price)
-                    @Html.TextBoxFor(m => m.Item.Price, new { @class = "span7" })
+                    @Html.TextBoxFor(m => m.Item.Price, format, new { @class = "span7" })
                     @Html.ValidationMessageFor(m => m.Item.Price)
                 </div>
                 <div class="span12">
