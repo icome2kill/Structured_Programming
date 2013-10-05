@@ -57,5 +57,9 @@ namespace Structured_Programming.Controllers
 
             return View();
         }
+        public ActionResult Error()
+        {
+            return View();
+        }
     }
 }

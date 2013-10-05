@@ -99,6 +99,9 @@
 	left:0;
 	margin-left: 20px;
 }
+.head-style1 h2 {
+    text-transform:uppercase;
+}
 
 .head-outer{
 	background:#121212;
@@ -1467,8 +1470,8 @@ div.custom-image{
 }
 
 .custom-header{
-	height: 124px;
-	background: #333 url(../images/broken_noise3.png) repeat left bottom;
+	height: 62px;
+	background: #333 url(../images/broken_noise3.png) repeat left top;
 }
 
 .clear-margin{
@@ -1487,6 +1490,7 @@ div.custom-image{
 }
 
 .error-msg{
+    display: inline;
 	font-size: 17px;
 	font-style: italic;
 	color: #F00;
