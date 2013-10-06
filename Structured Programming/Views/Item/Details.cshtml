@@ -35,7 +35,7 @@
                 <h3>@Model.Description</h3>
                 <br>
                 <div class="head-style1 " style="margin-left:-20px;">
-                    <h2>Product details</h2>
+                    <h3>Rate: @Model.UserProfile.Rating (@Model.UserProfile.Rated.Count votes)</h3>
                 </div>
                 <ul class="port-details" style="margin-left:-5px;">
                     <li><strong>Owner:</strong> @Html.ActionLink(@Model.UserProfile.UserName, "Details", "Account", new {@id = @Model.UserProfile.UserId}, null)</li>

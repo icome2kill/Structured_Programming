@@ -20,15 +20,33 @@ namespace Structured_Programming.Controllers
         //
         // GET: /Transaction/
 
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, int? statusId, int? methodId, int? type)
         {
             int pageNumber = page ?? 1;
             int userId = WebSecurity.CurrentUserId;
 
-            var transactions = db.Transactions.Where(m => m.BuyerId == userId || m.Item.UserId == userId).OrderByDescending(m => m.DateModified).ToPagedList(pageNumber, 20);
+            var transactions = db.Transactions.Where(m => m.BuyerId == userId || m.Item.UserId == userId);
+            if (statusId != null)
+            {
+                transactions = transactions.Where(m => m.StatusId == statusId);
+            }
+            if (methodId != null)
+            {
+                transactions = transactions.Where(m => m.MethodId == methodId);
+            }
+            if (type == 1)
+            {
+                transactions = transactions.Where(m => m.BuyerId == userId);
+            }
+            else if (type == 2)
+            {
+                transactions = transactions.Where(m => m.Item.UserId == userId);
+            }
             return View(new TransactionIndexModel()
             {
-                Transactions = transactions
+                Transactions = transactions.OrderByDescending(m => m.DateModified).ToPagedList(pageNumber, 20),
+                MethodList = new SelectList(db.Methods, "MethodId", "Name"),
+                StatusList = new SelectList(db.Status, "StatusId", "Name")
             });
         }
 

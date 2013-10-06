@@ -69,6 +69,7 @@ namespace Structured_Programming.Models
     {
         [Required]
         [Display(Name = "User name")]
+        [RegularExpression(@"^[-0-9A-Za-z_]+$", ErrorMessage = "Username must not contains special characters")]
         [StringLength(20,MinimumLength = 6)]
         public string UserName { get; set; }
 

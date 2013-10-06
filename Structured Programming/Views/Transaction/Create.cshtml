@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    ViewBag.Message = "Please wait while we performing your transaction request....";
 }
 
 
@@ -13,26 +12,26 @@
         <div class="row">
             <div class="divider1"></div>
 
-            <h1 style="margin-left:20px;">Item transaction</h1>
+            <h1 style="margin-left: 20px;">Item transaction</h1>
 
             <div class="span7">
-                <div class="head-style1" style="margin-left:-20px;">
+                <div class="head-style1" style="margin-left: -20px;">
                     <h2>@Model.Item.Name</h2>
                 </div>
                 @Helpers.ImageFor(Model.Item.ItemId, "400px", "300px")
             </div>
 
             <div class="span5-no-margin">
-                <div class="head-style1 " style="margin-left:-20px;">
+                <div class="head-style1 " style="margin-left: -20px;">
                     <h2>Product Description</h2>
                 </div>
                 <h3>@Model.Item.Description</h3>
                 <br>
-                <div class="head-style1 " style="margin-left:-20px;">
-                    <h2>Product details</h2>
+                <div class="head-style1 " style="margin-left: -20px;">
+                    <h3>Rate: @Model.Item.UserProfile.Rating</h3>
                 </div>
-                <ul class="port-details" style="margin-left:-5px;">
-                    <li><strong>Owner:</strong> @Html.ActionLink(@Model.Item.UserProfile.UserName, "Details", "Account", new {@id = @Model.Item.UserProfile.UserId}, null)</li>
+                <ul class="port-details" style="margin-left: -5px;">
+                    <li><strong>Owner:</strong> @Html.ActionLink(@Model.Item.UserProfile.UserName, "Details", "Account", new { @id = @Model.Item.UserProfile.UserId }, null)</li>
                     <li><strong>Price:</strong> @Model.Item.Price</li>
                     <li><strong>Category:</strong> @Model.Item.Type.Name</li>
                     <li><strong>Want to trade with:</strong> @Model.Item.Trade</li>
@@ -50,13 +49,13 @@
                     <h3>You will make a transaction request to item's owner</h3>
                 </div>
                 <div class="span12-no-margin">
-                    @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class="contact_form"}))
+                    @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class = "contact_form" }))
                     {
                         <div class="span12">
-                        <div class="error-msg" style="margin-left:20px;">
-                            @Html.ValidationMessageFor(m => m.Transaction.Message)<br />
-                            @Html.ValidationMessageFor(m => m.Transaction.Pay)
-                        </div>
+                            <div class="error-msg" style="margin-left: 20px;">
+                                @Html.ValidationMessageFor(m => m.Transaction.Message)<br />
+                                @Html.ValidationMessageFor(m => m.Transaction.Pay)
+                            </div>
                         </div>
                         @Html.HiddenFor(m => m.Item.ItemId)
                         @Html.HiddenFor(m => m.Item.Name)
@@ -67,15 +66,16 @@
                         </div>
                         <div class="span6 custom-dropdown">
                             <label>Transaction method</label>
-                            <div class="styled-select" style="width:500px;">
-                                @Html.DropDownListFor(m => m.Transaction.MethodId, Model.MethodList, new {@class="custom-dropdown" })
+                            <div class="styled-select" style="width: 500px;">
+                                @Html.DropDownListFor(m => m.Transaction.MethodId, Model.MethodList, new { @class = "custom-dropdown" })
                             </div>
                         </div>
                         <div class="span12">
                             <label>You're willing to pay</label>
-                            @Html.TextBoxFor(m => m.Transaction.Pay, new {@style="width:485px;" })
+                            @Html.TextBoxFor(m => m.Transaction.Pay, new { @style = "width:485px;" })
                         </div>
-                        <div class="span12"><input type="submit" class="btn send-btn" value="Confirm"/></div>                        
+                        <div class="span12">
+                            <input type="submit" class="btn send-btn" value="Confirm" /></div>                        
                     }
                 </div>
             </div>
@@ -84,8 +84,39 @@
                     <h2>Item transfer request</h2>
                     <h3>You may want to introduce some of your items ?</h3>
                 </div>
+                <div class="" style="height: 200px; overflow-x:hidden; margin-top: 70px">
+                    @foreach (var item in Model.MyItems)
+                    {
+                        <div class="span6">
+                            <input type="checkbox" class="item_checkbox" id="@item.ItemId" value="@item.Name" />
+                            @Helpers.ImageFor(item.ItemId, "60px", "40px")
+                            @Helpers.ShortenText(item.Name, 40)
+                        </div>
+                    }
+                </div>
             </div>
         </div>
     </div>
 </div>
 <!-- Body Content End -->
+<script src="//tinymce.cachefly.net/4.0/tinymce.min.js"></script>
+<script type="text/javascript">
+    tinymce.init({
+        selector: 'textarea',
+        width: '50%'
+    });
+    $(".item_checkbox").change(function () {
+        var text = $("#Transaction_Message").val()
+        var editor = tinymce.get('Transaction_Message');
+        var content = editor.getContent();
+        var link = location.host + "/Item/Details/" + this.id;
+        if ($(this).is(':checked')) {
+            editor.setContent("<li id=" + this.id + "><a href = " + link + ">" + $(this).val() + "</a></li>\n" + content);
+        }
+        else {
+            var re = new RegExp("\<li id=\"" + this.id + "\"\>.+\<\/li\>", "g");
+            content = content.replace(re, "");
+            editor.setContent(content);
+        }
+    });
+</script>

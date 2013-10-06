@@ -10,6 +10,8 @@ namespace Structured_Programming.Models
     public class TransactionIndexModel
     {
         public IEnumerable<Transaction> Transactions { get; set; }
+        public SelectList MethodList { get; set; }
+        public SelectList StatusList { get; set; }
     }
     public class TransactionCreateModel
     {
