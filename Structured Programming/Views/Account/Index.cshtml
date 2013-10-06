@@ -5,25 +5,46 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>All Users</h2>
-<table>
-    <tr>
-        <th>
-            Username
-        </th>
-        <th>
-            Email
-        </th>
-    </tr>
-    @foreach (var user in Model.Users)
-    {
-        <tr>
-            <td>
-                @Html.ActionLink(user.UserName, "Details", new { id = user.UserId })
-            </td>
-            <td>
-                @user.Email
-            </td>
-        </tr>
-    }
-</table>
+
+<div class="body-content">
+    <div class="container">
+        <div class="divider1"></div>
+        <div class="head-style1">
+            <h2>All user</h2>
+        </div>
+        <div class="span12-no-margin">
+            <div class="span11">
+            <table class="table table-hover">
+                <thead>
+                    <td>Username</td>
+                    <td>Email</td>
+                    <td>Items posted</td>
+                    <td>Rank</td>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model.Users)
+                    {
+                        <tr>
+                            <td>
+                                @Html.ActionLink(user.UserName, "Details", new { id = user.UserId })
+                            </td>
+                            <td>
+                                @user.Email
+                            </td>
+                            <td>
+                                @user.Items.Count
+                            </td>
+                            <td>
+                                &nbsp
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

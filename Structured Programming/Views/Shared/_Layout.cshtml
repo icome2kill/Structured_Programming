@@ -40,11 +40,12 @@
                             <img src="/Images/logo.png" alt=""></a>
                     </div>
                 </div>
-                <div class="span6">
+                <div class="span8-no-margin">
                     <nav class="pull-left">
                         <ul class="sf-menu" id="nav">
                             <li><a href="/">Home</a></li>
                             <li>@Html.ActionLink("Upload", "Add", "Item")</li>
+                            <li>@Html.ActionLink("Transaction",null,"Transaction")</li>
                             <li>
                                 <li><a href="#">Category</a>
                                     <ul>
@@ -55,12 +56,13 @@
                                     </ul>
                                 </li>
                             </li>
-                            <li><a href="">User</a></li>
+                            <li>@Html.ActionLink("User", null, "Account")</li>
                             <li>
                                 @if (Request.IsAuthenticated)
                                 {
                                     <li><a href="#">Profile</a>
                                         <ul>
+                                            <li>@Html.ActionLink("Profile", "Details", "Account")</li>
                                             <li>@Html.ActionLink("Change password", "Manage", "Account")</li>
                                             <li>@Html.ActionLink("Edit profile", "EditProfile", "Account")</li>
                                             <li><a href="javascript:document.getElementById('logoutForm').submit()">Sign out</a></li>
@@ -79,7 +81,7 @@
                         }
                     </nav>
                 </div>
-                <div class="span3 text-right custom-search-header">
+                <div class="span2 text-right custom-search-header pull-right">
                     
                     @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
                 </form>
@@ -98,8 +100,8 @@
                 <div class="span3">
                     <h3>User</h3>
                     <ul class="bullets-style arrow-list">
-                        <li><a href="#">My page</a></li>
-                        <li><a href="#">Edit personal detail</a></li>
+                        <li>@Html.ActionLink("My profile","Detais","Account")</li>
+                        <li>@Html.ActionLink("My transaction","Details","Transaction")</li>
                         <li><a href="#">Edit account</a></li>
                         <li><a href="#">Inbox</a></li>
                         <li><a href="#">Find user</a></li>
@@ -109,13 +111,7 @@
                 <div class="span3">
                     <h3>Categories</h3>
                     <ul class="bullets-style arrow-list">
-                        <li><a href="#">Digital</a></li>
-                        <li><a href="#">Electronic</a></li>
-                        <li><a href="#">Food</a></li>
-                        <li><a href="#">Paper</a></li>
-                        <li><a href="#">Furniture</a></li>
-                        <li><a href="#">Vehicle</a></li>
-                        <li><a href="#">Other</a></li>
+
                     </ul>
                 </div>
                 <div class="span3">
@@ -141,7 +137,7 @@
             <div class="row">
                 <div class="span12 text-center">
                     Copyright © 2013 By OldStuff. All rights reserved.<br>
-                    Theme By <a href="#">Vtproduction</a>
+                    Theme By <a href="http://www.facebook.com/lemanhnien">Vtproduction</a>
                 </div>
             </div>
         </div>

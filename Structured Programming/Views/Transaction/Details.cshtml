@@ -9,86 +9,77 @@
 
 <div class="body-content">
     <div class="container">
-        <div class="row">
-            <h2>
-                @buyerName requested to buy @ownerName @Model.Item.Name
-            </h2>
-            @buyerName are willing to pay @Model.Pay in cash and a note:
-            @(new HtmlString(Model.Message))
+        <div class="divider1"></div>
+        <div class="span12-no-margin">
+            <div class="span7">
+                <div class="head-style1" style="margin-left:-20px;">
+                    <h2>Transaction details</h2>
+                </div>
+                <h2>
+                    @Html.ActionLink(buyerName, "Details", "Account", new {@id = Model.BuyerId }, null) requested to buy @ownerName @Html.ActionLink(Model.Item.Name, "Details", "Account", new {@id = Model.ItemId })
+                </h2>
+                <ul class="port-details" style="margin-left:-5px;">
+   
+                    <li><strong>Buyer name:</strong><b>@Html.ActionLink(buyerName, "Details", "Account", new {@id = Model.BuyerId }, null)</b></li>
+                    <li><strong>Message:</strong>  <b>@(new HtmlString(Model.Message))</b></li>
+                    <li><strong>Will pay:</strong><b> @Model.Pay (Your wishing price: @Model.Item.Price )</b></li>
+                    <li><strong>Method:</strong><b>@Model.Method.Name</b></li>
+                </ul>
+            </div>
+
             @if (Model.Item.UserId == WebSecurity.CurrentUserId)
             {
-                using (Html.BeginForm())
-                {
-                @Html.HiddenFor(m => m.Id)
-                <div class="span12">
-                    <button name="decision" value="2">Accept</button>
-                    <button name="decision" value="3">Decline</button>
+                <div class="span5">
+                    <div class="head-style1">
+                        <h2>Your Decision</h2>
+                    </div>
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "contact_form" }))
+                    {
+                        if (Model.StatusId == 1)
+                        {
+                            @Html.HiddenFor(m => m.Id)
+                            <div class="span12">
+                                <label>Note: Your decision will be sent to buyer.</label>
+                                <button name="decision" value="2" class="btn send-btn">Accept</button>
+                                <button name="decision" value="3" class="btn send-btn">Decline</button>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="span12">
+                                <label>You have already @Model.Status.Name this request.</label>
+                            </div>
+                        }
+                    }
                 </div>
-                }
             }
+            else
+            {
+                <div class="span5">
+                    <div class="head-style1">
+                        <h2>Owner Decision</h2>
+                    </div>
+                    @using (Html.BeginForm(null, null, FormMethod.Post, new { @class = "contact_form" }))
+                    {
+                        <div class="span12">
+                        @if (Model.StatusId == 1)
+                        {
+                            <label class="span4">You need to wait until this item's owner makes the decision.</label>
+                        }
+                        else if(Model.StatusId == 2)
+                        {
+                            <label class="span4">Congratulation ! The item owner already @Model.Status.Name this request.</label>
+                        }
+                        else
+                        {
+                            <label class="span4">The item owner already @Model.Status.Name this request.</label> 
+                        }
+                        </div>
+                            
+                    }
+                </div>                
+            }
+
         </div>
     </div>
 </div>
-<fieldset>
-    <legend>Transaction</legend>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.BuyerId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.BuyerId)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.ItemId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.ItemId)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Message)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Message)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.Pay)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Pay)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.MethodId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.MethodId)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.StatusId)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.StatusId)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.DateCreated)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DateCreated)
-    </div>
-
-    <div class="display-label">
-        @Html.DisplayNameFor(model => model.DateModified)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.DateModified)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

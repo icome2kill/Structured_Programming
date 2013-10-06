@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Message = "Please wait while we performing your transaction request....";
 }
 
 
@@ -28,11 +29,7 @@
                 <h3>@Model.Item.Description</h3>
                 <br>
                 <div class="head-style1 " style="margin-left:-20px;">
-                    <h3>Rate: 3/5</h3>
-                    <p>
-                        <img src="../../images/star.png"><img src="../../images/star.png"><img src="../../images/star.png">
-                        <a href="#" class="my-btn btn-small btn-border pull-right">Rate this !</a>
-                    </p>
+                    <h2>Product details</h2>
                 </div>
                 <ul class="port-details" style="margin-left:-5px;">
                     <li><strong>Owner:</strong> @Html.ActionLink(@Model.Item.UserProfile.UserName, "Details", "Account", new {@id = @Model.Item.UserProfile.UserId}, null)</li>
