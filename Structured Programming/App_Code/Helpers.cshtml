@@ -1,4 +1,5 @@
-﻿@helper ImageFor(int id, string width, string height)
+﻿@using System.Text.RegularExpressions
+@helper ImageFor(int id, string width, string height)
 {
     var imagePath = "/Images/";
     string image = imagePath + "no-available-image.png";
@@ -28,7 +29,10 @@
     {
         if (strToHighlight != null)
         {
-            newText = source.Replace(strToHighlight , "<span style=\"background-color: red\">" + strToHighlight + "</span>");
+            string[] splited = strToHighlight.Split(new string[] {" "}, StringSplitOptions.RemoveEmptyEntries);
+            string regex = String.Join("|", splited);             
+            var expression = new Regex(@regex, RegexOptions.IgnoreCase);
+            newText = expression.Replace(source, new MatchEvaluator(m => "<span style=\"background-color: red\">" + m.Value + "</span>"));
         }
     }
     if (newText != null)

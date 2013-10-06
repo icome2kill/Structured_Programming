@@ -51,9 +51,12 @@
                             <li>
                                 <li><a href="#">Category</a>
                                     <ul>
-                                        @foreach (var type in types)
+                                        @if (types != null)
                                         {
+                                            foreach (var type in types)
+                                            {
                                             <li class="">@Html.ActionLink(type.Name, "Index", "Item", new { typeId = type.TypeId }, null)</li>
+                                            }
                                         }
                                     </ul>
                                 </li>
