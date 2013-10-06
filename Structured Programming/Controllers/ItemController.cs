@@ -15,7 +15,7 @@ using WebMatrix.WebData;
 namespace Structured_Programming.Controllers
 {
     [InitializeSimpleMembership]
-    public class ItemController : Controller
+    public class ItemController : BaseController
     {
         DataEntities db = new DataEntities();
         //

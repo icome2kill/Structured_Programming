@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html>
+﻿@{
+    var types = (List<Structured_Programming.Models.Type>)ViewData["Categories"];
+}
+<!DOCTYPE html>
 <html lang="en" class="no-js">
 <head>
     <meta charset="utf-8" />
@@ -17,7 +20,7 @@
 	    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	    <![endif]-->
 
-    
+
     <script src="/Template/js/vendor/modernizr.custom.80910.js"></script>
 
     <!--[if lt IE 7]>
@@ -27,7 +30,7 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" href="/Template/css/base.css" type="text/css">
     <link rel="stylesheet" href="/Content/style.css" type="text/css" />
-    
+
 </head>
 <body>
     <!-- Header Start -->
@@ -36,7 +39,7 @@
             <div class="row">
                 <div class="span2">
                     <div class="logo">
-                        <a href="@Url.Action("Index","Home")">
+                        <a href="@Url.Action("Index", "Home")">
                             <img src="/Images/logo.png" alt=""></a>
                     </div>
                 </div>
@@ -48,10 +51,10 @@
                             <li>
                                 <li><a href="#">Category</a>
                                     <ul>
-                                        <li class="">@Html.ActionLink("Electronic", "Index", "Item", new { typeId = 1 }, null)
-                                        </li>
-                                        <li class="">@Html.ActionLink("Vehicle", "Index", "Item", new { typeId = 2 }, null)
-                                            </li>
+                                        @foreach (var type in types)
+                                        {
+                                            <li class="">@Html.ActionLink(type.Name, "Index", "Item", new { typeId = type.TypeId }, null)</li>
+                                        }
                                     </ul>
                                 </li>
                             </li>
@@ -80,9 +83,9 @@
                     </nav>
                 </div>
                 <div class="span3 text-right custom-search-header">
-                    
+
                     @Html.Partial("/Views/Shared/_SearchForm.cshtml", new Structured_Programming.Models.SearchOptionsModel())
-                </form>
+                    </form>
                 </div>
             </div>
         </div>

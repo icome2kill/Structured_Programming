@@ -10,7 +10,7 @@ using WebMatrix.WebData;
 namespace Structured_Programming.Controllers
 {
     [InitializeSimpleMembership]
-    public class RateController : Controller
+    public class RateController : BaseController
     {
         // When an user rates another one, it creates a "rate" entry.
         // POST: /Rate/Create
@@ -23,7 +23,7 @@ namespace Structured_Programming.Controllers
                 // TODO: Add insert logic here
                 // Cannot rate oneself...
                 // Rating score should be between 1 and 5
-                if (WebSecurity.CurrentUserId == userId)
+                if (WebSecurity.CurrentUserId == userId || score < 1 || score > 5)
                 {
                     return RedirectToAction("Details", "Account", new { id = userId });
                 }

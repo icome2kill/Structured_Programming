@@ -15,7 +15,7 @@ using WebMatrix.WebData;
 
 namespace Structured_Programming.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         public ActionResult Index(int? page, int typeId = 0)
         {

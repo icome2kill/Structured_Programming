@@ -14,37 +14,69 @@
             <div class="span12">
                 <table class="custom-fontsize">
                     <tr>
-                        <td><h2>@Html.DisplayNameFor(model => model.UserName)</h2></td>
+                        <td>
+                            <h2>@Html.DisplayNameFor(model => model.UserName)</h2>
+                        </td>
                         <td class="space"></td>
                         <td>@Html.DisplayFor(model => model.UserName)</td>
                     </tr>
                     <tr>
-                        <td><h2>@Html.DisplayNameFor(model => model.Email)</h2></td>
+                        <td>
+                            <h2>@Html.DisplayNameFor(model => model.Email)</h2>
+                        </td>
                         <td class="space"></td>
                         <td>@Html.DisplayFor(model => model.Email)</td>
                     </tr>
                     <tr>
-                        <td><h2>@Html.DisplayNameFor(model => model.FirstName)</h2></td>
+                        <td>
+                            <h2>@Html.DisplayNameFor(model => model.FirstName)</h2>
+                        </td>
                         <td class="space"></td>
                         <td>@Html.DisplayFor(model => model.FirstName)</td>
                     </tr>
                     <tr>
-                        <td><h2>@Html.DisplayNameFor(model => model.LastName)</h2></td>
+                        <td>
+                            <h2>@Html.DisplayNameFor(model => model.LastName)</h2>
+                        </td>
                         <td class="space"></td>
                         <td>@Html.DisplayFor(model => model.LastName)</td>
                     </tr>
                     <tr>
-                        <td><h2>@Html.DisplayNameFor(model => model.Address)</h2></td>
+                        <td>
+                            <h2>@Html.DisplayNameFor(model => model.Address)</h2>
+                        </td>
                         <td class="space"></td>
                         <td>@Html.DisplayFor(model => model.Address)</td>
                     </tr>
+                    <tr>
+                        <td>
+                            <h2>Rating:</h2>
+                        </td>
+                        <td class="space"></td>
+                        <td>@Model.Rating</td>
+                    </tr>
                 </table>
+                @if (Model.UserId != WebSecurity.CurrentUserId)
+                {
+                    using (Html.BeginForm("Create", "Rate", FormMethod.Post))
+                    {
+                        @Html.HiddenFor(m => m.UserId)
+                        <select name="score">
+                            <option value="1">Very bad</option>
+                            <option value="2">Bad</option>
+                            <option value="3">Good</option>
+                            <option value="4">Very good</option>
+                            <option value="5">Excellent</option>
+                        </select>
+                        <input type="submit" class="btn send-btn" value="Rate" />
+                    }
+                }
                 <div id="contact_form">
                     @if (Model.UserId == WebSecurity.CurrentUserId)
-                        {
-                            @Html.ActionLink("Change password", "Manage", "Account", null,new { @class="btn send-btn"})
-                            @Html.ActionLink("Edit your profile", "EditProfile", "Account", new { @class="btn send-btn"})
-                        }
+                    {
+                        @Html.ActionLink("Change password", "Manage", "Account", null, new { @class = "btn send-btn" })
+                        @Html.ActionLink("Edit your profile", "EditProfile", "Account", new { @class = "btn send-btn" })
+                    }
                 </div>
             </div>
         </div>
@@ -69,11 +101,11 @@
                                 <td>@string.Format("{0:c}", @item.Price)</td>
                                 <td>@item.Trade</td>
                             </tr>
-                        }                       
+                        }
                     </tbody>
                 </table>
             </div>
         </div>
-        
+
     </div>
 </div>
