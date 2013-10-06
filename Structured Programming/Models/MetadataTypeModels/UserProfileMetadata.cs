@@ -15,7 +15,7 @@ namespace Structured_Programming.Models
     {
         [Key]
         public int UserId { get; set; }
-
+        
         [StringLength(50)]
         public Object FirstName { get; set; }
 

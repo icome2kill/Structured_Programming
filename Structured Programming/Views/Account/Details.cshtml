@@ -53,7 +53,7 @@
                             <h2>Rating:</h2>
                         </td>
                         <td class="space"></td>
-                        <td>@Model.Rating</td>
+                        <td>@Model.Rating by @Model.Rated.Count</td>
                     </tr>
                 </table>
                 @if (Model.UserId != WebSecurity.CurrentUserId)
