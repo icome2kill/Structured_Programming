@@ -36,7 +36,19 @@
 <div class="body-content">
     <div class="container">
         <h2>My transacion</h2>
+
         <div class="row">
+            @using (Html.BeginForm("Index", "Transaction", FormMethod.Get))
+            {
+                @Html.DropDownList("statusId", Model.StatusList, "All")
+                @Html.DropDownList("methodId", Model.MethodList, "All")
+                <select name="type">
+                    <option value="0">All</option>
+                    <option value="1">Sent</option>
+                    <option value="2">Received</option>
+                </select>
+                <input type="submit" value="Filter" class="btn send-btn" />
+            }
             <table>
                 <tr>
                     <th>From
@@ -88,7 +100,7 @@
         <div class="row">
             <div class="span12">
                 <div class="pagination">
-                    @Html.PagedListPager((IPagedList)Model.Transactions, page => Url.Action("Index", new { page }))
+                    @Html.PagedListPager((IPagedList)Model.Transactions, page => Url.Action("Index", new { statusId = Request["statusId"], methodId = Request["methodId"], page }))
                 </div>
             </div>
         </div>
