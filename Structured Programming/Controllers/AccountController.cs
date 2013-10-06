@@ -17,7 +17,7 @@ namespace Structured_Programming.Controllers
 {
     [Authorize]
     [InitializeSimpleMembership]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         // GET: /Account
         [AllowAnonymous]
@@ -66,7 +66,6 @@ namespace Structured_Programming.Controllers
             {
                 return HttpNotFound();
             }
-            user.Rating = AccountsManagement.Rating(user);
             return View(user);
         }
         //

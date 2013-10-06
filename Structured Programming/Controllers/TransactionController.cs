@@ -14,7 +14,7 @@ namespace Structured_Programming.Controllers
 {
     [InitializeSimpleMembership]
     [Authorize]
-    public class TransactionController : Controller
+    public class TransactionController : BaseController
     {
         DataEntities db = new DataEntities();
         //

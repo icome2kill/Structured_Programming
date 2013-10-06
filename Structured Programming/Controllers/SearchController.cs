@@ -10,7 +10,7 @@ using System.Web.Mvc;
 
 namespace Structured_Programming.Controllers
 {
-    public class SearchController : Controller
+    public class SearchController : BaseController
     {
         DataEntities db = new DataEntities();
         //

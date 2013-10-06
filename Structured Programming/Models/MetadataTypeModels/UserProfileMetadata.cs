@@ -6,7 +6,9 @@ namespace Structured_Programming.Models
     [MetadataType(typeof(UserProfileMetadata))]
     public partial class UserProfile
     {
-        public double Rating { get; set; }
+        public double Rating { get{
+            return Structured_Programming.Models.Business.AccountsManagement.Rating(this);
+        }}
     }
 
     public class UserProfileMetadata
