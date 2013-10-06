@@ -3,6 +3,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int extcpn = 0;
 }
 
 
@@ -18,8 +19,9 @@
                 <thead>
                     <td>Username</td>
                     <td>Email</td>
-                    <td>Items posted</td>
-                    <td>Rank</td>
+                    <td style="width:15%;">Items posted</tdstyle="width:15%;>
+                    <td style="width:22%;">Rank</td>
+                    <td style="width:5%">&nbsp</t>
                 </thead>
                 <tbody>
                     @foreach (var user in Model.Users)
@@ -35,7 +37,22 @@
                                 @user.Items.Count
                             </td>
                             <td>
-                                &nbsp
+                                @{
+                                    for (extcpn = 0; extcpn <= user.Rating - 1; extcpn++)
+                                    {
+                                        <img src="../../images/star2.png"/>
+                                    }
+                                    
+                                    if((user.Rating - extcpn) >= 0.5)
+                                    {
+                                       <img src="../../images/half-star2.png"/> 
+                                    }
+                                    extcpn = 0;
+                                    
+                                }
+                            </td>
+                            <td>
+                                (@String.Format("{0:f2}",user.Rating))
                             </td>
                         </tr>
                     }

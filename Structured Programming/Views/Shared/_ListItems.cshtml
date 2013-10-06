@@ -22,7 +22,7 @@
                             <div class="port-img" style="height: 200px">
                                 @Helpers.ImageFor(item.ItemId, "300px", "200px")
                             </div>
-                            <div class="port-txt skyblue-bg" style="width: 70%">
+                            <div class="port-txt bg_@item.Type.TypeId" style="width: 70%">
                                 <div class="extra-pad">
                                     @if (Request.QueryString.Count == 1)
                                     {

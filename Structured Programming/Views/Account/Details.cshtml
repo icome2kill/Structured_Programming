@@ -8,7 +8,7 @@
 <div class="body-content">
     <div class="container">
         <div class="divider1"></div>
-        <div class="span12-no-margin">
+        <div class="span7-no-margin">
             <div class="head-style1">
                 <h2>User detail</h2>
             </div>
@@ -51,27 +51,13 @@
                     </tr>
                     <tr>
                         <td>
-                            <h2>Rating:</h2>
+                            <h2>Rating</h2>
                         </td>
                         <td class="space"></td>
-                        <td>@Model.Rating</td>
+                        <td><div class="span1-no-margin"><h1>@String.Format("{0:f2}",Model.Rating)</h1> </div><div class="span2-no-margin" style="display:inline;">(Rated @Model.Rated.Count times)</div></td>
                     </tr>
                 </table>
-                @if (Model.UserId != WebSecurity.CurrentUserId)
-                {
-                    using (Html.BeginForm("Create", "Rate", FormMethod.Post))
-                    {
-                        @Html.HiddenFor(m => m.UserId)
-                        <select name="score">
-                            <option value="1">Very bad</option>
-                            <option value="2">Bad</option>
-                            <option value="3">Good</option>
-                            <option value="4">Very good</option>
-                            <option value="5">Excellent</option>
-                        </select>
-                        <input type="submit" class="btn send-btn" value="Rate" />
-                    }
-                }
+
                 <div id="contact_form">
                     @if (Model.UserId == WebSecurity.CurrentUserId)
                     {
@@ -79,6 +65,44 @@
                         @Html.ActionLink("Edit your profile", "EditProfile", "Account", new { @class = "btn send-btn" })
                     }
                 </div>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="head-style1">
+                <h2>Rating user</h2>
+            </div>
+            <div class="span5">
+                @if (Model.UserId != WebSecurity.CurrentUserId)
+                {
+                    using (Html.BeginForm("Create", "Rate", FormMethod.Post, new {@class="contact_form" }))
+                    {
+                        @Html.HiddenFor(m => m.UserId)
+                        <table>
+                            <tr>
+                                <td><img src="../../images/star2.png"/></td>
+                                <td><input type="radio" value="1" name="score" id="r1"/><label for="r1" style="display:inline;"><span></span>Very bad</label><br /></td>
+                            </tr>
+                            <tr>
+                                <td><img src="../../images/star2.png"/><img src="../../images/star2.png"/></td>
+                                <td><input type="radio" value="2" name="score" id="r2"/><label  for="r2" style="display:inline;"><span></span>Bad</label><br /></td>
+                            </tr>
+                            <tr>
+                                <td><img src="../../images/star2.png"/><img src="../../images/star2.png"/><img src="../../images/star2.png"/></td>
+                                <td><input type="radio" value="3" name="score" id="r3"/><label for="r3"  style="display:inline;"><span></span>Good</label><br /></td>
+                            </tr>
+                            <tr>
+                                <td><img src="../../images/star2.png"/><img src="../../images/star2.png"/><img src="../../images/star2.png"/><img src="../../images/star2.png"/></td>
+                                <td><input type="radio" value="4" name="score" id="r4"/><label for="r4" style="display:inline;"><span></span>Very good</label><br /></td>
+                            </tr>
+                            <tr>
+                                <td><img src="../../images/star2.png"/><img src="../../images/star2.png"/><img src="../../images/star2.png"/><img src="../../images/star2.png"/><img src="../../images/star2.png"/></td>
+                                <td><input type="radio" value="5" name="score" id="r5"/><label for="r5" style="display:inline;"><span></span>Excellent</label><br /></td>
+                            </tr>                       
+                        </table>
+                        <div class="divider1"></div>
+                        <input type="submit" class="btn send-btn" value="Rate !" />
+                    }
+                }
             </div>
         </div>
         <div class="span12-no-margin">

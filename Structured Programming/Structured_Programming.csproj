@@ -250,6 +250,7 @@
     <Content Include="App_Data\aspnet-Structured_Programming-20130901164401_log.ldf">
       <DependentUpon>aspnet-Structured_Programming-20130901164401.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\check_radio_sheet.png" />
     <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -263,6 +264,7 @@
     <Content Include="Images\blog2.jpg" />
     <Content Include="Images\blog3.jpg" />
     <Content Include="Images\broken_noise.png" />
+    <Content Include="Images\check_radio_sheet.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo2.png" />
     <Content Include="Images\profile2.jpg" />

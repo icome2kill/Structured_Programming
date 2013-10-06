@@ -857,27 +857,42 @@ h4.form_thanks {
 	font-size:22px;
 	color:#fefeff;
 }
-.port-wrap:hover .orange-bg, .port-wrap:hover .gray-bg, .port-wrap:hover .skyblue-bg, .port-wrap:hover .blue-bg, .port-wrap:hover .gray-bg, .port-wrap:hover .cyan-bg{
+ .port-wrap:hover .bg_1, .port-wrap:hover .bg_2, .port-wrap:hover .bg_3, .port-wrap:hover .bg_4, .port-wrap:hover .bg_5, .port-wrap:hover .bg_6, .port-wrap:hover .bg_7, .port-wrap:hover .bg_8, .port-wrap:hover .bg_9, .port-wrap:hover .bg_10{
 	background:none;
 	-webkit-transition: all 0.35s ease;
 	-moz-transition: all 0.35s ease;
 	-o-transition: all 0.35s ease;
 	transition: all 0.35s ease;
 }
-.gray-bg{
+.bg_1{
 	background:#666666;
 }
-.skyblue-bg{
+.bg_2{
 	background:#62cbe8;
 }
-.blue-bg{
+.bg_3{
 	background:#249fd8;
 }
-.cyan-bg{
+.bg_4{
 	background:#25bfb7;
 }
-.orange-bg{
+.bg_5{
 	background:#f1442b;
+}
+.bg_6{
+	background:#c513ff;
+}
+.bg_7{
+	background:#ffffff;
+}
+.bg_8{
+	background:#ffdd21;
+}
+.bg_9{
+	background:#f910ba;
+}
+.bg_10{
+	background:#ff0000;
 }
 .extra-pad{
 	padding:20px;
