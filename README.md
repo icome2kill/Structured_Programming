@@ -13,7 +13,7 @@ Install and run:
 
 	- In solution explorer window, open App_Data/aspnet-Structured_Programming-20130901164401.mdf.
 
-	- Open Tools/Library Package Manager/Package Manager Console, and install PagedList.mvc by enter: Install-Package PagedList.Mvc
+	- Open Tools -> Library Package Manager -> Package Manager Console, and install PagedList.mvc by enter: Install-Package PagedList.Mvc
 	  (for more information about pagedList, please visit http://www.nuget.org/packages/PagedList.Mvc/).
 	  
 	- Build and run project with localhost.
