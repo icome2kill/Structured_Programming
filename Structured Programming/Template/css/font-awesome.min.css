@@ -49,9 +49,9 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-star-empty:before{content:"\f006";}
 .icon-user:before{content:"\f007";}
 .icon-film:before{content:"\f008";}
-.icon-th-large:before{content:"\f009";}
-.icon-th:before{content:"\f00a";}
-.icon-th-list:before{content:"\f00b";}
+.icon-6-large:before{content:"\f009";}
+.icon-6:before{content:"\f00a";}
+.icon-6-list:before{content:"\f00b";}
 .icon-ok:before{content:"\f00c";}
 .icon-remove:before{content:"\f00d";}
 .icon-zoom-in:before{content:"\f00e";}
@@ -60,7 +60,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-signal:before{content:"\f012";}
 .icon-gear:before,.icon-cog:before{content:"\f013";}
 .icon-trash:before{content:"\f014";}
-.icon-home:before{content:"\f015";}
+.icon-3:before{content:"\f015";}
 .icon-file-alt:before{content:"\f016";}
 .icon-time:before{content:"\f017";}
 .icon-road:before{content:"\f018";}
@@ -74,7 +74,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-list-alt:before{content:"\f022";}
 .icon-lock:before{content:"\f023";}
 .icon-flag:before{content:"\f024";}
-.icon-headphones:before{content:"\f025";}
+.icon-head1s:before{content:"\f025";}
 .icon-volume-off:before{content:"\f026";}
 .icon-volume-down:before{content:"\f027";}
 .icon-volume-up:before{content:"\f028";}
@@ -82,7 +82,7 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-barcode:before{content:"\f02a";}
 .icon-tag:before{content:"\f02b";}
 .icon-tags:before{content:"\f02c";}
-.icon-book:before{content:"\f02d";}
+.icon-5:before{content:"\f02d";}
 .icon-bookmark:before{content:"\f02e";}
 .icon-print:before{content:"\f02f";}
 .icon-camera:before{content:"\f030";}
@@ -180,10 +180,10 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-github-sign:before{content:"\f092";}
 .icon-upload-alt:before{content:"\f093";}
 .icon-lemon:before{content:"\f094";}
-.icon-phone:before{content:"\f095";}
+.icon-1:before{content:"\f095";}
 .icon-unchecked:before,.icon-check-empty:before{content:"\f096";}
 .icon-bookmark-empty:before{content:"\f097";}
-.icon-phone-sign:before{content:"\f098";}
+.icon-1-sign:before{content:"\f098";}
 .icon-twitter:before{content:"\f099";}
 .icon-facebook:before{content:"\f09a";}
 .icon-github:before{content:"\f09b";}
@@ -276,10 +276,10 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-angle-right:before{content:"\f105";}
 .icon-angle-up:before{content:"\f106";}
 .icon-angle-down:before{content:"\f107";}
-.icon-desktop:before{content:"\f108";}
-.icon-laptop:before{content:"\f109";}
+.icon-4:before{content:"\f108";}
+.icon-2:before{content:"\f109";}
 .icon-tablet:before{content:"\f10a";}
-.icon-mobile-phone:before{content:"\f10b";}
+.icon-mobile-1:before{content:"\f10b";}
 .icon-circle-blank:before{content:"\f10c";}
 .icon-quote-left:before{content:"\f10d";}
 .icon-quote-right:before{content:"\f10e";}
@@ -314,8 +314,8 @@ a .icon-rotate-90:before,a .icon-rotate-180:before,a .icon-rotate-270:before,a .
 .icon-subscript:before{content:"\f12c";}
 .icon-eraser:before{content:"\f12d";}
 .icon-puzzle-piece:before{content:"\f12e";}
-.icon-microphone:before{content:"\f130";}
-.icon-microphone-off:before{content:"\f131";}
+.icon-micro1:before{content:"\f130";}
+.icon-micro1-off:before{content:"\f131";}
 .icon-shield:before{content:"\f132";}
 .icon-calendar-empty:before{content:"\f133";}
 .icon-fire-extinguisher:before{content:"\f134";}

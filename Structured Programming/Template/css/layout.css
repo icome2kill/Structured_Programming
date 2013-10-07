@@ -2,7 +2,7 @@ body{
 	font-family: 'Source Sans Pro', sans-serif;
 	font-size:14px;
 	color:#000000;
-	background:url(../images/broken_noise2.png) repeat;
+	background:url(../images/broken_noise.png) repeat;
 }
 a:hover {
 	color: #9098A5;
@@ -149,7 +149,7 @@ form.search{
 
 /* ========= Body Content =========== */
 .body-content{
-	
+	background: #333 url(../images/broken_noise2.png) repeat left top;
 	padding:60px 0;
 }
 
@@ -160,7 +160,7 @@ form.search{
 .icon-wrap{
 	position:relative;
 	display:table-cell;
-	background:#f1442b;
+	
 	width:90px;
 	text-align:center;
 	vertical-align:middle;
