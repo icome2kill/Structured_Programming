@@ -76,8 +76,8 @@ namespace Structured_Programming.Controllers
         {
             try
             {
-                UpdateModel<TransactionCreateModel>(model, String.Empty, null, excludeProperties: new String[] { "Item.Name" });
                 ModelState.Remove("Item.Name");
+                ModelState.Remove("Item.Description");
                 if (ModelState.IsValid)
                 {
                     model.Transaction.BuyerId = WebSecurity.CurrentUserId;
@@ -94,13 +94,12 @@ namespace Structured_Programming.Controllers
                 }
                 model.Item = db.Items.Find(model.Item.ItemId);
                 model.MethodList = new SelectList(db.Methods, "MethodId", "Name");
-                return View("Error");
+                model.MyItems = db.Items.Where(m => m.UserId == WebSecurity.CurrentUserId);
+                return View(model);
             }
             catch
             {
-                model.Item = db.Items.Find(model.Item.ItemId);
-                model.MethodList = new SelectList(db.Methods, "MethodId", "Name");
-                return View(model);
+                return View("Error");
             }
         }
 

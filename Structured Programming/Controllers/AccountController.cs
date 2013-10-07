@@ -11,6 +11,8 @@ using WebMatrix.WebData;
 using Structured_Programming.Models.Business;
 using Structured_Programming.Filters;
 using Structured_Programming.Models;
+using PagedList;
+using PagedList.Mvc;
 using System.Data;
 
 namespace Structured_Programming.Controllers
@@ -21,12 +23,13 @@ namespace Structured_Programming.Controllers
     {
         // GET: /Account
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
+            int pageNumber = page ?? 1;
             DataEntities db = new DataEntities();
             var vm = new AccountIndexModel()
             {
-                Users = db.UserProfiles
+                Users = db.UserProfiles.OrderByDescending(m => m.Items.Count).ToPagedList(pageNumber, 10)
             };
             return View(vm);
         }

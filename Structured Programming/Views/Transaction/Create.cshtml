@@ -52,14 +52,13 @@
                 <div class="span12-no-margin">
                     @using (Html.BeginForm("Create", "Transaction", FormMethod.Post, new { @class = "contact_form" }))
                     {
+                        @Html.HiddenFor(m => m.Item.ItemId)
                         <div class="span12">
                             <div class="error-msg" style="margin-left: 20px;">
                                 @Html.ValidationMessageFor(m => m.Transaction.Message)<br />
                                 @Html.ValidationMessageFor(m => m.Transaction.Pay)
                             </div>
                         </div>
-                        @Html.HiddenFor(m => m.Item.ItemId)
-                        @Html.HiddenFor(m => m.Item.Name)
                         <div class="span12">
                             @Html.LabelFor(m => m.Transaction.Message)
                             @Html.TextAreaFor(m => m.Transaction.Message)
