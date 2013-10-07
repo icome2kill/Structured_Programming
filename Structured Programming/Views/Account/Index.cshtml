@@ -6,6 +6,8 @@
     int extcpn = 0;
 }
 
+@using PagedList.Mvc;
+@using PagedList;
 
 <div class="body-content">
     <div class="container">
@@ -15,49 +17,55 @@
         </div>
         <div class="span12-no-margin">
             <div class="span11">
-            <table class="table table-hover">
-                <thead>
-                    <td>Username</td>
-                    <td>Email</td>
-                    <td style="width:15%;">Items posted</tdstyle="width:15%;>
-                    <td style="width:22%;">Rank</td>
-                    <td style="width:5%">&nbsp</t>
-                </thead>
-                <tbody>
-                    @foreach (var user in Model.Users)
-                    {
-                        <tr>
-                            <td>
-                                @Html.ActionLink(user.UserName, "Details", new { id = user.UserId })
-                            </td>
-                            <td>
-                                @user.Email
-                            </td>
-                            <td>
-                                @user.Items.Count
-                            </td>
-                            <td>
-                                @{
-                                    for (extcpn = 0; extcpn <= user.Rating - 1; extcpn++)
-                                    {
-                                        <img src="../../images/star2.png"/>
-                                    }
+                <table class="table table-hover">
+                    <thead>
+                        <td>Username</td>
+                        <td>Email</td>
+                        <td style="width: 15%;">
+                        Items posted</tdstyle="width:15%;>
+                    <td style="width: 22%;">Rank</td>
+                        <td style="width: 5%">
+                        &nbsp</t>
+                    </thead>
+                    <tbody>
+                        @foreach (var user in Model.Users)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.ActionLink(user.UserName, "Details", new { id = user.UserId })
+                                </td>
+                                <td>
+                                    @user.Email
+                                </td>
+                                <td>
+                                    @user.Items.Count
+                                </td>
+                                <td>
+                                    @{
+                            for (extcpn = 0; extcpn <= user.Rating - 1; extcpn++)
+                            {
+                                        <img src="../../images/star2.png" />
+                            }
+
+                            if ((user.Rating - extcpn) >= 0.5)
+                            {
+                                        <img src="../../images/half-star2.png" /> 
+                            }
+                            extcpn = 0;
                                     
-                                    if((user.Rating - extcpn) >= 0.5)
-                                    {
-                                       <img src="../../images/half-star2.png"/> 
                                     }
-                                    extcpn = 0;
-                                    
-                                }
-                            </td>
-                            <td>
-                                (@String.Format("{0:f2}",user.Rating))
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
+                                </td>
+                                <td>(@String.Format("{0:f2}", user.Rating))
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="span12">
+                    <div class="pagination">
+                        @Html.PagedListPager((IPagedList)Model.Users, page => Url.Action("Index", new { page }))
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -55,13 +55,13 @@
                                         {
                                             foreach (var type in types)
                                             {
-                                            <li class="">@Html.ActionLink(type.Name, "Index", "Item", new { typeId = type.TypeId }, null)</li>
+                                                <li class="">@Html.ActionLink(type.Name, "Index", "Item", new { typeId = type.TypeId }, null)</li>
                                             }
                                         }
                                     </ul>
                                 </li>
                             </li>
-                            <li>@Html.ActionLink("Transaction",null,"Transaction")</li>
+                            <li>@Html.ActionLink("Transaction", "Index", "Transaction")</li>
                             <li>@Html.ActionLink("User", "index", "Account")</li>
                             <li>
                                 @if (Request.IsAuthenticated)
@@ -105,18 +105,21 @@
                 <div class="span3">
                     <h3>User</h3>
                     <ul class="bullets-style arrow-list">
-                        <li>@Html.ActionLink("My profile","Detais","Account")</li>
-                        <li>@Html.ActionLink("My transaction","Details","Transaction")</li>
-                        <li>@Html.ActionLink("Edit profile","Manage","Account")</li>
-                        <li>@Html.ActionLink("User","index","Account")</li>
+                        <li>@Html.ActionLink("My profile", "Detais", "Account")</li>
+                        <li>@Html.ActionLink("My transaction", "Details", "Transaction")</li>
+                        <li>@Html.ActionLink("Edit profile", "Manage", "Account")</li>
+                        <li>@Html.ActionLink("User", "Index", "Account")</li>
                     </ul>
                 </div>
                 <div class="span3">
                     <h3>Categories</h3>
-                    <ul class="bullets-style arrow-list">                              
-                        @foreach (var type in types)
+                    <ul class="bullets-style arrow-list">
+                        @if (types != null)
                         {
-                            <li class="">@Html.ActionLink(type.Name, "Index", "Item", new { typeId = type.TypeId }, null)</li>
+                            foreach (var type in types)
+                            {
+                                <li class="">@Html.ActionLink(type.Name, "Index", "Item", new { typeId = type.TypeId }, null)</li>
+                            }
                         }
                     </ul>
                 </div>

@@ -12,6 +12,9 @@ namespace Structured_Programming.Models
         [Required]
         public Object Name { get; set; }
 
+        [Required]
+        public Object Description { get; set; }
+
         [StringLength(50)]
         public Object Trade { get; set; }
 
