@@ -18,7 +18,7 @@ namespace Structured_Programming.Models
         [StringLength(50)]
         public Object Trade { get; set; }
 
-        [Range(0, Double.MaxValue, ErrorMessage="Price must be greater than 0")]
+        [Range(0, 100000000000, ErrorMessage = "Price must be in range {1}, {2}")]
         [DataType(DataType.Currency)]
         public Object Price { get; set; }
     }
