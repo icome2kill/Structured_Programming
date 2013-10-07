@@ -35,10 +35,11 @@
                 <h3>@Model.Description</h3>
                 <br>
                 <div class="head-style1 " style="margin-left:-20px;">
-                    <h3>Rate: @Model.UserProfile.Rating (@Model.UserProfile.Rated.Count votes)</h3>
+                    <h2>Product detail</h2>
                 </div>
                 <ul class="port-details" style="margin-left:-5px;">
                     <li><strong>Owner:</strong> @Html.ActionLink(@Model.UserProfile.UserName, "Details", "Account", new {@id = @Model.UserProfile.UserId}, null)</li>
+                    <li><strong>Owner rating:</strong>@String.Format("{0:f2}",Model.UserProfile.Rating) (@Model.UserProfile.Rated.Count votes)</li>
                     <li><strong>Price:</strong> @Model.Price</li>
                     <li><strong>Category:</strong> @Model.Type.Name</li>
                     <li><strong>Want to trade with:</strong> @Model.Trade</li>
