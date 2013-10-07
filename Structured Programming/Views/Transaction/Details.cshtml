@@ -21,10 +21,11 @@
                 <ul class="port-details" style="margin-left:-5px;">
    
                     <li><strong>Buyer name:</strong><b>@Html.ActionLink(buyerName, "Details", "Account", new {@id = Model.BuyerId }, null)</b></li>
-                    <li><strong>Message:</strong>  <b>@(new HtmlString(Model.Message))</b></li>
                     <li><strong>Will pay:</strong><b> @Model.Pay (Your wishing price: @Model.Item.Price )</b></li>
                     <li><strong>Method:</strong><b>@Model.Method.Name</b></li>
+                    
                 </ul>
+                <strong style="margin-left:-5px; color:#f0f1f5;">Message:</strong>  <p><b>@(new HtmlString(Model.Message))</b></p>
             </div>
 
             @if (Model.Item.UserId == WebSecurity.CurrentUserId)

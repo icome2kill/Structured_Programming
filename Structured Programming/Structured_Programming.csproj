@@ -268,6 +268,7 @@
     <Content Include="Images\check_radio_sheet.png" />
     <Content Include="Images\logo.png" />
     <Content Include="Images\logo2.png" />
+    <Content Include="Images\no-available-image.png" />
     <Content Include="Images\profile2.jpg" />
     <Content Include="Images\profile3.jpg" />
     <Content Include="Images\profile4.jpg" />
@@ -342,6 +343,7 @@
     <Content Include="Template\images\iphone5s.jpg" />
     <Content Include="Template\images\logo.png" />
     <Content Include="Template\images\logo2.png" />
+    <Content Include="Template\images\no-available-image.png" />
     <Content Include="Template\images\portfolio\image_1.jpg" />
     <Content Include="Template\images\portfolio\image_2.jpg" />
     <Content Include="Template\images\portfolio\image_3.jpg" />
