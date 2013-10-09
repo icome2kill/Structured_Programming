@@ -72,7 +72,7 @@
                 <h2>Rating user</h2>
             </div>
             <div class="span5">
-                @if (Model.UserId != WebSecurity.CurrentUserId)
+                @if (Model.UserId != WebSecurity.CurrentUserId && ViewBag.CanBeRated)
                 {
                     using (Html.BeginForm("Create", "Rate", FormMethod.Post, new {@class="contact_form" }))
                     {
@@ -102,6 +102,10 @@
                         <div class="divider1"></div>
                         <input type="submit" class="btn send-btn" value="Rate !" />
                     }
+                }
+                else if (!ViewBag.CanBeRated)
+                {
+                    @:You have already rated for this user in the last 24h.
                 }
             </div>
         </div>

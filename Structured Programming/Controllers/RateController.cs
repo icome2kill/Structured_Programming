@@ -1,5 +1,6 @@
 ﻿using Structured_Programming.Filters;
 using Structured_Programming.Models;
+using Structured_Programming.Models.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,11 @@ namespace Structured_Programming.Controllers
                     {
                         return View("Error");
                     }
+                    // Limit to 1 vote per day
+                    if (!RatingManagement.CanRate(WebSecurity.CurrentUserId, userId, 1))
+                    {
+                        return View("Error");
+                    };
                     Rate rating = new Rate() {
                         UserId = WebSecurity.CurrentUserId,
                         RatedUserId = userId,

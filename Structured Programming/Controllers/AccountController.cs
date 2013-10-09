@@ -60,16 +60,14 @@ namespace Structured_Programming.Controllers
         }
         public ActionResult Details(int? id)
         {
-            if (id == null)
-            {
-                id = WebSecurity.CurrentUserId;
-            }
+            var userId = id ?? WebSecurity.CurrentUserId;
             DataEntities db = new DataEntities();
-            var user = db.UserProfiles.Find(id);
+            var user = db.UserProfiles.Find(userId);
             if (user == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
+            ViewBag.CanBeRated = RatingManagement.CanRate(WebSecurity.CurrentUserId, userId, 1);
             return View(user);
         }
         //
