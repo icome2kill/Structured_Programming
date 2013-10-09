@@ -53,6 +53,7 @@ namespace Structured_Programming.Controllers
                 currentUser.FirstName = user.FirstName;
                 db.SaveChanges();
                 ViewBag.Message = "Your profile has been changed successfully, you will be redirected to home page in 1 second";
+                ViewBag.ReturnUrl = Url.Action("Details", "Account");
                 return View("Success");
             }
             return this.View();
@@ -232,11 +233,13 @@ namespace Structured_Programming.Controllers
 
                     if (changePasswordSucceeded)
                     {
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.ChangePasswordSuccess });
+                        ViewBag.Message = "Your password has been changed successfully.";
+                        ViewBag.ReturnUrl = Url.Action("Details", "Account");
+                        return View("Success");
                     }
                     else
                     {
-                        ModelState.AddModelError("", "The current password is incorrect or the new password is invalid.");
+                        ModelState.AddModelError("Error", "The current password is incorrect or the new password is invalid.");
                     }
                 }
             }
@@ -255,7 +258,9 @@ namespace Structured_Programming.Controllers
                     try
                     {
                         WebSecurity.CreateAccount(User.Identity.Name, model.NewPassword);
-                        return RedirectToAction("Manage", new { Message = ManageMessageId.SetPasswordSuccess });
+                        ViewBag.Message = ManageMessageId.SetPasswordSuccess;
+                        ViewBag.ReturnUrl = Url.Action("Details", "Account");
+                        return View("Success");
                     }
                     catch (Exception e)
                     {

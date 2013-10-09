@@ -39,14 +39,10 @@ namespace Structured_Programming.Controllers
                     return View("Error");
                 }
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
             var itemsToDisplay = items.ToPagedList(pageNumber, itemsPerPage);
             var itemModel = new ItemIndexModel
             {
-                TypeName = db.Types.Find(typeId).Name,
+                TypeName = db.Types.Find(typeId) != null ? db.Types.Find(typeId).Name : "All",
                 Items = itemsToDisplay
             };
             return View(itemModel);
@@ -142,6 +138,7 @@ namespace Structured_Programming.Controllers
                     string extension = System.IO.Path.GetExtension(model.Image.FileName);
                     model.Image.SaveAs(Server.MapPath("/Images/") + model.Item.ItemId.ToString() + extension);
                 }
+                ViewBag.Message = "Your item has been edited successfully";
                 ViewBag.ReturnUrl = Url.Action("Index");
                 return View("Success");
             }
