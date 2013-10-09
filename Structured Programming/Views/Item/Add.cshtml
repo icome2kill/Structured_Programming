@@ -62,6 +62,9 @@
                             <input type="file" id="image" name="image" onchange="alertFilename();">
                         </div>
                     </div>
+                    <div class="error-msg">
+                        @Html.ValidationMessageFor(m => m.Image)
+                    </div>
 
                 </div>
                 <div class="span12 custom-dropdown">

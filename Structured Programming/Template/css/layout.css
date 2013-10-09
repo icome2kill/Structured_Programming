@@ -4,6 +4,7 @@ body{
 	font-size:14px;
 	color:#000000;
 	background:url(../images/broken_noise.png) repeat;
+    word-break: break-all;
 }
 a:hover {
 	color: #9098A5;

@@ -10,6 +10,7 @@ namespace Structured_Programming.Models
     public class ItemMetadata
     {
         [Required]
+        [StringLength(50)]
         public Object Name { get; set; }
 
         [Required]
